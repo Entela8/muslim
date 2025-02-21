@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="8dp" android:background="@drawable/widget_background">
+
+    <TextView android:id="@+id/widget_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:text="Heures de Pri re" android:textStyle="bold" android:textSize="16sp" android:textColor="#FFFFFF" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/widget_title" android:orientation="vertical" android:layout_marginTop="8dp">
+
+        <TextView android:id="@+id/next_prayer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="14sp" />
+
+        <TextView android:id="@+id/next_prayer_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="12dp" />
+
+        <TextView android:id="@+id/fajr_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:layout_marginBottom="4dp" android:textStyle="bold" />
+
+        <TextView android:id="@+id/dhuhr_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:layout_marginBottom="4dp" android:textStyle="bold" />
+
+        <TextView android:id="@+id/asr_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:layout_marginBottom="4dp" android:textStyle="bold" />
+
+        <TextView android:id="@+id/maghrib_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:layout_marginBottom="4dp" android:textStyle="bold" />
+
+        <TextView android:id="@+id/isha_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

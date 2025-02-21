@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Comment faire la prière musulmane ? un guide complet.</title>
+	   <meta name="description" content="Apprenez à faire la prière musulmane avec un guide complet étape par étape avec les audios des différentes étapes.">
+    <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: white;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+ 
+   
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+ 
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        .prayer-card:nth-child(5n+1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+        .prayer-card:nth-child(5n+2) {
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0);
+        }
+        .prayer-card:nth-child(5n+3) {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+        }
+        .prayer-card:nth-child(5n+4) {
+            background: linear-gradient(45deg, #7F00FF, #E100FF);
+        }
+        .prayer-card:nth-child(5n+5) {
+            background: linear-gradient(45deg, #f12711, #f5af19);
+        }
+
+        .prayer-card {
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .etape:nth-child(4n+1) {
+            background: linear-gradient(45deg, #FC466B, #3F5EFB);
+        }
+        .etape:nth-child(4n+2) {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+        }
+        .etape:nth-child(4n+3) {
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0);
+        }
+        .etape:nth-child(4n+4) {
+            background: linear-gradient(45deg, #f12711, #f5af19);
+        }
+
+        .prayer-name {
+            font-size: 1.4em;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .rakat-count {
+            font-size: 2.8em;
+            color: white;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .arabe {
+            font-size: 1.8em;
+            color: white;
+            text-align: right;
+            padding: 15px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+            direction: rtl;
+            line-height: 1.8;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .phonetique {
+            font-size: 1.1em;
+            color: rgba(255,255,255,0.9);
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .traduction {
+            color: rgba(255,255,255,0.95);
+            margin: 10px 0;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .etape {
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .position-img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        h1, h2, h3 {
+            color: white;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h1 { font-size: 1.8em; }
+        h2 { font-size: 1.5em; }
+        h3 { 
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .audio-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 1.1em;
+            margin: 10px 0;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .audio-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+		 .audio-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .audio-btn audio {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+
+        .obligatoire {
+            border-left: 4px solid rgba(255,255,255,0.8);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        .sunnah-info {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+     
+ 
+	 <div class="container">
+	 <br/><br/>
+	 <h1>Comment faire la prière ?</h1>
+        <h2>Nombre de Rakats par prière</h2>
+
+        <!-- Nombre de Rakats -->
+        <div class="prayer-card">
+            <div class="prayer-name">Fajr (الفجر)</div>
+            <div class="rakat-count">2</div>
+            <div class="sunnah-info">+ 2 Sunnah avant</div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="prayer-name">Dhuhr (الظهر)</div>
+            <div class="rakat-count">4</div>
+            <div class="sunnah-info">+ 4 Sunnah avant</div>
+            <div class="sunnah-info">+ 2 Sunnah après</div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="prayer-name">Asr (العصر)</div>
+            <div class="rakat-count">4</div>
+            <div class="sunnah-info">+ 4 Sunnah avant</div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="prayer-name">Maghrib (المغرب)</div>
+            <div class="rakat-count">3</div>
+            <div class="sunnah-info">+ 2 Sunnah après</div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="prayer-name">Isha (العشاء)</div>
+            <div class="rakat-count">4</div>
+                     <div class="sunnah-info">+ 3 Witr</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Guide Détaillé de la Prière</h2>
+
+        <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-1.png" alt="Position debout">
+            <div class="arabe">الله أكبر</div>
+            <div class="phonetique">Levez vos mains aux épaules<br/>Allahu Akbar</div>
+            <div class="traduction">Allah est le plus grand</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-allahou-akbar.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position debout">
+            <div class="arabe">اSoubhanaka al-lahoumma wa bihamdika wa tabaraka ismouka, wa ta ala jaddouka wa la ilaha ghayrouka</div>
+            <div class="phonetique">	Posez votre main gauche sur votre poitrine et votre main droite par-dessus</div>
+            <div class="traduction">Gloire à toi ô mon Dieu, louange à toi ! Que ton nom soit béni ! Que ta gloire soit exaltée ! Il n’y a pas d’autre Dieu que toi !</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhanaka-al-lahoumma-wa-bihamdika-wa-tabaraka-ismouka-wa-ta-ala-jaddouka-wa-la-ilaha-ghayrouka.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <div class="etape">
+            <h3> Récitation de la Fatiha</h3>
+            <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-fatiha.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+			  </div>
+			   <h3>Récitation de Al Ikhlass</h3>
+            <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-ikhlass.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+      </div>
+
+        <div class="etape">
+            <h3> Inclinaison (Ruku)</h3>
+            <img class="position-img" src="/images/priere-inclinaison-ruku.png" alt="Position Ruku">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+            <div class="phonetique">	Inclinez-vous en mettant vos mains sur les genoux<br/>Subhana Rabbiyal Adhim (x 3 fois)<br/>Gloire et louange à mon seigneur tout puissant  (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-azim.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-1.png" alt="Position debout">
+            <div class="arabe">Sami aL lahou li mane hamidah</div>
+            <div class="phonetique">	Relevez-vous en dirigeant vos mains vers vos épaules</div>
+            <div class="traduction">Que Dieu entende celui qui te loue</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-sami-al-lahou-li-mane-hamidah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+		    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position debout">
+            <div class="arabe">Rabbana wa lakal hamde</div>
+            <div class="phonetique">	Une fois redressé, remettez vos bras le long du corps</div>
+            <div class="traduction">O notre seigneur, à toi les louanges</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbana-wa-lakal-hamde.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Mettez-vous à genoux et plongez vers le sol, les mains ouvertes paumes contre terre.Le front posé au sol.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+
+       <div class="etape">
+            <h3> Position Assise (tawarruk)</h3>
+          <img class="position-img" src="/images/priere-position-assise.png" alt="Position tawarruk">
+            <div class="arabe">رَبِّ اغْفِـرْ ليُ</div>
+            <div class="phonetique">Rabbi ghfer Li</div>
+            <div class="traduction">Redressez-vous et asseyez-vous sur vos talons.<br/>O mon seigneur, pardonne moi</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbi-ghfer-li.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+   <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Prosternez-vous une nouvelle fois.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <!-- Deuxième Rakat -->
+        <h2>Deuxième Rakat</h2>
+         
+        <div class="etape">
+            <h3> Debout pour la 2ème Rakat</h3>
+			<img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position Debout">
+               <h3>2. Récitation de la Fatiha</h3>
+            <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-fatiha.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+			  </div>
+			  <h3> Récitation de Al Nass</h3>
+            <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-nass.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+      
+        </div>
+ <div class="etape">
+            <h3> Inclinaison (Ruku)</h3>
+            <img class="position-img" src="/images/priere-inclinaison-ruku.png" alt="Position Ruku">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+            <div class="phonetique">	Inclinez-vous en mettant vos mains sur les genoux<br/>Subhana Rabbiyal Adhim (x 3 fois)<br/>Gloire et louange à mon seigneur tout puissant  (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-azim.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-1.png" alt="Position debout">
+            <div class="arabe">Sami aL lahou li mane hamidah</div>
+            <div class="phonetique">	Relevez-vous en dirigeant vos mains vers vos épaules</div>
+            <div class="traduction">Que Dieu entende celui qui te loue</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-sami-al-lahou-li-mane-hamidah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+		    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position debout">
+            <div class="arabe">Rabbana wa lakal hamde</div>
+            <div class="phonetique">	Une fois redressé, remettez vos bras le long du corps</div>
+            <div class="traduction">O notre seigneur, à toi les louanges</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbana-wa-lakal-hamde.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Mettez-vous à genoux et plongez vers le sol, les mains ouvertes paumes contre terre.Le front posé au sol.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+
+       <div class="etape">
+            <h3> Position Assise (tawarruk)</h3>
+          <img class="position-img" src="/images/priere-position-assise.png" alt="Position tawarruk">
+            <div class="arabe">رَبِّ اغْفِـرْ ليُ</div>
+            <div class="phonetique">Rabbi ghfer Li</div>
+            <div class="traduction">Redressez-vous et asseyez-vous sur vos talons.<br/>O mon seigneur, pardonne moi</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbi-ghfer-li.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+   <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Prosternez-vous une nouvelle fois.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+     <div class="etape">
+            <h3> Tashahhud Court</h3>
+			
+            <img class="position-img" src="/images/priere-position-assise-Tashahhud.png" alt="Position Tashahhud">
+            <div class="arabe">التحيات لله، والصلوات، والطيبات، السلام عليك أيها النبي ورحمة الله وبركاته، السلام علينا وعلى عباد الله الصالحين، أشهد أن لا إله إلا الله، وأشهد أن محمداً عبده ورسوله. َ</div>
+            <div class="phonetique">At tahiyyat lillah, was salouat wat tayyibatou, as salam alayka ayyouhannabi wa rahmatoullahi wa barakatouh, as salam alayna wa ala ibadillahi S salihin. Achadou an la ilaha illalllah wa achadou anna Mouhammadane abdouhou wa rasoulouhou</div>
+            <div class="traduction">Salut à Dieu ! Ainsi que les prières, et les bonnes choses, que le salut soit sur toi Ô Prophète, ainsi que la clémence de Dieu et ces bénédictions ! Que le salut soit sur nous et sur les serviteurs de Dieu vertueux !<br/>Je témoigne qu’il n’y a d’autre divinité que Dieu, je témoigne que Mouhammad est son serviteur et son envoyé</div>
+			<div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-at-tahiyyat-lillah-was-salouat-wat-tayyibatou-as-salam-alayka-ayyouhannabi-wa-rahmatoullahi-wa-barakatouh-as-salam-alayna-wa-ala-ibadillahi-s-salihin.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+			 <audio controls>
+                <source src="/audios-priere/priere-achadou-an-la-ilaha-illalllah-wa-achadou-anna-mouhammadane-abdouhou-wa-rasoulouhou.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+            
+       
+        </div>
+        <!-- Troisième Rakat -->
+        <h2>Troisième Rakat</h2>
+        
+        <div class="etape">
+            <h3> Debout pour la 3ème Rakat</h3>
+			<img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position Debout">
+            <div class="obligatoire">
+                 <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+                <div class="traduction">Al-Fatiha uniquement( <strong>à voix basse</strong>)</div>
+              <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-fatiha.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+            </div>
+        </div>
+ <div class="etape">
+            <h3> Inclinaison (Ruku)</h3>
+            <img class="position-img" src="/images/priere-inclinaison-ruku.png" alt="Position Ruku">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+            <div class="phonetique">	Inclinez-vous en mettant vos mains sur les genoux<br/>Subhana Rabbiyal Adhim (x 3 fois)<br/>Gloire et louange à mon seigneur tout puissant  (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-azim.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-1.png" alt="Position debout">
+            <div class="arabe">Sami aL lahou li mane hamidah</div>
+            <div class="phonetique">	Relevez-vous en dirigeant vos mains vers vos épaules</div>
+            <div class="traduction">Que Dieu entende celui qui te loue</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-sami-al-lahou-li-mane-hamidah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+		    <div class="etape">
+            <h3> Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position debout">
+            <div class="arabe">Rabbana wa lakal hamde</div>
+            <div class="phonetique">	Une fois redressé, remettez vos bras le long du corps</div>
+            <div class="traduction">O notre seigneur, à toi les louanges</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbana-wa-lakal-hamde.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Mettez-vous à genoux et plongez vers le sol, les mains ouvertes paumes contre terre.Le front posé au sol.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+
+       <div class="etape">
+            <h3> Position Assise (tawarruk)</h3>
+          <img class="position-img" src="/images/priere-position-assise.png" alt="Position tawarruk">
+            <div class="arabe">رَبِّ اغْفِـرْ ليُ</div>
+            <div class="phonetique">Rabbi ghfer Li</div>
+            <div class="traduction">Redressez-vous et asseyez-vous sur vos talons.<br/>O mon seigneur, pardonne moi</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbi-ghfer-li.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+   <div class="etape">
+            <h3> Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Prosternez-vous une nouvelle fois.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+ 
+        <!-- Quatrième Rakat -->
+        <h2>Quatrième Rakat</h2>
+        
+       <div class="etape">
+            <h3> Debout pour la 4ème Rakat</h3>
+			<img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position Debout">
+            <div class="obligatoire">
+                    <div class="arabe">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="phonetique">Bismillahi r-rahmani r-rahim</div>
+                <div class="traduction">Al-Fatiha uniquement( <strong>à voix basse</strong>)</div>
+              <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-fatiha.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+            </div>
+        </div>
+ <div class="etape">
+            <h3>Inclinaison (Ruku)</h3>
+            <img class="position-img" src="/images/priere-inclinaison-ruku.png" alt="Position Ruku">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+            <div class="phonetique">	Inclinez-vous en mettant vos mains sur les genoux<br/>Subhana Rabbiyal Adhim (x 3 fois)<br/>Gloire et louange à mon seigneur tout puissant  (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-azim.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+    <div class="etape">
+            <h3>Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-1.png" alt="Position debout">
+            <div class="arabe">Sami aL lahou li mane hamidah</div>
+            <div class="phonetique">	Relevez-vous en dirigeant vos mains vers vos épaules</div>
+            <div class="traduction">Que Dieu entende celui qui te loue</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-sami-al-lahou-li-mane-hamidah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+		    <div class="etape">
+            <h3>Position Initiale (Qiyam)</h3>
+            <img class="position-img" src="/images/priere-debout-qiyam-2.png" alt="Position debout">
+            <div class="arabe">Rabbana wa lakal hamde</div>
+            <div class="phonetique">	Une fois redressé, remettez vos bras le long du corps</div>
+            <div class="traduction">O notre seigneur, à toi les louanges</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbana-wa-lakal-hamde.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+        <div class="etape">
+            <h3>Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Mettez-vous à genoux et plongez vers le sol, les mains ouvertes paumes contre terre.Le front posé au sol.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+
+       <div class="etape">
+            <h3>Position Assise (tawarruk)</h3>
+          <img class="position-img" src="/images/priere-position-assise.png" alt="Position tawarruk">
+            <div class="arabe">رَبِّ اغْفِـرْ لي</div>
+            <div class="phonetique">Rabbi ghfer Li</div>
+            <div class="traduction">Redressez-vous et asseyez-vous sur vos talons.<br/>O mon seigneur, pardonne moi</div>
+           <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-rabbi-ghfer-li.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+   <div class="etape">
+            <h3>Prosternation (Sujud)</h3>
+            <img class="position-img" src="/images/priere-prosternation-sujud.png" alt="Position Sujud">
+            <div class="arabe">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+            <div class="phonetique">Allahou Akbar.<br/>Subhana Rabbiyal A'la (x 3 fois)</div>
+			 <div class="traduction">Prosternez-vous une nouvelle fois.<br/>Dieu est le plus grand<br/>Gloire à mon Seigneur l’exalté (x 3 fois)</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-soubhana-rabbiya-l-ala.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        </div>
+ 
+        <div class="etape">
+            <h3>Tashahhud Complet</h3>
+			
+            <img class="position-img" src="/images/priere-position-assise-Tashahhud.png" alt="Position Tashahhud">
+            <div class="arabe">التحيات لله، والصلوات، والطيبات، السلام عليك أيها النبي ورحمة الله وبركاته، السلام علينا وعلى عباد الله الصالحين، أشهد أن لا إله إلا الله، وأشهد أن محمداً عبده ورسوله. </div>
+            <div class="phonetique">At tahiyyat lillah, was salouat wat tayyibatou, as salam alayka ayyouhannabi wa rahmatoullahi wa barakatouh, as salam alayna wa ala ibadillahi S salihin.Achadou an la ilaha illalllah wa achadou anna Mouhammadane abdouhou wa rasoulouhou.</div>
+           <div class="traduction">Salut à Dieu ! Ainsi que les prières, et les bonnes choses, que le salut soit sur toi Ô Prophète, ainsi que la clémence de Dieu et ces bénédictions ! Que le salut soit sur nous et sur les serviteurs de Dieu vertueux !Je témoigne qu’il n’y a d’autre divinité que Dieu, je témoigne que Mouhammad est son serviteur et son envoyé</div>
+		
+		<div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-at-tahiyyat-lillah-was-salouat-wat-tayyibatou-as-salam-alayka-ayyouhannabi-wa-rahmatoullahi-wa-barakatouh-as-salam-alayna-wa-ala-ibadillahi-s-salihin.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+			 <audio controls>
+                <source src="/audios-priere/priere-achadou-an-la-ilaha-illalllah-wa-achadou-anna-mouhammadane-abdouhou-wa-rasoulouhou.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+            
+            <div class="obligatoire">
+                <div class="arabe">مجيدم صل على محمد وعلى آل محمد كما صليت على إبراهيم وعلى آل إبراهيم، وبارك على محمد وعلى آل محمد كما باركت على إبراهيم وعلى آل إبراهيم، في العالمين إنك حميد مجيدٍ.</div>
+                <div class="phonetique">Allahouma sali ala Mouhammad wa ala ali Mouhammad kama salayta ala ibrahim wa ala ali ibrahim, wa barek ala Mouhammad wa ala ali Mouhammad kama barakta ala ibrahim wa ala ali ibrahim fi-il alamina inaka amidone majide</div>
+                <div class="traduction">Ô mon Dieu, prie sur Muhammad, Et sur la famille de Muhammad comme tu as prié sur Ibrahim Et la famille d’Ibrahim, Et répands tes bénédictions sur Muhammad, Et sur la famille de Muhammad comme tu les as répandu sur Ibrahim Et sur la famille d’Ibrahim. A Toi vont les louanges et la gloire.</div>
+
+
+			   <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-allahouma-sali-ala-mouhammad-wa-ala-ali-mouhammad.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+            </div>
+        </div>
+
+        <div class="etape">
+            <h3>Salam Final</h3>
+			 <img class="position-img" src="/images/priere-salutation-2.png" alt="Salam Final">
+            <div class="arabe">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</div>
+            <div class="phonetique">Assalamu alaikum wa rahmatullah (à droite puis à gauche)</div>
+            <div class="traduction">Après avoir prononcé les prières en étant assis sur votre talon gauche, vous devez tourner votre tête à droite et dire As salam alayikoum wa ramatoullah.  </div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-as-salam-alayikoum-wa-ramatoullah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>		
+             </div>
+			  <img class="position-img" src="/images/priere-salutation-1.png" alt="Salam Final">
+			   <div class="traduction">Puis tournez votre tête vers la gauche et prononcez As salam alayikoum wa ramatoullah une deuxième fois.</div>
+            <div class="audio-btn">
+            <audio controls>
+                <source src="/audios-priere/priere-as-salam-alayikoum-wa-ramatoullah.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>		
+             </div>
+        </div>
+			    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    </div>
+
+ 
+    <script>
+ 
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioElements = document.getElementsByTagName('audio');
+            for(let audio of audioElements) {
+                audio.addEventListener('error', function() {
+                    this.parentElement.innerHTML = 'Audio file not available';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+ 

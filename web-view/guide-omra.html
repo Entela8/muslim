@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <title>Guide de la Omra pour le musulman avec les différentes étapes et rites et invocations.</title>
+	   <meta name="description" content="Guide de la Omra complet pour le musulman avec les différentes étapes et rites et invocations.">
+   <link rel="icon" type="image/png" sizes="16x16"  href="/images/favicon.png">
+    <style>
+        :root {
+            --gradient-start: #1E3C72;
+            --gradient-end: #2A5298;
+            --accent-gradient-start: #2193b0;
+            --accent-gradient-end: #6dd5ed;
+            --card-gradient-start: #E0EAFC;
+            --card-gradient-end: #CFDEF3;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent-gradient-start) 0%, var(--accent-gradient-end) 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        .step-card {
+            background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            color: #2d3748;
+            transform: translateZ(0);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .dua-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent-gradient-end);
+        }
+
+        h2 {
+            color: var(--gradient-start);
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, #ffb347, #ffcc33);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            color: #2d3748;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Guide Complet des Rites de la Omra</h1>
+        <p>Les étapes essentielles et les invocations associées</p>
+    </div>
+
+    <div class="container">
+        <div class="important-note">
+            <strong>Note importante :</strong> Avant de commencer, assurez-vous d'être en état de pureté rituelle (ablutions) et d'avoir l'intention sincère d'accomplir la Omra.
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">Étape 1</span>
+            <h2>L'Ihram</h2>
+            <p>Se mettre en état de sacralisation au Miqat</p>
+            <div class="dua-box">
+                <h3>Invocation de l'Ihram :</h3>
+                <p>لَبَّيْكَ اللَّهُمَّ بِعُمْرَة</p>
+                <p><em>Labbayka Allahumma bi-'umrah</em></p>
+                <p>"Me voici, ô Allah, pour la Omra"</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">Étape 2</span>
+            <h2>Le Tawaf</h2>
+            <p>Sept tours autour de la Kaaba</p>
+            <div class="dua-box">
+                <h3>Au début du Tawaf :</h3>
+                <p>بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ</p>
+                <p><em>Bismillahi wallahu Akbar</em></p>
+                <p>"Au nom d'Allah, Allah est Le Plus Grand"</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">Étape 3</span>
+            <h2>Le Sa'i</h2>
+            <p>Sept allers-retours entre Safa et Marwa</p>
+            <div class="dua-box">
+                <h3>À Safa et Marwa :</h3>
+                <p>إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ</p>
+                <p><em>Innas-Safa wal Marwata min sha'aa'irillah</em></p>
+                <p>"En vérité, As-Safa et Al-Marwa font partie des rites d'Allah"</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">Étape 4</span>
+            <h2>Le Raccourcissement des Cheveux</h2>
+            <p>Dernière étape pour sortir de l'état d'Ihram</p>
+            <div class="dua-box">
+                <h3>Invocation finale :</h3>
+                <p>اللَّهُمَّ تَقَبَّلْ مِنِّي</p>
+                <p><em>Allahumma taqabbal minni</em></p>
+                <p>"Ô Allah, accepte ceci de ma part"</p>
+            </div>
+        </div>
+
+        <div class="important-note">
+            <h3>Rappels importants :</h3>
+            <ul>
+                <li>Maintenez votre intention pure tout au long des rites</li>
+                <li>Respectez l'ordre des étapes</li>
+                <li>Évitez les interdits de l'Ihram jusqu'à la fin des rites</li>
+                <li>Multipliez les invocations personnelles pendant le Tawaf et le Sa'i</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>🤲 Qu'Allah accepte votre Omra 🤲</p>
+        </footer>
+    </div>
+<br/><br/>
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Formulaire de contact pour l'application musulmane Muslim Alim Pro.</title>
+	   <meta name="description" content="Le formulaire de contact pour l'application musulmane qui forunit les heures de prières, l'adhan Muslim Alim Pro.">
+		<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+    <style>
+ 	    * { margin: 0; padding: 0; box-sizing: border-box; }
+              img{max-width:100%;}
+        body { 
+            font-family: 'Poppins', sans-serif;
+background: #4b6cb7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 90px;
+        }
+
+    			 .container {
+            max-width: 1200px;
+            margin: 0 auto;
+			       background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+
+        .page {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #00ff8c, #00a1ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+
+ /*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+   
+		        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .features {
+            margin: 20px 0;
+        }
+        .features li {
+            margin: 10px 0;
+        }
+        .contact-button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-button:hover {
+            background: #2980b9;
+        }
+        .email-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        .faq-section {
+            margin: 30px 0;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .faq-answer {
+            color: #34495e;
+        }
+        .form-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+ 
+     <h1>Support Muslim Alim</h1>
+        
+        <div class="contact-info">
+            <h2>Contactez-nous</h2>
+            <p><br/>Si vous rencontrez un problème ou vous avez une question quelconque concernant notre application, <br/>contactez-nous par le biais du formulaire en bas de pageet nous vous répondrons dans les plus brefs délais.</p>
+      
+
+        <div class="features">
+            <h2>À propos de Muslim Alim</h2>
+            <p>Muslim Alim est votre compagnon spirituel quotidien offrant :</p>
+            <ul>
+                <li>Heures précises des prières</li>
+                <li>Boussole Qibla</li>
+                <li>Coran en audio et texte</li>
+                <li>Collection de Hadith</li>
+                <li>Dhikr et Douaas</li>
+                <li>Histoires des Prophètes</li>
+            </ul>
+        </div>
+
+        <h2>Support et Assistance</h2>
+        <p>Notre équipe est là pour vous aider. Vous pouvez nous contacter pour :</p>
+        <ul>
+            <li>Signaler un problème technique</li>
+            <li>Suggérer de nouvelles fonctionnalités</li>
+            <li>Poser des questions sur l'utilisation de l'application</li>
+            <li>Partager vos retours d'expérience</li>
+        </ul>
+  </div>
+        <div class="faq-section">
+            <h2>Questions Fréquentes (FAQ)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Comment les horaires de prière sont-ils calculés ?</div>
+                <div class="faq-answer">Les horaires de prière sont calculés en fonction de votre position géographique et suivent les méthodes de calcul reconnues. L'application utilise les coordonnées GPS de votre appareil pour fournir des horaires précis.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">La boussole Qibla est-elle précise ?</div>
+                <div class="faq-answer">Oui, la boussole Qibla utilise le magnétomètre et le GPS de votre appareil pour indiquer la direction précise de la Qibla. Pour une meilleure précision, calibrez régulièrement votre boussole et évitez les interférences magnétiques.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Comment télécharger le Coran pour une lecture hors-ligne ?</div>
+                <div class="faq-answer">Dans la section Coran, appuyez sur l'icône de téléchargement à côté des sourates que vous souhaitez lire hors-ligne. Une fois téléchargées, elles seront disponibles même sans connexion internet.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Les notifications de prière ne fonctionnent pas, que faire ?</div>
+                <div class="faq-answer">Vérifiez que les notifications sont activées dans les paramètres de votre téléphone pour Muslim Alim. Assurez-vous également que le mode "Ne pas déranger" est désactivé aux heures de prière.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Comment changer la langue de l'application ?</div>
+                <div class="faq-answer">Accédez aux paramètres de l'application et sélectionnez "Langue" dans le menu. Choisissez ensuite votre langue préférée parmi celles disponibles.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Comment modifier la méthode de calcul des prières ?</div>
+                <div class="faq-answer">Dans les paramètres, sélectionnez "Méthodes de calcul" et choisissez la méthode qui correspond à votre localisation ou à votre école juridique.</div>
+            </div>
+        </div>
+
+        <h2>Formulaire de Contact</h2>
+        <div id="form-message" class="form-message"></div>
+        <form id="contactForm" action="https://muslim-alim.com/process.php" method="POST">
+            <p><input type="text" name="name" required placeholder="Votre nom" style="width: 100%; padding: 8px; margin: 5px 0;"></p>
+            <p><input type="email" name="email" required placeholder="Votre email" style="width: 100%; padding: 8px; margin: 5px 0;"></p>
+            <p><select name="type" required style="width: 100%; padding: 8px; margin: 5px 0;">
+                <option value="">Sélectionnez le type de demande</option>
+                <option value="bug">Signaler un problème</option>
+                <option value="feature">Suggérer une fonctionnalité</option>
+                <option value="question">Question générale</option>
+                <option value="feedback">Retour d'expérience</option>
+            </select></p>
+            <p><textarea name="message" required placeholder="Votre message" style="width: 100%; height: 150px; padding: 8px; margin: 5px 0;"></textarea></p>
+            <p><button type="submit" class="contact-button">Envoyer</button></p>
+        </form>
+   
+
+
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+	</div>
+	
+   <script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Récupérer tous les champs
+    const name = this.elements['name'].value;
+    const email = this.elements['email'].value;
+    const type = this.elements['type'].value;
+    const message = this.elements['message'].value;
+    
+    // Créer l'objet de données
+    const data = new FormData();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('type', type);
+    data.append('message', message);
+    
+    // Référence au div de message
+    const messageDiv = document.getElementById('form-message');
+    messageDiv.style.display = 'block';
+    messageDiv.textContent = 'Envoi en cours...';
+    messageDiv.className = 'form-message';
+
+    // Envoyer directement au script PHP
+    fetch('process.php', {
+        method: 'POST',
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur réseau - ' + response.status);
+        }
+        return response.text();
+    })
+    .then(result => {
+        console.log('Réponse du serveur:', result);
+        messageDiv.textContent = 'Message envoyé avec succès!';
+        messageDiv.className = 'form-message success';
+        this.reset(); // Réinitialiser le formulaire
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        messageDiv.textContent = 'Erreur lors de l\'envoi: ' + error.message;
+        messageDiv.className = 'form-message error';
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>L'école Malikite : une des quatre écoles de jurisprudence de la religion musulmane.</title>
+	   <meta name="description" content="L'école Malikite avec son histoire, ses fondements et son dogme. découvrez une des 4 écoles de jurisprudence de l'islam.">
+    <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+   /* Menu de navigation */
+        
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-icon {
+            font-size: 1.5em;
+        }
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db, #2980b9);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.3));
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .containera {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin: 2rem 0;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .containera {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+    <header>
+        <div class="containera">
+            <h1>École Malikite</h1>
+            <p>Une des quatre écoles juridiques de l'Islam sunnite</p>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Découvrez l'École Malikite</h1>
+            <p>Fondée par l'Imam Malik ibn Anas, une tradition d'excellence juridique depuis le VIIIe siècle</p>
+        </div>
+    </div>
+
+    <main class="containera">
+        <section class="section">
+            <h2>Histoire et Fondation</h2>
+            <div class="card">
+                <p>L'école Malikite a été fondée par l'Imam Malik ibn Anas (711-795), l'un des plus éminents savants de Médine. Cette école s'est développée dans la ville du Prophète et est considérée comme l'héritière directe de la tradition médinoise.</p>
+                <div class="quote">
+                    "Toute innovation en matière de religion est une erreur." - Imam Malik
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Caractéristiques Principales</h2>
+            <div class="grid">
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3>Méthodologie</h3>
+                    <p>Fondée sur le Coran, la Sunna et les pratiques des habitants de Médine</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Jurisprudence</h3>
+                    <p>Importance accordée aux pratiques de Médine et au consensus des savants</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Influence</h3>
+                    <p>École majoritaire en Afrique du Nord et en Afrique de l'Ouest</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Principes Fondamentaux</h2>
+            <div class="card">
+                <p>L'école Malikite se distingue par:</p>
+                <ul>
+                    <li>L'importance accordée aux pratiques des habitants de Médine</li>
+                    <li>La considération des intérêts publics (Masalih Mursala)</li>
+                    <li>L'utilisation du consensus des savants de Médine</li>
+                    <li>La prise en compte des coutumes locales bénéfiques</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="containera">
+            <p>École Malikite - Une tradition juridique millénaire</p>
+            <p>&copy; 2024 Tous droits réservés</p>
+        </div>
+    </footer>
+			      <!-- Menu de navigation -->
+    <nav class="nav-bar">
+        <a href="https://muslim-alim.com/accueil.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html" class="nav-item">
+            <span class="nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+		    <a href="https://muslim-alim.com/lecture-coran.html" class="nav-item">
+            <span class="nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+		
+		
+		
+        <a href="https://muslim-alim.com/dikr.html"class="nav-item">
+            <span class="nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html"  class="nav-item">
+            <span class="nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html" class="nav-item">
+            <span class="nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</div>
+</body>
+</html>

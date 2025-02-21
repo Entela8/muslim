@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Restaurants Hallal à proximité avec géolocalisation sur Muslim Alim Pro.</title>
+<meta name="description" content="Trouver les restaurants Hallal à proximité par géolocalisation avec Muslim Alim Pro.">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; height: 100vh; display: flex; flex-direction: column; }
+		/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        #map { flex: 1; }
+        #status {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .marker {
+            background: white;
+            border: 2px solid #e74c3c;
+            border-radius: 50%;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+        }
+ 
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="status">Localisation en cours...</div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let map;
+        const status = document.getElementById('status');
+
+        // Initialiser la carte
+        map = L.map('map');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        // Géolocalisation
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                
+                map.setView([lat, lon], 13);
+                
+                // Marqueur position actuelle
+                L.marker([lat, lon]).addTo(map)
+                    .bindPopup('Vous êtes ici')
+                    .openPopup();
+
+                // Recherche restaurants halal
+                searchHalalPlaces(lat, lon);
+            }, function(error) {
+                status.textContent = "Erreur de géolocalisation: " + error.message;
+            });
+        } else {
+            status.textContent = "Géolocalisation non supportée";
+        }
+
+        function searchHalalPlaces(lat, lon) {
+            status.textContent = "Recherche des restaurants...";
+
+            const query = `
+                [out:json][timeout:25];
+                (
+                    node(around:30000,${lat},${lon})["cuisine"="halal"];
+                    node(around:30000,${lat},${lon})["diet:halal"="yes"];
+                    node(around:30000,${lat},${lon})["amenity"="restaurant"]["cuisine"~"kebab|turkish|middle_eastern|arab"];
+                );
+                out body;
+            `;
+
+            fetch('https://overpass-api.de/api/interpreter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'data=' + encodeURIComponent(query)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.elements.length > 0) {
+                    data.elements.forEach(element => {
+                        if (element.lat && element.lon) {
+                            L.marker([element.lat, element.lon], {
+                                icon: L.divIcon({
+                                    className: 'marker',
+                                    html: '🍽️'
+                                })
+                            })
+                            .addTo(map)
+                            .bindPopup(createPopupContent(element.tags));
+                        }
+                    });
+                    status.textContent = `${data.elements.length} restaurants trouvés`;
+                } else {
+                    status.textContent = 'Aucun restaurant trouvé dans un rayon de 30km';
+                }
+            })
+            .catch(error => {
+                status.textContent = 'Erreur lors de la recherche';
+                console.error(error);
+            });
+        }
+
+        function createPopupContent(tags) {
+            let content = tags?.name || 'Restaurant Halal';
+            if (tags?.cuisine) content += `<br>Cuisine: ${tags.cuisine}`;
+            if (tags?.phone) content += `<br>📞 ${tags.phone}`;
+            if (tags?.opening_hours) content += `<br>⏰ ${tags.opening_hours}`;
+            return content;
+        }
+    </script>
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Assistant Islam</title>
+   <style>
+html, body {
+ background: linear-gradient(225deg, #3F584B 0%, #2D4037 50%, #1B2822 100%) fixed;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+ 
+       .header img {
+           width: 150px;
+           height: auto;
+           margin: 0 auto;
+           display: block;
+       }
+
+       .header h1 {
+           color: white;
+           font-size: 1.5rem;
+           margin: 5px 0;
+           text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+       }
+
+       #question-container {
+           padding: 10px;
+           background: rgba(255, 255, 255, 0.98);
+           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+           backdrop-filter: blur(10px);
+           position: fixed;
+           top: 100px;
+           left: 0;
+           right: 0;
+           z-index: 1000;
+           display: flex;
+           gap: 5px;
+       }
+
+  #chat-container {
+    position: fixed;
+    top: 155px;
+    bottom: 75px; /* Augmenté pour laisser de l'espace pour la nav du bas */
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    padding: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container {
+   background: linear-gradient(225deg, #3F584B 0%, #2D4037 50%, #1B2822 100%);
+    min-height: 100vh;
+}
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+       #user-input {
+           flex: 1;
+           padding: 12px;
+           border-radius: 20px;
+           border: 1px solid #ddd;
+           font-size: 16px;
+           min-width: 0;
+           box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+       }
+
+       button {
+           padding: 12px 20px;
+           background: linear-gradient(135deg, #303F9F 0%, #1976D2 100%);
+           color: white;
+           border: none;
+           border-radius: 20px;
+           cursor: pointer;
+           font-size: 16px;
+           white-space: nowrap;
+           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+           transition: all 0.3s ease;
+       }
+
+       button:hover {
+           background: linear-gradient(135deg, #1976D2 0%, #303F9F 100%);
+           transform: translateY(-1px);
+       }
+
+       .message {
+           margin: 8px 0;
+           padding: 15px 20px;
+           border-radius: 20px;
+           word-wrap: break-word;
+           font-size: 16px;
+           line-height: 1.8;
+           white-space: pre-wrap;
+           max-width: 85%;
+           animation: fadeIn 0.3s ease;
+           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+       }
+
+       .message[style*="margin-left: auto"] {
+           background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+           border: 1px solid #90CAF9;
+       }
+
+       .message:not([style*="margin-left: auto"]) {
+           background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+           border: 1px solid #9FA8DA;
+       }
+
+       .typing-indicator {
+           padding: 12px 16px;
+           background: rgba(255, 255, 255, 0.9);
+           border-radius: 15px;
+           margin: 8px 0;
+           display: none;
+           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       }
+
+       .typing-indicator span {
+           height: 8px;
+           width: 8px;
+           background: #303F9F;
+           display: inline-block;
+           border-radius: 50%;
+           margin-right: 3px;
+           animation: bounce 1s infinite;
+       }
+
+       .typing-indicator span:nth-child(2) { 
+           animation-delay: 0.2s; 
+       }
+
+       .typing-indicator span:nth-child(3) { 
+           animation-delay: 0.4s; 
+       }
+
+       @keyframes bounce {
+           0%, 80%, 100% { transform: translateY(0); }
+           40% { transform: translateY(-8px); }
+       }
+
+       @keyframes fadeIn {
+           from { opacity: 0; transform: translateY(10px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <div class="header">
+           <a href="https://muslim-alim.com/islam-bot.html">
+               <img src="https://muslim-alim.com/Bot-Muslim-Alim.webp" alt="Muslim Alim Bot">
+           </a>
+         
+       </div>
+ 
+       <div id="question-container">
+           <input type="text" id="user-input" placeholder="Salam Aleykum, je m'appelle Alim. Posez votre question sur l'Islam et j'y répondrai insh'Allah...">
+           <button onclick="sendMessage()">OK</button>
+       </div>
+       <div id="chat-container">
+           <div id="typing" class="typing-indicator">
+               <span></span>
+               <span></span>
+               <span></span>
+           </div>
+       </div>
+   </div>
+   <br/><br/><br/><br/>  <br/><br/><br/><br/>
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+   <script>
+       async function sendMessage() {
+           const input = document.getElementById('user-input');
+           const question = input.value.trim();
+           
+           if (!question) return;
+
+           appendMessage(question, true);
+           input.value = '';
+           
+           document.getElementById('typing').style.display = 'block';
+
+           try {
+               const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'Authorization': 'Bearer sk-c7JYXWva3WGJekpRSadmYUZpav73X6mMIEjE8XXkq0T3BlbkFJn0n8N-YkQd6ky--DDrYGCqzHq4fewfhL6huHiW6aUA'
+                   },
+                   body: JSON.stringify({
+                       model: "gpt-4",
+                       messages: [
+                           {
+                               role: "system",
+                               content: "Tu es un expert en Islam qui répond de manière simple et concise. Important: Termine chaque phrase par un retour à la ligne (\\n). Format ta réponse de manière aérée avec des espaces entre les paragraphes."
+                           },
+                           {
+                               role: "user",
+                               content: question
+                           }
+                       ]
+                   })
+               });
+
+               document.getElementById('typing').style.display = 'none';
+
+               if (!response.ok) throw new Error('Erreur API');
+               
+               const data = await response.json();
+               appendMessage(data.choices[0].message.content, false);
+           } catch (error) {
+               document.getElementById('typing').style.display = 'none';
+               console.error(error);
+               appendMessage('Désolé, une erreur est survenue. Veuillez réessayer.', false);
+           }
+       }
+
+       function appendMessage(text, isUser) {
+           const chatContainer = document.getElementById('chat-container');
+           const messageDiv = document.createElement('div');
+           messageDiv.classList.add('message');
+           messageDiv.style.marginLeft = isUser ? 'auto' : '0';
+           messageDiv.textContent = text;
+           chatContainer.appendChild(messageDiv);
+           chatContainer.scrollTop = chatContainer.scrollHeight;
+       }
+
+       document.getElementById('user-input').addEventListener('keypress', (e) => {
+           if (e.key === 'Enter') sendMessage();
+       });
+   </script>
+</body>
+</html>

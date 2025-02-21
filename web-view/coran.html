@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coran à écouter en audio complet avec ses 114 sourates</title>
+	    <title>Ecouter le coran en audio avec ses 114 sourates afin d'apprendre le Saint Coran.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+    <style>
+	    :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+            background: linear-gradient(135deg, #1a1f2c, #2d3748);
+            color: white;
+            min-height: 100vh;
+        }
+	 .container {
+            max-width: 1200px;
+            margin: 0 auto;color:white;
+        }
+        
+        .arabic { 
+            font-family: 'Amiri', serif; 
+            font-size: 24px; 
+            text-align: right; 
+            direction: rtl;
+        }
+
+        .page {
+            padding: 20px;
+            display: none;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 20px;
+            padding: 20px 0;color:white;
+        }
+
+        .surah-card {
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .surah-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+            pointer-events: none;
+        }
+
+        .surah-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+ 
+     
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+
+        .player-card {
+      background: rgb(10,64,107);
+background: linear-gradient(90deg, rgba(10,64,107,1) 0%, rgba(42,131,175,1) 35%, rgba(41,97,150,1) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;color:white;
+        }
+
+        .search-bar {
+         background: rgb(10,64,107);
+background: linear-gradient(90deg, rgba(10,64,107,1) 0%, rgba(42,131,175,1) 35%, rgba(41,97,150,1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            color: white;
+            outline: none; font-size:20px;
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .page-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #00ff8c, #00a1ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+   
+<div class="container">
+	 <!--	<p align="center"><img src="https://muslim-alim.com/header.png"  alt="Muslim Alim (عالم مسلم)"></p>-->
+    <div id="surahs-page" class="page active">
+        <h1 class="page-title">Le Saint Coran</h1>
+        <div class="player-card">
+            <h2 id="currentSurah">Sélectionnez une sourate</h2>
+            <div id="arabicText" class="arabic"></div>
+            <audio id="audioPlayer" controls></audio>
+        </div>
+        <input type="text" class="search-bar" placeholder="Rechercher (Nom ou Numéro)..." id="searchInput">
+        <div class="surah-grid" id="surahList"></div>
+    </div>
+
+  	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>	<br/>
+ 
+
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html" class="active">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</div>
+    <script>
+        // Palettes de couleurs étendues pour plus de variété
+        const gradients = [
+            { start: '#FF416C', end: '#FF4B2B' },    // Rouge vif
+            { start: '#00B4DB', end: '#0083B0' },    // Bleu océan
+            { start: '#56CCF2', end: '#2F80ED' },    // Bleu ciel
+            { start: '#4776E6', end: '#8E54E9' },    // Violet
+            { start: '#00B09B', end: '#96C93D' },    // Vert nature
+            { start: '#FF512F', end: '#DD2476' },    // Orange-Rose
+            { start: '#FF8008', end: '#FFC837' },    // Orange doré
+            { start: '#7F00FF', end: '#E100FF' },    // Violet électrique
+            { start: '#3494E6', end: '#EC6EAD' },    // Bleu-Rose
+            { start: '#67B26F', end: '#4ca2cd' },    // Vert-Bleu
+            { start: '#ee0979', end: '#ff6a00' },    // Rose-Orange
+            { start: '#42275a', end: '#734b6d' },    // Violet profond
+            { start: '#141E30', end: '#243B55' },    // Bleu nuit
+            { start: '#2b5876', end: '#4e4376' },    // Bleu-Violet
+            { start: '#00cdac', end: '#02aab0' },    // Turquoise
+            { start: '#cc2b5e', end: '#753a88' }     // Rose-Violet
+        ];
+
+        // Liste complète des 114 sourates
+        const surahs = [
+         {number: 1, name: "الفاتحة", englishName: "Al Fatiha", englishNameTranslation: "L'Ouverture", numberOfAyahs: 7},
+    {number: 2, name: "البقرة", englishName: "Al Baqara", englishNameTranslation: "La Vache", numberOfAyahs: 286},
+    {number: 3, name: "آل عمران", englishName: "Ali 'Imran", englishNameTranslation: "La Famille d'Imran", numberOfAyahs: 200},
+    {number: 4, name: "النساء", englishName: "An Nisa", englishNameTranslation: "Les Femmes", numberOfAyahs: 176},
+    {number: 5, name: "المائدة", englishName: "Al Ma'ida", englishNameTranslation: "La Table Servie", numberOfAyahs: 120},
+    {number: 6, name: "الأنعام", englishName: "Al An'am", englishNameTranslation: "Les Bestiaux", numberOfAyahs: 165},
+    {number: 7, name: "الأعراف", englishName: "Al A'raf", englishNameTranslation: "Les Hauteurs", numberOfAyahs: 206},
+    {number: 8, name: "الأنفال", englishName: "Al Anfal", englishNameTranslation: "Le Butin", numberOfAyahs: 75},
+    {number: 9, name: "التوبة", englishName: "At Tawba", englishNameTranslation: "Le Repentir", numberOfAyahs: 129},
+    {number: 10, name: "يونس", englishName: "Yunus", englishNameTranslation: "Jonas", numberOfAyahs: 109},
+    {number: 11, name: "هود", englishName: "Hud", englishNameTranslation: "Hud", numberOfAyahs: 123},
+    {number: 12, name: "يوسف", englishName: "Yusuf", englishNameTranslation: "Joseph", numberOfAyahs: 111},
+    {number: 13, name: "الرعد", englishName: "Ar Ra'd", englishNameTranslation: "Le Tonnerre", numberOfAyahs: 43},
+    {number: 14, name: "ابراهيم", englishName: "Ibrahim", englishNameTranslation: "Abraham", numberOfAyahs: 52},
+    {number: 15, name: "الحجر", englishName: "Al Hijr", englishNameTranslation: "Al Hijr", numberOfAyahs: 99},
+    {number: 16, name: "النحل", englishName: "An Nahl", englishNameTranslation: "Les Abeilles", numberOfAyahs: 128},
+    {number: 17, name: "الإسراء", englishName: "Al Isra", englishNameTranslation: "Le Voyage Nocturne", numberOfAyahs: 111},
+    {number: 18, name: "الكهف", englishName: "Al Kahf", englishNameTranslation: "La Caverne", numberOfAyahs: 110},
+    {number: 19, name: "مريم", englishName: "Maryam", englishNameTranslation: "Marie", numberOfAyahs: 98},
+    {number: 20, name: "طه", englishName: "Taha", englishNameTranslation: "Ta Ha", numberOfAyahs: 135},
+    {number: 21, name: "الأنبياء", englishName: "Al Anbya", englishNameTranslation: "Les Prophètes", numberOfAyahs: 112},
+    {number: 22, name: "الحج", englishName: "Al Hajj", englishNameTranslation: "Le Pèlerinage", numberOfAyahs: 78},
+    {number: 23, name: "المؤمنون", englishName: "Al Mu'minun", englishNameTranslation: "Les Croyants", numberOfAyahs: 118},
+    {number: 24, name: "النور", englishName: "An Nur", englishNameTranslation: "La Lumière", numberOfAyahs: 64},
+    {number: 25, name: "الفرقان", englishName: "Al Furqan", englishNameTranslation: "Le Critère", numberOfAyahs: 77},
+    {number: 26, name: "الشعراء", englishName: "Ash Shu'ara", englishNameTranslation: "Les Poètes", numberOfAyahs: 227},
+    {number: 27, name: "النمل", englishName: "An Naml", englishNameTranslation: "Les Fourmis", numberOfAyahs: 93},
+    {number: 28, name: "القصص", englishName: "Al Qasas", englishNameTranslation: "Le Récit", numberOfAyahs: 88},
+    {number: 29, name: "العنكبوت", englishName: "Al 'Ankabut", englishNameTranslation: "L'Araignée", numberOfAyahs: 69},
+    {number: 30, name: "الروم", englishName: "Ar Rum", englishNameTranslation: "Les Romains", numberOfAyahs: 60},
+    {number: 31, name: "لقمان", englishName: "Luqman", englishNameTranslation: "Luqman", numberOfAyahs: 34},
+    {number: 32, name: "السجدة", englishName: "As Sajda", englishNameTranslation: "La Prosternation", numberOfAyahs: 30},
+    {number: 33, name: "الأحزاب", englishName: "Al Ahzab", englishNameTranslation: "Les Coalisés", numberOfAyahs: 73},
+    {number: 34, name: "سبإ", englishName: "Saba", englishNameTranslation: "Saba", numberOfAyahs: 54},
+    {number: 35, name: "فاطر", englishName: "Fatir", englishNameTranslation: "Le Créateur", numberOfAyahs: 45},
+    {number: 36, name: "يس", englishName: "Ya Sin", englishNameTranslation: "Ya Sin", numberOfAyahs: 83},
+    {number: 37, name: "الصافات", englishName: "As Saffat", englishNameTranslation: "Les Rangés", numberOfAyahs: 182},
+    {number: 38, name: "ص", englishName: "Sad", englishNameTranslation: "Sad", numberOfAyahs: 88},
+    {number: 39, name: "الزمر", englishName: "Az Zumar", englishNameTranslation: "Les Groupes", numberOfAyahs: 75},
+    {number: 40, name: "غافر", englishName: "Ghafir", englishNameTranslation: "Le Pardonneur", numberOfAyahs: 85},
+    {number: 41, name: "فصلت", englishName: "Fussilat", englishNameTranslation: "Les Versets Détaillés", numberOfAyahs: 54},
+    {number: 42, name: "الشورى", englishName: "Ash Shura", englishNameTranslation: "La Consultation", numberOfAyahs: 53},
+    {number: 43, name: "الزخرف", englishName: "Az Zukhruf", englishNameTranslation: "L'Ornement", numberOfAyahs: 89},
+    {number: 44, name: "الدخان", englishName: "Ad Dukhan", englishNameTranslation: "La Fumée", numberOfAyahs: 59},
+    {number: 45, name: "الجاثية", englishName: "Al Jathiya", englishNameTranslation: "L'Agenouillée", numberOfAyahs: 37},
+    {number: 46, name: "الأحقاف", englishName: "Al Ahqaf", englishNameTranslation: "Al Ahqaf", numberOfAyahs: 35},
+    {number: 47, name: "محمد", englishName: "Muhammad", englishNameTranslation: "Muhammad", numberOfAyahs: 38},
+    {number: 48, name: "الفتح", englishName: "Al Fath", englishNameTranslation: "La Victoire", numberOfAyahs: 29},
+    {number: 49, name: "الحجرات", englishName: "Al Hujurat", englishNameTranslation: "Les Appartements", numberOfAyahs: 18},
+    {number: 50, name: "ق", englishName: "Qaf", englishNameTranslation: "Qaf", numberOfAyahs: 45},
+    {number: 51, name: "الذاريات", englishName: "Adh Dhariyat", englishNameTranslation: "Les Vents", numberOfAyahs: 60},
+    {number: 52, name: "الطور", englishName: "At Tur", englishNameTranslation: "Le Mont", numberOfAyahs: 49},
+    {number: 53, name: "النجم", englishName: "An Najm", englishNameTranslation: "L'Étoile", numberOfAyahs: 62},
+    {number: 54, name: "القمر", englishName: "Al Qamar", englishNameTranslation: "La Lune", numberOfAyahs: 55},
+    {number: 55, name: "الرحمن", englishName: "Ar Rahman", englishNameTranslation: "Le Tout Miséricordieux", numberOfAyahs: 78},
+    {number: 56, name: "الواقعة", englishName: "Al Waqi'a", englishNameTranslation: "L'Événement", numberOfAyahs: 96},
+    {number: 57, name: "الحديد", englishName: "Al Hadid", englishNameTranslation: "Le Fer", numberOfAyahs: 29},
+    {number: 58, name: "المجادلة", englishName: "Al Mujadila", englishNameTranslation: "La Discussion", numberOfAyahs: 22},
+    {number: 59, name: "الحشر", englishName: "Al Hashr", englishNameTranslation: "L'Exode", numberOfAyahs: 24},
+    {number: 60, name: "الممتحنة", englishName: "Al Mumtahana", englishNameTranslation: "L'Éprouvée", numberOfAyahs: 13},
+    {number: 61, name: "الصف", englishName: "As Saf", englishNameTranslation: "Le Rang", numberOfAyahs: 14},
+    {number: 62, name: "الجمعة", englishName: "Al Jumu'a", englishNameTranslation: "Le Vendredi", numberOfAyahs: 11},
+    {number: 63, name: "المنافقون", englishName: "Al Munafiqun", englishNameTranslation: "Les Hypocrites", numberOfAyahs: 11},
+    {number: 64, name: "التغابن", englishName: "At Taghabun", englishNameTranslation: "La Grande Perte", numberOfAyahs: 18},
+    {number: 65, name: "الطلاق", englishName: "At Talaq", englishNameTranslation: "Le Divorce", numberOfAyahs: 12},
+    {number: 66, name: "التحريم", englishName: "At Tahrim", englishNameTranslation: "L'Interdiction", numberOfAyahs: 12},
+    {number: 67, name: "الملك", englishName: "Al Mulk", englishNameTranslation: "La Royauté", numberOfAyahs: 30},
+    {number: 68, name: "القلم", englishName: "Al Qalam", englishNameTranslation: "La Plume", numberOfAyahs: 52},
+    {number: 69, name: "الحاقة", englishName: "Al Haaqqa", englishNameTranslation: "L'Inévitable", numberOfAyahs: 52},
+    {number: 70, name: "المعارج", englishName: "Al Ma'arij", englishNameTranslation: "Les Voies d'Ascension", numberOfAyahs: 44},
+    {number: 71, name: "نوح", englishName: "Nuh", englishNameTranslation: "Noé", numberOfAyahs: 28},
+    {number: 72, name: "الجن", englishName: "Al Jinn", englishNameTranslation: "Les Djinns", numberOfAyahs: 28},
+    {number: 73, name: "المزمل", englishName: "Al Muzzammil", englishNameTranslation: "L'Enveloppé", numberOfAyahs: 20},
+    {number: 74, name: "المدثر", englishName: "Al Muddaththir", englishNameTranslation: "Le Revêtu d'un Manteau", numberOfAyahs: 56},
+    {number: 75, name: "القيامة", englishName: "Al Qiyama", englishNameTranslation: "La Résurrection", numberOfAyahs: 40},
+    {number: 76, name: "الانسان", englishName: "Al Insan", englishNameTranslation: "L'Homme", numberOfAyahs: 31},
+    {number: 77, name: "المرسلات", englishName: "Al Mursalat", englishNameTranslation: "Les Envoyés", numberOfAyahs: 50},
+    {number: 78, name: "النبإ", englishName: "An Naba", englishNameTranslation: "La Nouvelle", numberOfAyahs: 40},
+    {number: 79, name: "النازعات", englishName: "An Nazi'at", englishNameTranslation: "Les Anges qui Arrachent", numberOfAyahs: 46},
+    {number: 80, name: "عبس", englishName: "Abasa", englishNameTranslation: "Il s'est Renfrogné", numberOfAyahs: 42},
+   {number: 81, name: "التكوير", englishName: "At Takwir", englishNameTranslation: "L'Obscurcissement", numberOfAyahs: 29},
+    {number: 82, name: "الإنفطار", englishName: "Al Infitar", englishNameTranslation: "La Rupture", numberOfAyahs: 19},
+    {number: 83, name: "المطففين", englishName: "Al Mutaffifin", englishNameTranslation: "Les Fraudeurs", numberOfAyahs: 36},
+    {number: 84, name: "الإنشقاق", englishName: "Al Inshiqaq", englishNameTranslation: "La Déchirure", numberOfAyahs: 25},
+    {number: 85, name: "البروج", englishName: "Al Buruj", englishNameTranslation: "Les Constellations", numberOfAyahs: 22},
+    {number: 86, name: "الطارق", englishName: "At Tariq", englishNameTranslation: "L'Astre Nocturne", numberOfAyahs: 17},
+    {number: 87, name: "الأعلى", englishName: "Al A'la", englishNameTranslation: "Le Très Haut", numberOfAyahs: 19},
+    {number: 88, name: "الغاشية", englishName: "Al Ghashiyah", englishNameTranslation: "L'Enveloppante", numberOfAyahs: 26},
+    {number: 89, name: "الفجر", englishName: "Al Fajr", englishNameTranslation: "L'Aube", numberOfAyahs: 30},
+    {number: 90, name: "البلد", englishName: "Al Balad", englishNameTranslation: "La Cité", numberOfAyahs: 20},
+    {number: 91, name: "الشمس", englishName: "Ash Shams", englishNameTranslation: "Le Soleil", numberOfAyahs: 15},
+    {number: 92, name: "الليل", englishName: "Al Layl", englishNameTranslation: "La Nuit", numberOfAyahs: 21},
+    {number: 93, name: "الضحى", englishName: "Ad Duhaa", englishNameTranslation: "Le Jour Montant", numberOfAyahs: 11},
+    {number: 94, name: "الشرح", englishName: "Ash Sharh", englishNameTranslation: "L'Ouverture", numberOfAyahs: 8},
+    {number: 95, name: "التين", englishName: "At Tin", englishNameTranslation: "La Figue", numberOfAyahs: 8},
+    {number: 96, name: "العلق", englishName: "Al Alaq", englishNameTranslation: "L'Adhérence", numberOfAyahs: 19},
+    {number: 97, name: "القدر", englishName: "Al Qadr", englishNameTranslation: "La Destinée", numberOfAyahs: 5},
+    {number: 98, name: "البينة", englishName: "Al Bayyinah", englishNameTranslation: "La Preuve", numberOfAyahs: 8},
+    {number: 99, name: "الزلزلة", englishName: "Az Zalzalah", englishNameTranslation: "La Secousse", numberOfAyahs: 8},
+    {number: 100, name: "العاديات", englishName: "Al Adiyat", englishNameTranslation: "Les Coursiers", numberOfAyahs: 11},
+    {number: 101, name: "القارعة", englishName: "Al Qari'ah", englishNameTranslation: "Le Fracas", numberOfAyahs: 11},
+    {number: 102, name: "التكاثر", englishName: "At Takathur", englishNameTranslation: "La Course aux Richesses", numberOfAyahs: 8},
+    {number: 103, name: "العصر", englishName: "Al Asr", englishNameTranslation: "Le Temps", numberOfAyahs: 3},
+    {number: 104, name: "الهمزة", englishName: "Al Humazah", englishNameTranslation: "Le Calomniateur", numberOfAyahs: 9},
+    {number: 105, name: "الفيل", englishName: "Al Fil", englishNameTranslation: "L'Éléphant", numberOfAyahs: 5},
+    {number: 106, name: "قريش", englishName: "Quraysh", englishNameTranslation: "Les Quraysh", numberOfAyahs: 4},
+    {number: 107, name: "الماعون", englishName: "Al Ma'un", englishNameTranslation: "L'Ustensile", numberOfAyahs: 7},
+    {number: 108, name: "الكوثر", englishName: "Al Kawthar", englishNameTranslation: "L'Abondance", numberOfAyahs: 3},
+    {number: 109, name: "الكافرون", englishName: "Al Kafirun", englishNameTranslation: "Les Mécréants", numberOfAyahs: 6},
+    {number: 110, name: "النصر", englishName: "An Nasr", englishNameTranslation: "Le Secours", numberOfAyahs: 3},
+    {number: 111, name: "المسد", englishName: "Al Masad", englishNameTranslation: "Les Fibres", numberOfAyahs: 5},
+    {number: 112, name: "الإخلاص", englishName: "Al Ikhlas", englishNameTranslation: "Le Monothéisme Pur", numberOfAyahs: 4},
+    {number: 113, name: "الفلق", englishName: "Al Falaq", englishNameTranslation: "L'Aube Naissante", numberOfAyahs: 5},
+    {number: 114, name: "الناس", englishName: "An-Nas", englishNameTranslation: "Les Hommes", numberOfAyahs: 6}
+        ];
+
+        // Mise à jour de l'affichage des sourates
+        function displaySurahs(searchTerm = '') {
+            const surahList = document.getElementById('surahList');
+            surahList.innerHTML = '';
+            
+            surahs.filter(surah => 
+                surah.englishName.toLowerCase().includes(searchTerm) ||
+                surah.englishNameTranslation.toLowerCase().includes(searchTerm) ||
+                surah.number.toString().includes(searchTerm)
+            ).forEach(surah => {
+                const gradientIndex = (surah.number - 1) % gradients.length;
+                const gradient = gradients[gradientIndex];
+                
+                const card = document.createElement('div');
+                card.className = 'surah-card';
+                card.style.background = `linear-gradient(135deg, ${gradient.start}, ${gradient.end})`;
+                
+                card.innerHTML = `
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 16px; font-weight: bold;">
+                        ${surah.number}
+                    </div>
+                    <div class="arabic" style="margin: 10px 0; font-size: 22px;">
+                        ${surah.name}
+                    </div>
+                    <div style="font-size: 20px; margin-bottom: 4px;">
+                       ${surah.number} -  ${surah.englishName}
+                    </div>
+                    <div style="font-size: 16px; opacity: 0.9;">
+                        ${surah.englishNameTranslation}
+                    </div>
+                    <div style="font-size: 11px; margin-top: 8px; background: rgba(255,255,255,0.2); 
+                         padding: 4px 8px; border-radius: 10px; display: inline-block;">
+                        ${surah.numberOfAyahs} versets
+                    </div>
+                `;
+
+                card.onclick = () => loadSurahAudio(surah);
+                surahList.appendChild(card);
+            });
+        }
+
+        // Chargement de l'audio
+ // Nouvelle fonction pour charger la sourate suivante
+function loadNextSurah(currentSurahNumber) {
+    const nextSurahNumber = currentSurahNumber + 1;
+    if (nextSurahNumber <= 114) {
+        const nextSurah = surahs.find(s => s.number === nextSurahNumber);
+        if (nextSurah) {
+            loadSurahAudio(nextSurah);
+        }
+    }
+}
+
+// Modification de la fonction loadSurahAudio
+function loadSurahAudio(surah) {
+    const currentSurah = document.getElementById('currentSurah');
+    const arabicText = document.getElementById('arabicText');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    currentSurah.textContent = `${surah.englishName} - ${surah.englishNameTranslation}`;
+    arabicText.textContent = surah.name;
+    
+    const paddedNumber = surah.number.toString().padStart(3, '0');
+    audioPlayer.src = `https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/${paddedNumber}.mp3`;
+    
+    // Sauvegarder le numéro de la sourate actuelle
+    audioPlayer.dataset.currentSurah = surah.number;
+    
+    audioPlayer.load();
+    audioPlayer.play().catch(e => console.log('Lecture automatique bloquée'));
+
+    // Ajouter l'écouteur d'événement pour la fin de la lecture
+    audioPlayer.onended = function() {
+        const currentSurahNumber = parseInt(audioPlayer.dataset.currentSurah);
+        loadNextSurah(currentSurahNumber);
+    };
+}
+
+        // Gestionnaire de recherche
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            displaySurahs(e.target.value.toLowerCase());
+        });
+
+  
+
+        // Initialisation
+        displaySurahs();
+    </script>
+ 
+</body>
+</html>

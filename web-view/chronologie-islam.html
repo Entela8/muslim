@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Chronologie de l'Islama avec les dates principales de l'Islam.</title>
+	    <title>Découvbrez une chronologie de l'islam avec ses dates et événements principaux de l'expansion de la religion musulmane.</title>
+			<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+		/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+        .timeline {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+
+        .era-marker {
+            background: linear-gradient(45deg, #6C5B7B, #C06C84);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .content {
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content:nth-child(4n+1) {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+        }
+
+        .content:nth-child(4n+2) {
+            background: linear-gradient(45deg, #4ECDC4, #45B7AF);
+        }
+
+        .content:nth-child(4n+3) {
+            background: linear-gradient(45deg, #96C93D, #00B09B);
+        }
+
+        .content:nth-child(4n+4) {
+            background: linear-gradient(45deg, #5F2C82, #49A09D);
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 5px 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+        }
+
+        .arabic {
+            font-family: 'Traditional Arabic', serif;
+            color: rgba(255,255,255,0.95);
+            margin-top: 8px;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 5px; }
+            .content { padding: 12px; }
+            h1 { font-size: 1.3rem; }
+            h2 { font-size: 1.1rem; }
+            p { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Histoire de l'Islam: Des Prophètes à l'Empire Ottoman</h1>
+
+    <div class="timeline">
+        <!-- Période des Prophètes -->
+        <div class="era-marker">
+            <h2>Les 25 Prophètes mentionnés dans le Coran</h2>
+        </div>
+
+      
+
+       <div class="container">
+            <div class="content">
+                <div class="date">Premier Homme</div>
+                <h2>1. Adam (آدم)</h2>
+                <p>Premier prophète de l'humanité</p>
+                <p class="arabic">أول الأنبياء</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>2. Idris (إدريس)</h2>
+                <p>Connu comme Énoch dans la Bible</p>
+                <p class="arabic">رفعه الله مكانا عليا</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>3. Nuh (نوح)</h2>
+                <p>Constructeur de l'Arche</p>
+                <p class="arabic">نجاه الله وأصحاب السفينة</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>4. Hud (هود)</h2>
+                <p>Envoyé au peuple de 'Ad</p>
+                <p class="arabic">أرسل إلى قوم عاد</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>5. Salih (صالح)</h2>
+                <p>Prophète des Thamud</p>
+                <p class="arabic">صاحب الناقة</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>6. Ibrahim (إبراهيم)</h2>
+                <p>Père des monothéistes</p>
+                <p class="arabic">خليل الله</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>7. Lut (لوط)</h2>
+                <p>Neveu d'Ibrahim</p>
+                <p class="arabic">نجاه الله من قومه</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>8. Ismail (إسماعيل)</h2>
+                <p>Fils d'Ibrahim</p>
+                <p class="arabic">الذبيح</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>9. Ishaq (إسحاق)</h2>
+                <p>Second fils d'Ibrahim</p>
+                <p class="arabic">بشر به إبراهيم</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>10. Yaqub (يعقوب)</h2>
+                <p>Fils d'Ishaq</p>
+                <p class="arabic">إسرائيل</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>11. Yusuf (يوسف)</h2>
+                <p>Fils de Yaqub</p>
+                <p class="arabic">أحسن القصص</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>12. Ayyub (أيوب)</h2>
+                <p>L'homme patient</p>
+                <p class="arabic">الصابر</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>13. Shuayb (شعيب)</h2>
+                <p>Prophète de Madyan</p>
+                <p class="arabic">خطيب الأنبياء</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>14. Musa (موسى)</h2>
+                <p>Libérateur des Hébreux</p>
+                <p class="arabic">كليم الله</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>15. Harun (هارون)</h2>
+                <p>Frère de Musa</p>
+                <p class="arabic">وزير موسى</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>16. Dhul-Kifl (ذو الكفل)</h2>
+                <p>L'homme à la part double</p>
+                <p class="arabic">ذو الحظ</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>17. Dawud (داود)</h2>
+                <p>Le roi prophète</p>
+                <p class="arabic">صاحب الزبور</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>18. Sulayman (سليمان)</h2>
+                <p>Fils de Dawud</p>
+                <p class="arabic">الملك النبي</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>19. Ilyas (إلياس)</h2>
+                <p>Prophète d'Israël</p>
+                <p class="arabic">دعا قومه إلى عبادة الله</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>20. Al-Yasa (اليسع)</h2>
+                <p>Successeur d'Ilyas</p>
+                <p class="arabic">خليفة إلياس</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>21. Yunus (يونس)</h2>
+                <p>L'homme à la baleine</p>
+                <p class="arabic">ذو النون</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>22. Zakariya (زكريا)</h2>
+                <p>Père de Yahya</p>
+                <p class="arabic">كافل مريم</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>23. Yahya (يحيى)</h2>
+                <p>Fils de Zakariya</p>
+                <p class="arabic">أوتي الحكم صبيا</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>24. Isa (عيسى)</h2>
+                <p>Fils de Maryam</p>
+                <p class="arabic">المسيح</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <div class="date">Dernier Prophète</div>
+                <h2>25. Muhammad ﷺ (محمد)</h2>
+                <p>Le Sceau des Prophètes</p>
+                <p class="arabic">خاتم النبيين</p>
+            </div>
+        </div>
+ 
+
+        <!-- Période des Califes Bien Guidés -->
+        <div class="era-marker">
+            <h2>Les Califes Bien Guidés (632-661)</h2>
+        </div>
+
+        <div class="container">
+            <div class="content calife">
+                <div class="date">632-634</div>
+                <h2>Abu Bakr As-Siddiq (أبو بكر الصديق)</h2>
+                <p>Premier calife de l'Islam</p>
+                <p class="arabic">Premier successeur du Prophète</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content calife">
+                <div class="date">634-644</div>
+                <h2>Umar ibn Al-Khattab (عمر بن الخطاب)</h2>
+                <p>Second calife, expansion majeure</p>
+                <p class="arabic">Al-Farooq</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content calife">
+                <div class="date">644-656</div>
+                <h2>Uthman ibn Affan (عثمان بن عفان)</h2>
+                <p>Troisième calife</p>
+                <p class="arabic">Compilation du Coran</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content calife">
+                <div class="date">656-661</div>
+                <h2>Ali ibn Abi Talib (علي بن أبي طالب)</h2>
+                <p>Quatrième calife</p>
+                <p class="arabic">Cousin et gendre du Prophète</p>
+            </div>
+        </div>
+
+        <!-- Les Grandes Dynasties -->
+        <div class="era-marker">
+            <h2>Les Grandes Dynasties</h2>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">661-750</div>
+                <h2>Dynastie Omeyyade</h2>
+                <p>Capitale: Damas</p>
+                <p>Premier grand empire islamique</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">750-1258</div>
+                <h2>Dynastie Abbasside</h2>
+                <p>Capitale: Bagdad</p>
+                <p>Âge d'or islamique</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">756-1031</div>
+                <h2>Émirat de Cordoue</h2>
+                <p>Al-Andalus</p>
+                <p>Omeyyades d'Espagne</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">909-1171</div>
+                <h2>Dynastie Fatimide</h2>
+                <p>Capitale: Le Caire</p>
+                <p>Empire chiite ismaélien</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1040-1157</div>
+                <h2>Empire Seldjoukide</h2>
+                <p>De l'Anatolie à l'Asie centrale</p>
+                <p>Dynastie turque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1171-1250</div>
+                <h2>Dynastie Ayyoubide</h2>
+                <p>Fondée par Saladin</p>
+                <p>Période des Croisades</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1250-1517</div>
+                <h2>Sultanat Mamelouk</h2>
+                <p>Égypte et Syrie</p>
+                <p>Élite militaire d'esclaves-soldats</p>
+            </div>
+        </div>
+
+        <!-- Empire Ottoman -->
+        <div class="era-marker">
+            <h2>Empire Ottoman (1299-1922)</h2>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1299-1453</div>
+                <h2>Fondation et Expansion</h2>
+                <p>De la principauté à l'empire</p>
+                <p>Conquête de Constantinople</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1453-1566</div>
+                <h2>Âge d'Or Ottoman</h2>
+                <p>Règne de Soliman le Magnifique</p>
+                <p>Apogée de l'empire</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1566-1789</div>
+                <h2>Période Classique</h2>
+                <p>Stabilisation et institutions</p>
+                <p>Développement culturel</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content empire">
+                <div class="date">1789-1922</div>
+                <h2>Déclin et Fin</h2>
+                <p>Modernisation et réformes</p>
+                <p>Dissolution après la 1ère Guerre Mondiale</p>
+            </div>
+        </div>
+    </div>
+	<br/><br/>
+	    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</body>
+</html>

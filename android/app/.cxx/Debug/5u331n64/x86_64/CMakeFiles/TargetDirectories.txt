@@ -1,0 +1,2 @@
+/home/snake/Documents/muslim_mobile_code/muslim/android/app/.cxx/Debug/5u331n64/x86_64/CMakeFiles/edit_cache.dir
+/home/snake/Documents/muslim_mobile_code/muslim/android/app/.cxx/Debug/5u331n64/x86_64/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hadith du jour : une collection des hadiths les plus connus avec leur référence.</title>
+	   <meta name="description" content="De nombreux hadiths chaque jour pour le musulman qui traduit la sunna et la vie du prophète Muhamed ﷺ.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+	 .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+ /*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+        header {
+            background-color: #004d40;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .hadith-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hadith-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hadith-text {
+            font-size: 1.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .hadith-source {
+            text-align: center;
+            color: #666;
+        }
+
+        .narrator {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .source {
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #004d40;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .hadith-text {
+                font-size: 1.2rem;
+            }
+
+            .hadith-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Hadith du Jour</h1>
+        <div class="subtitle">Une source quotidienne de sagesse</div>
+    </header>
+
+    <main>
+        <div class="hadith-card" id="hadith-container">
+            <p class="hadith-text"></p>
+            <div class="hadith-source">
+                <p class="narrator"></p>
+                <p class="source"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Que la paix et les bénédictions d'Allah soient sur vous</p>
+    </footer>
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+	</div>
+    <script>
+        const hadiths = [
+            {
+                text: "Les actes ne valent que par leurs intentions, et chacun n'a pour lui que ce qu'il a eu réellement l'intention de faire.",
+                narrator: "Omar Ibn Al-Khattab",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Nul d'entre vous n'est véritablement croyant tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.",
+                narrator: "Anas Ibn Malik",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Celui qui emprunte un chemin à la recherche de la science, Allah lui facilite par cela un chemin vers le Paradis.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+            {
+                text: "Le musulman est celui dont les musulmans sont à l'abri de sa langue et de sa main.",
+                narrator: "Abdullah Ibn Amr",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "La bonté est un bon caractère, et le péché est ce qui agite ton âme et que tu n'aimes pas que les gens découvrent.",
+                narrator: "An-Nawas Ibn Sam'an",
+                source: "Muslim"
+            },
+            {
+                text: "Quiconque croit en Allah et au Jour dernier, qu'il dise du bien ou qu'il se taise.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "La pudeur fait partie de la foi.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Un homme fort n'est pas celui qui terrasse les autres. Un homme fort est celui qui se maîtrise dans la colère.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Ne soyez pas envieux les uns des autres, ne vous haïssez pas les uns les autres, ne vous tournez pas le dos les uns aux autres.",
+                narrator: "Anas Ibn Malik",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "La meilleure aumône est celle qui laisse suffisamment de richesse et commence par ceux qui sont à ta charge.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Celui qui rompt les liens de parenté n'entrera pas au Paradis.",
+                narrator: "Jubayr Ibn Mut'im",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Le croyant fort est meilleur et plus aimé d'Allah que le croyant faible.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+            {
+                text: "Facilite, ne complique pas. Annonce la bonne nouvelle, ne fait pas fuir les gens.",
+                narrator: "Anas Ibn Malik",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Le sourire que tu adresses à ton frère est une aumône.",
+                narrator: "Abu Dharr",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "La propreté fait partie de la foi.",
+                narrator: "Abu Malik Al-Ash'ari",
+                source: "Muslim"
+            },
+            {
+                text: "Celui qui mange à sa faim alors que son voisin a faim n'est pas des nôtres.",
+                narrator: "Anas Ibn Malik",
+                source: "Al-Bayhaqi"
+            },
+            {
+                text: "Le meilleur d'entre vous est celui qui apprend le Coran et l'enseigne.",
+                narrator: "Uthman Ibn Affan",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "N'entrera pas au Paradis celui qui coupe les liens de parenté.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+            {
+                text: "La patience vient au premier choc.",
+                narrator: "Anas Ibn Malik",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Celui qui cache les défauts d'un musulman, Allah cachera ses défauts le Jour de la Résurrection.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+            {
+                text: "Consultez les femmes au sujet de leur mariage.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Le meilleur d'entre vous est le meilleur avec sa famille, et je suis le meilleur d'entre vous avec ma famille.",
+                narrator: "Ibn Abbas",
+                source: "At-Tirmidhi"
+            },
+            {
+                text: "Quiconque ne remercie pas les gens ne remercie pas Allah.",
+                narrator: "Abu Hurayra",
+                source: "Abu Dawud"
+            },
+            {
+                text: "La main qui donne est meilleure que celle qui reçoit.",
+                narrator: "Abdullah Ibn Umar",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Cherchez le savoir du berceau jusqu'à la tombe.",
+                narrator: "Anas Ibn Malik",
+                source: "Ibn Majah"
+            },
+            {
+                text: "Le fort n'est pas celui qui triomphe des autres par la force, mais celui qui se maîtrise dans la colère.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "La meilleure des actions est d'apporter la joie à un cœur.",
+                narrator: "Ibn Abbas",
+                source: "At-Tabarani"
+            },
+            {
+                text: "Celui qui guide vers le bien a la même récompense que celui qui l'accomplit.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+            {
+                text: "Un bon mot est une aumône.",
+                narrator: "Abu Hurayra",
+                source: "Sahih Al-Bukhari"
+            },
+            {
+                text: "Le croyant est le miroir de son frère.",
+                narrator: "Abu Hurayra",
+                source: "Abu Dawud"
+            },
+            {
+                text: "La force ne réside pas dans la victoire sur autrui, mais dans la maîtrise de soi.",
+                narrator: "Abu Hurayra",
+                source: "Muslim"
+            },
+			 {
+        text: "Le Paradis se trouve sous les pieds des mères.",
+        narrator: "Anas Ibn Malik",
+        source: "An-Nasa'i"
+    },
+    {
+        text: "Celui qui croit en Allah et au Jour dernier, qu'il honore son voisin. Celui qui croit en Allah et au Jour dernier, qu'il honore son hôte. Celui qui croit en Allah et au Jour dernier, qu'il dise du bien ou qu'il se taise.",
+        narrator: "Abu Hurayra",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "Aucun d'entre vous n'est véritablement croyant jusqu'à ce qu'il aime pour son frère ce qu'il aime pour lui-même.",
+        narrator: "Anas Ibn Malik",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "La recherche du savoir est une obligation pour tout musulman et toute musulmane.",
+        narrator: "Anas Ibn Malik",
+        source: "Ibn Majah"
+    },
+    {
+        text: "Le meilleur d'entre vous est celui qui est le meilleur envers sa famille, et je suis le meilleur d'entre vous envers ma famille.",
+        narrator: "Aisha",
+        source: "At-Tirmidhi"
+    },
+    {
+        text: "Craignez Allah où que vous soyez, faites suivre la mauvaise action par une bonne action qui l'effacera, et comportez-vous avec les gens de la meilleure façon.",
+        narrator: "Abu Dharr",
+        source: "At-Tirmidhi"
+    },
+    {
+        text: "Ne sous-estimez aucun acte de bonté, même le simple fait de rencontrer votre frère avec un visage souriant.",
+        narrator: "Abu Dharr",
+        source: "Muslim"
+    },
+    {
+        text: "La prière est la colonne vertébrale de la religion.",
+        narrator: "Omar Ibn Al-Khattab",
+        source: "Al-Bayhaqi"
+    },
+    {
+        text: "Le croyant ne sera point mordu deux fois du même trou.",
+        narrator: "Abu Hurayra",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "Celui qui prend soin d'un orphelin et moi serons ainsi au Paradis [le Prophète (saw) montra ses deux doigts joints].",
+        narrator: "Abu Hurayra",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "La meilleure des aumônes est celle qui est faite lorsqu'on est en bonne santé, qu'on est avare, qu'on craint la pauvreté et qu'on espère la richesse.",
+        narrator: "Abu Hurayra",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "Quiconque emprunte une voie à la recherche du savoir, Allah lui facilite par cela une voie vers le Paradis.",
+        narrator: "Abu Hurayra",
+        source: "Muslim"
+    },
+    {
+        text: "Les droits du musulman sur le musulman sont au nombre de six : lorsque tu le rencontres, salue-le ; lorsqu'il t'invite, réponds à son invitation ; lorsqu'il te demande conseil, conseille-le ; lorsqu'il éternue et loue Allah, dis-lui Yarhamouk Allah ; lorsqu'il est malade, rends-lui visite ; et lorsqu'il meurt, suis son cortège funèbre.",
+        narrator: "Abu Hurayra",
+        source: "Muslim"
+    },
+    {
+        text: "La richesse ne consiste pas à avoir beaucoup de biens, mais la vraie richesse est celle de l'âme.",
+        narrator: "Abu Hurayra",
+        source: "Sahih Al-Bukhari"
+    },
+    {
+        text: "Celui qui aide à résoudre la difficulté d'un croyant, Allah lui enlèvera une des difficultés du Jour de la Résurrection.",
+        narrator: "Abu Hurayra",
+        source: "Muslim"
+    },
+        ];
+
+        function getDailyHadith() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            const hadithIndex = dayOfYear % hadiths.length;
+            return hadiths[hadithIndex];
+        }
+
+        function updateHadith() {
+            const hadith = getDailyHadith();
+            document.querySelector('.hadith-text').textContent = `"${hadith.text}"`;
+            document.querySelector('.narrator').textContent = `Rapporté par : ${hadith.narrator}`;
+            document.querySelector('.source').textContent = `Source : ${hadith.source}`;
+        }
+
+        updateHadith();
+    </script>
+</body>
+</html>

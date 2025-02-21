@@ -1,0 +1,4141 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			Muslim Alim Pro : application des heures de prières, de l'adhan et de
+			l'histoire de la religion musulmane.
+		</title>
+		<title>
+			Muslim Alim Pro est une applicaion destinée aux musulmans avec les heures
+			de prières par géolocalisation, la qibla avec une boussole et de
+			nombreuses ressources (douaas, hadiths et histoires des prophètes).
+		</title>
+		<!-- <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png" /> -->
+
+		<style>
+			a img[src$="images/Muslim-Alim-bot.png"] {
+				width: 90%;
+				max-width: 600px;
+				display: block;
+				margin: 20px auto;
+				border-radius: 20px;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+					sans-serif;
+				background: linear-gradient(135deg, #000428, #004e92);
+				color: white;
+				line-height: 1.6;
+				padding-bottom: 80px;
+			}
+
+			@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@700&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+
+			/* DEBUT Prochaine priere */
+			.next-prayer {
+				width: 90% !important;
+				max-width: 600px !important;
+				margin: 20px auto !important;
+				color: white;
+				background: linear-gradient(45deg, #009688, #004d40);
+				padding: 20px;
+				border-radius: 10px;
+				text-align: center;
+
+				position: relative;
+			}
+
+			.city-name {
+				font-size: 24px;
+				opacity: 0.9;
+				margin-bottom: 10px;
+			}
+
+			.next-prayer-label {
+				font-size: 18px;
+				margin-bottom: 5px;
+			}
+
+			.next-prayer-name {
+				font-size: 24px;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			.next-prayer-time {
+				font-size: 32px;
+				font-weight: bold;
+			}
+
+			.view-notifications {
+				position: absolute;
+				top: 10px;
+				right: 15px;
+				color: white;
+				opacity: 0.8;
+				font-size: 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.view-all {
+				position: absolute;
+				bottom: 10px;
+				right: 15px;
+				color: white;
+				opacity: 0.8;
+				font-size: 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* FIN Prochaine priere */
+			/*DEBUT SOURATE DU JOUR */
+			.containerSourate {
+				width: 90% !important;
+				max-width: 600px !important;
+				margin: 20px auto !important;
+			}
+
+			.suggestion-card {
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 10px;
+				padding: 20px;
+				margin: 20px 0;
+				backdrop-filter: blur(10px);
+			}
+
+			.date {
+				font-size: 1.2em;
+				margin-bottom: 10px;
+				color: #4ecdc4;
+			}
+
+			.surah-info {
+				margin: 15px 0;
+				font-size: 1.1em;
+			}
+
+			.verses-container {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-top: 15px;
+			}
+
+			.verse-number {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 40px;
+				height: 40px;
+				background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+				color: white;
+				border-radius: 50%;
+				font-weight: bold;
+				cursor: pointer;
+				transition: transform 0.2s;
+			}
+
+			.verse-number:hover {
+				transform: scale(1.1);
+			}
+
+			.return-link {
+				display: inline-block;
+				margin-top: 20px;
+				padding: 10px 20px;
+				background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+				color: white;
+				text-decoration: none;
+				border-radius: 5px;
+				transition: transform 0.2s;
+			}
+
+			.return-link:hover {
+				transform: translateY(-2px);
+			}
+			/* FIN SOURATE DU JOUR */
+			/* systeme de NOTE */
+			.rating-container {
+				width: 90% !important;
+				max-width: 600px !important;
+				margin: 20px auto !important;
+				background: linear-gradient(135deg, #6c3483, #4a235a) !important;
+				border-radius: 20px !important;
+				box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+				padding: 30px !important;
+				border: 2px solid #8e44ad !important;
+				margin-bottom: 20px !important;
+				display: block !important;
+				box-sizing: border-box !important;
+				position: relative !important;
+				left: 0 !important;
+				right: 0 !important;
+			}
+
+			/* Pour s'assurer que les éléments internes sont bien alignés */
+			.rating-container h2,
+			.rating-container p {
+				width: 100% !important;
+				max-width: 100% !important;
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+				box-sizing: border-box !important;
+			}
+
+			.store-link {
+				display: flex;
+				align-items: center;
+				padding: 15px;
+				border-radius: 8px;
+				text-decoration: none;
+				color: #333;
+				transition: transform 0.2s;
+				margin: 10px auto;
+			}
+
+			.android-link {
+				background-color: #e8f5e9;
+				border: 1px solid #4caf50;
+			}
+
+			.ios-link {
+				background-color: #e3f2fd;
+				border: 1px solid #2196f3;
+			}
+
+			.store-link:hover {
+				transform: translateY(-2px);
+			}
+
+			.store-icon {
+				width: 40px;
+				height: 40px;
+				margin-right: 15px;
+			}
+
+			.store-text {
+				flex-grow: 1;
+				text-align: left;
+			}
+
+			.store-name {
+				font-weight: bold;
+				margin-bottom: 5px;
+			}
+
+			.store-platform {
+				font-size: 0.9em;
+				color: #666;
+			}
+
+			/*NAVIGATION BAS*/
+			.bottom-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 65px;
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				z-index: 1000;
+			}
+
+			.bottom-nav a {
+				text-decoration: none;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				transition: 0.3s;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.bottom-nav a:nth-child(1) {
+				background: linear-gradient(45deg, #ff416c, #ff4b2b);
+			}
+
+			.bottom-nav a:nth-child(2) {
+				background: linear-gradient(45deg, #4facfe, #00f2fe);
+			}
+
+			.bottom-nav a:nth-child(3) {
+				background: linear-gradient(45deg, #667eea, #764ba2);
+			}
+
+			.bottom-nav a:nth-child(4) {
+				background: linear-gradient(45deg, #30cfd0, #330867);
+			}
+
+			.bottom-nav a:nth-child(5) {
+				background: linear-gradient(45deg, #43e97b, #38f9d7);
+			}
+
+			.bottom-nav a:nth-child(6) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.bottom-nav-icon {
+				font-size: 24px;
+				margin-bottom: 4px;
+			}
+
+			.bottom-nav a::after {
+				content: "";
+				position: absolute;
+				top: -50%;
+				left: -50%;
+				width: 200%;
+				height: 200%;
+				background: linear-gradient(
+					transparent,
+					rgba(255, 255, 255, 0.2),
+					transparent
+				);
+				transform: rotate(45deg);
+				transition: 0.5s;
+				opacity: 0;
+			}
+
+			.bottom-nav a:hover::after {
+				opacity: 1;
+				transform: rotate(45deg) translateX(100%);
+			}
+
+			.bottom-nav a.active {
+				position: relative;
+			}
+
+			.bottom-nav a.active::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 30px;
+				height: 3px;
+				background: white;
+				border-radius: 0 0 3px 3px;
+			}
+
+			/*FIN NAVIGATION BAS*/
+			/* MENU GAUCHE */
+			.header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 60px;
+				background: rgba(0, 4, 40, 0.95);
+				display: flex;
+				align-items: center;
+				padding: 0 20px;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+				z-index: 1000;
+				/* Layout spécifique pour l'alignement */
+				justify-content: space-between;
+			}
+
+			.menu-btn {
+				width: 40px;
+				/* Largeur fixe */
+				height: 40px;
+				/* Hauteur fixe */
+				background: none;
+				border: none;
+				font-size: 24px;
+				color: white;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0;
+				margin: 0;
+			}
+
+			.titre-islamique {
+				position: absolute;
+				/* Position absolue pour le centrage parfait */
+				left: 50%;
+				transform: translateX(-50%);
+				/* Centre le titre */
+				font-family: "Playfair Display", serif;
+				font-size: 1.5rem;
+				color: white;
+				margin: 0;
+				padding: 0;
+				letter-spacing: 2px;
+				word-spacing: 10px;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+				white-space: nowrap;
+				/* Empêche le retour à la ligne */
+			}
+
+			/* Ajout d'un espace vide à droite pour équilibrer le bouton menu */
+			.header::after {
+				content: "";
+				width: 40px;
+				/* Même largeur que le bouton menu */
+			}
+
+			.sidebar {
+				position: fixed;
+				top: 0;
+				left: -280px;
+				/* Caché par défaut */
+				width: 280px;
+				height: 100%;
+				background: #f8f9fa;
+				z-index: 2000;
+				transition: 0.3s;
+				box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+				display: flex;
+				flex-direction: column;
+			}
+
+			.sidebar.active {
+				left: 0;
+				/* S'affiche à gauche quand active */
+			}
+
+			.sidebar-header {
+				padding: 20px;
+				background: linear-gradient(45deg, #ff416c, #ff4b2b);
+				color: white;
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.close-btn {
+				background: none;
+				border: none;
+				color: white;
+				font-size: 24px;
+				cursor: pointer;
+			}
+
+			.sidebar-menu {
+				flex: 1;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+				padding-bottom: 70px;
+			}
+
+			.sidebar-menu::-webkit-scrollbar {
+				width: 6px;
+			}
+
+			.sidebar-menu::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			.sidebar-menu::-webkit-scrollbar-thumb {
+				background: linear-gradient(45deg, #ff416c, #ff4b2b);
+				border-radius: 3px;
+			}
+
+			.sidebar-menu a {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				padding: 15px 20px;
+				color: white;
+				text-decoration: none;
+				transition: 0.3s;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.sidebar-menu a:nth-child(1) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(2) {
+				background: linear-gradient(45deg, #4facfe, #00f2fe);
+			}
+
+			.sidebar-menu a:nth-child(3) {
+				background: linear-gradient(45deg, #667eea, #764ba2);
+			}
+
+			.sidebar-menu a:nth-child(4) {
+				background: linear-gradient(45deg, #30cfd0, #330867);
+			}
+
+			.sidebar-menu a:nth-child(5) {
+				background: linear-gradient(45deg, #ff416c, #ff4b2b);
+			}
+
+			.sidebar-menu a:nth-child(6) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(7) {
+				background: linear-gradient(45deg, #6a11cb, #2575fc);
+			}
+
+			.sidebar-menu a:nth-child(8) {
+				background: linear-gradient(45deg, #f093fb, #f5576c);
+			}
+
+			.sidebar-menu a:nth-child(9) {
+				background: linear-gradient(45deg, #4481eb, #04befe);
+			}
+
+			.sidebar-menu a:nth-child(10) {
+				background: linear-gradient(45deg, #0ba360, #3cba92);
+			}
+
+			.sidebar-menu a:nth-child(11) {
+				background: linear-gradient(45deg, #f6d365, #fda085);
+			}
+
+			.sidebar-menu a:nth-child(12) {
+				background: linear-gradient(45deg, #5ee7df, #b490ca);
+			}
+
+			.sidebar-menu a:nth-child(13) {
+				background: linear-gradient(45deg, #d299c2, #fef9d7);
+			}
+
+			.sidebar-menu a:nth-child(14) {
+				background: linear-gradient(45deg, #a8c0ff, #3f2b96);
+			}
+
+			.sidebar-menu a:nth-child(15) {
+				background: linear-gradient(45deg, #48c6ef, #6f86d6);
+			}
+
+			.sidebar-menu a:nth-child(16) {
+				background: linear-gradient(45deg, #f093fb, #f5576c);
+			}
+
+			.sidebar-menu a:nth-child(17) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(18) {
+				background: linear-gradient(45deg, #00f2fe, #4facfe);
+			}
+
+			.sidebar-menu a:nth-child(19) {
+				background: linear-gradient(45deg, #43e97b, #38f9d7);
+			}
+
+			.sidebar-menu a:nth-child(20) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(21) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(22) {
+				background: linear-gradient(45deg, #4facfe, #00f2fe);
+			}
+
+			.sidebar-menu a:nth-child(23) {
+				background: linear-gradient(45deg, #667eea, #764ba2);
+			}
+
+			.sidebar-menu a:nth-child(24) {
+				background: linear-gradient(45deg, #30cfd0, #330867);
+			}
+
+			.sidebar-menu a:nth-child(25) {
+				background: linear-gradient(45deg, #ff416c, #ff4b2b);
+			}
+			.sidebar-menu a:nth-child(26) {
+				background: linear-gradient(45deg, #fa709a, #fee140);
+			}
+
+			.sidebar-menu a:nth-child(27) {
+				background: linear-gradient(45deg, #4facfe, #00f2fe);
+			}
+
+			.sidebar-menu a:nth-child(28) {
+				background: linear-gradient(45deg, #667eea, #764ba2);
+			}
+			/* Effet de brillance au survol */
+			.sidebar-menu a::after {
+				content: "";
+				position: absolute;
+				top: -50%;
+				left: -50%;
+				width: 200%;
+				height: 200%;
+				background: linear-gradient(
+					transparent,
+					rgba(255, 255, 255, 0.2),
+					transparent
+				);
+				transform: rotate(45deg);
+				transition: 0.5s;
+				opacity: 0;
+			}
+
+			.sidebar-menu a:hover::after {
+				opacity: 1;
+				transform: rotate(45deg) translateX(100%);
+			}
+
+			.sidebar-menu a:hover {
+				transform: translateX(5px);
+			}
+
+			.sidebar-menu a span:first-child {
+				font-size: 20px;
+				min-width: 24px;
+				display: flex;
+				justify-content: center;
+			}
+
+			/* Séparateur subtil entre les éléments */
+			.sidebar-menu a + a {
+				margin-top: 1px;
+			}
+
+			/* Animation de transition pour les éléments du menu */
+			.sidebar-menu a {
+				transition: all 0.3s ease;
+			}
+
+			/* Style pour l'effet actif */
+			.sidebar-menu a:active {
+				transform: scale(0.98);
+				opacity: 0.9;
+			}
+
+			.overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 1500;
+				display: none;
+			}
+
+			.overlay.active {
+				display: block;
+			}
+
+			/* FIN MENU GAUCHE */
+
+			/*Noms ALLAH*/
+			.containeAllah {
+				text-align: center;
+
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				padding: 2rem;
+				background: linear-gradient(135deg, #6c3483, #4a235a);
+				border-radius: 20px;
+				backdrop-filter: blur(10px);
+				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			}
+
+			.date {
+				font-size: 1.2rem;
+				margin-bottom: 1rem;
+				color: #ffd700;
+			}
+
+			.number {
+				font-size: 1.5rem;
+				color: #ffd700;
+				margin-bottom: 1rem;
+			}
+
+			.name-arabic {
+				color: white;
+				font-size: 3rem;
+				margin: 1rem 0;
+				font-family: "Traditional Arabic", Arial, sans-serif;
+			}
+
+			.name-french {
+				color: white;
+				font-size: 1.8rem;
+				margin: 1rem 0;
+			}
+
+			.meaning {
+				color: white;
+				font-size: 1.2rem;
+				margin: 1rem 0;
+				line-height: 1.5;
+			}
+
+			.share-button {
+				background: linear-gradient(45deg, #8e44ad, #9b59b6);
+				color: white;
+				border: none;
+				padding: 15px 30px;
+				border-radius: 30px;
+				cursor: pointer;
+				font-size: 16px;
+				font-weight: bold;
+				display: block;
+				margin: 20px auto;
+				transition: all 0.3s ease;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			.share-button:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+				background: linear-gradient(45deg, #9b59b6, #8e44ad);
+			}
+
+			.share-button:active {
+				transform: translateY(1px);
+			}
+
+			@keyframes glow {
+				0% {
+					box-shadow: 0 0 5px #ffd700;
+				}
+
+				50% {
+					box-shadow: 0 0 20px #ffd700;
+				}
+
+				100% {
+					box-shadow: 0 0 5px #ffd700;
+				}
+			}
+
+			.containeAllah {
+				animation: glow 2s infinite;
+			}
+
+			/* VERSET du JOUR*/
+			.containeVerset {
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				background: linear-gradient(145deg, #4b6cb7 0%, #182848 100%);
+				border-radius: 15px;
+				padding: 25px;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+				border: 2px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.verse-card {
+				text-align: center;
+			}
+
+			.verse-header {
+				color: #ffffff;
+				font-size: 1.8rem;
+				margin-bottom: 20px;
+				font-weight: bold;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+				padding-top: 10px;
+			}
+
+			.verse-text {
+				font-size: 1.3rem;
+				line-height: 1.7;
+				color: #e6e6e6;
+				margin-bottom: 20px;
+				padding: 20px;
+				border-left: 4px solid #ffd700;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 8px;
+				text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+			}
+
+			.verse-source {
+				color: #ffd700;
+				font-style: italic;
+				margin-bottom: 25px;
+				font-size: 1.1rem;
+			}
+
+			@keyframes glow {
+				0% {
+					box-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+				}
+
+				50% {
+					box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+				}
+
+				100% {
+					box-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+				}
+			}
+
+			.containeVerset {
+				animation: glow 3s infinite;
+			}
+
+			/*conteneur hadith*/
+
+			@keyframes gradientBG {
+				0% {
+					background-position: 0% 50%;
+				}
+
+				50% {
+					background-position: 100% 50%;
+				}
+
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
+			#hadithCard {
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				background: linear-gradient(135deg, #6c3483, #4a235a);
+				border-radius: 20px;
+				box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+				padding: 30px;
+				border: 2px solid #8e44ad;
+				margin-bottom: 20px;
+			}
+
+			.date {
+				color: #d7bde2;
+				font-size: 16px;
+			}
+
+			.hadith-content {
+				padding: 30px;
+				text-align: center;
+				background: rgba(142, 68, 173, 0.3);
+				border-radius: 15px;
+				margin-bottom: 30px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.hadith-text {
+				font-size: 20px;
+				line-height: 1.8;
+				color: #fff;
+				margin-bottom: 20px;
+				padding: 20px;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+				position: relative;
+			}
+
+			.hadith-text::before,
+			.hadith-text::after {
+				content: '"';
+				font-size: 60px;
+				position: absolute;
+				color: #bb8fce;
+				opacity: 0.5;
+			}
+
+			.hadith-text::before {
+				top: -20px;
+				left: -10px;
+			}
+
+			.hadith-text::after {
+				bottom: -40px;
+				right: -10px;
+			}
+
+			.hadith-source {
+				color: #d7bde2;
+				font-style: italic;
+				font-size: 16px;
+				margin-top: 15px;
+			}
+
+			.logo {
+				text-align: center;
+				color: #d7bde2;
+				font-size: 18px;
+				margin-top: 20px;
+				letter-spacing: 3px;
+			}
+
+			.app-link {
+				display: none;
+			}
+
+			/* JUMAA*/
+			#mainContainerJumma {
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+				border-radius: 20px;
+				box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+				padding: 30px;
+				border: 2px solid #8e44ad;
+				margin-bottom: 20px;
+			}
+
+			.containeJumma {
+				width: 90% !important;
+				max-width: 600px !important;
+				margin: 20px auto !important;
+				background: linear-gradient(
+					135deg,
+					#1e3c72 0%,
+					#2a5298 100%
+				) !important;
+				border-radius: 20px !important;
+				box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37) !important;
+				padding: 30px !important;
+				border: 2px solid #8e44ad !important;
+				color: white !important;
+				text-align: center !important;
+				display: block !important;
+				box-sizing: border-box !important;
+				position: relative !important;
+			}
+
+			/* Style des sous-éléments */
+			.containeJumma .jumaa {
+				text-align: center;
+				padding: 20px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 16px;
+				margin-bottom: 20px;
+			}
+
+			.containeJumma .doua {
+				background: rgba(255, 255, 255, 0.1);
+				padding: 24px;
+				border-radius: 16px;
+				margin-bottom: 20px;
+			}
+
+			.containeJumma .logo {
+				margin: 15px 0;
+			}
+
+			.jumaa .arabic {
+				font-size: 40px;
+				color: white;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+				margin-bottom: 8px;
+			}
+
+			.jumaa .latin {
+				font-size: 24px;
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+			.arabic {
+				font-size: 28px;
+				text-align: center;
+				color: white;
+				line-height: 1.6;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+			}
+
+			.phonetic {
+				font-size: 18px;
+				text-align: center;
+				color: rgba(255, 255, 255, 0.9);
+				line-height: 1.5;
+				padding: 0 10px;
+			}
+
+			.translation {
+				font-size: 16px;
+				text-align: center;
+				color: white;
+				line-height: 1.5;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.share-button:active {
+				background: rgba(255, 255, 255, 0.3);
+				transform: scale(0.98);
+			}
+
+			/* Ajout des styles pour le loader */
+			.loader {
+				width: 40px;
+				height: 40px;
+				border: 3px solid rgba(255, 255, 255, 0.3);
+				border-radius: 50%;
+				border-top-color: white;
+				animation: spin 1s ease-in-out infinite;
+				margin: 20px auto;
+			}
+
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.refresh-button {
+				display: block;
+				background: rgba(255, 255, 255, 0.15);
+				color: white;
+				padding: 12px;
+				border-radius: 12px;
+				text-decoration: none;
+				text-align: center;
+				font-weight: 600;
+				font-size: 16px;
+				margin: 8px 0;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.refresh-button:active {
+				background: rgba(255, 255, 255, 0.25);
+				transform: scale(0.98);
+			}
+			/* DEBUT LIEN VERS LE SITE*/
+			.site-link-box {
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				padding: 20px;
+				background: linear-gradient(135deg, #059669, #0d9488);
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				text-align: center;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.site-link-box:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+
+			.site-link-box a {
+				text-decoration: none;
+				color: white;
+			}
+
+			.icon-container {
+				width: 48px;
+				height: 48px;
+				margin: 0 auto 15px;
+				background-color: rgba(255, 255, 255, 0.2);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.title {
+				font-size: 20px;
+				font-weight: bold;
+				margin-bottom: 10px;
+				color: white;
+			}
+
+			.description {
+				font-size: 14px;
+				color: rgba(255, 255, 255, 0.9);
+			}
+			/* FIN LIEN VERS LE SITE*/
+			/* DEBUT PLAYER */
+			.player-container {
+				width: 90%;
+				max-width: 600px;
+				margin: 20px auto;
+				background: linear-gradient(45deg, #009688, #004d40);
+				backdrop-filter: blur(10px);
+				border-radius: 20px;
+				padding: 30px;
+				box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+				color: white;
+				position: relative;
+				z-index: 10;
+			}
+
+			.player-container select {
+				width: 100%;
+				padding: 12px;
+				margin: 15px 0;
+				border: none;
+				border-radius: 10px;
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				font-size: 1rem;
+			}
+
+			.player-container select option {
+				background: #004d40;
+				color: white;
+			}
+
+			.player-container .title {
+				font-size: 1.5rem;
+				text-align: center;
+				margin-bottom: 15px;
+			}
+
+			.player-container .surah-info {
+				text-align: center;
+				margin: 10px 0;
+				font-size: 0.9rem;
+			}
+
+			.player-container button {
+				width: 100%;
+				padding: 12px;
+				background: linear-gradient(45deg, #e94560, #ff4d4d);
+				border: none;
+				border-radius: 10px;
+				color: white;
+				font-size: 1rem;
+				cursor: pointer;
+				margin-top: 15px;
+			}
+
+			.player-container .progress-bar {
+				width: 100%;
+				height: 4px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 2px;
+				margin-top: 15px;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.player-container .progress {
+				width: 0%;
+				height: 100%;
+				background: linear-gradient(90deg, #e94560, #ff4d4d);
+				border-radius: 2px;
+				transition: width 0.1s linear;
+			}
+
+			.player-container .time-display {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 8px;
+				font-size: 0.8rem;
+			}
+
+			/* FIN PLAYER */
+			@media (max-height: 667px) {
+				.containeJumma {
+					gap: 16px;
+				}
+
+				.jumaa {
+					padding: 16px;
+				}
+
+				.jumaa .arabic {
+					font-size: 36px;
+				}
+
+				.jumaa .latin {
+					font-size: 22px;
+				}
+
+				.doua {
+					padding: 20px 16px;
+				}
+
+				.arabic {
+					font-size: 24px;
+				}
+
+				.phonetic {
+					font-size: 16px;
+				}
+
+				.translation {
+					font-size: 15px;
+				}
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	</head>
+
+	<body>
+		<!-- MENU GAUCHE -->
+		<header class="header">
+			<button class="menu-btn" onclick="toggleSidebar()">☰</button>
+			<h1 class="titre-islamique">❖Muslim Alim❖</h1>
+		</header>
+
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<h2>Menu</h2>
+
+				<button class="close-btn" onclick="toggleSidebar()">×</button>
+			</div>
+			<nav class="sidebar-menu">
+				<a href="https://muslim-alim.com/islam-bot.html"
+					><span>🤖</span><span>Islam Bot</span></a
+				>
+				<a href="https://muslim-alim.com/Dernier-Sermon-Prophete.html"
+					><span>📃</span><span>Dernier sermon du Prophète ﷺ </span></a
+				>
+				<a href="https://muslim-alim.com/histoire-prophetes.html"
+					><span>📃</span><span>Les Prophètes</span></a
+				>
+				<a href="https://muslim-alim.com/Trois-mosquees-sacrees.html"
+					><span>📃</span><span>Les 3 Mosquées Sacrées</span></a
+				>
+				<a href="https://muslim-alim.com/ecoles-juridiques-islam.html"
+					><span>📃</span><span>Les 4 Ecoles Juridiques</span></a
+				>
+				<a href="https://muslim-alim.com/Hisnul-Muslim.html"
+					><span>🍲</span
+					><span>Hisnul Muslim [La Forteresse du Musulman]</span></a
+				>
+				<a href="https://muslim-alim.com/40-nawawi-hadiths.html"
+					><span>📃</span><span>Les 40 Hadiths de l'Imam An-Nawawi</span></a
+				>
+				<a href="https://muslim-alim.com/hadith-du-jour.html"
+					><span>📃</span><span>Hadith du Jour</span></a
+				>
+				<a href="https://muslim-alim.com/islamic-quiz.html"
+					><span>❓</span><span>Quiz Islam</span></a
+				>
+				<a href="https://muslim-alim.com/video-quiz.html"
+					><span>🎬</span><span>Vidéos Quiz</span></a
+				>
+				<a href="https://muslim-alim.com/guide-omra.html"
+					><span>📃</span><span>Guide Omra</span></a
+				>
+				<a href="https://muslim-alim.com/guide-hajj.html"
+					><span>📃</span><span>Guide Hajj</span></a
+				>
+				<a href="https://muslim-alim.com/99-surnoms-Allah.html"
+					><span>📃</span><span>Les 99 Noms d'Allah</span></a
+				>
+				<a href="https://muslim-alim.com/mosquee-geolocalisation.html"
+					><span>🛰️</span><span>Mosquées</span></a
+				>
+				<a href="https://muslim-alim.com/Calendrier-islam.html"
+					><span>📅</span><span>Calendrier</span></a
+				>
+				<a href="https://muslim-alim.com/makkah-live.html"
+					><span>🎥</span><span>Mecque [Live]</span></a
+				>
+				<a href="https://muslim-alim.com/madina-live.html"
+					><span>🎥</span><span>Médine [Live]</span></a
+				>
+				<a href="https://muslim-alim.com/al-aqsa-live.html"
+					><span>🎥</span><span>Al Aqsa [Live]</span></a
+				>
+				<a href="https://muslim-alim.com/Serie-Omar.html"
+					><span>🎬</span><span>Série Omar</span></a
+				>
+				<a href="https://muslim-alim.com/Films-Islam.html"
+					><span>🎬</span><span>Films Islam</span></a
+				>
+
+				<a href="https://muslim-alim.com/adhan-iqamah.html"
+					><span>🕌</span><span>Faire l'Adhan/ Iqama</span></a
+				>
+				<a href="https://muslim-alim.com/faire-priere.html"
+					><span>🕌</span><span>Apprendre la prière</span></a
+				>
+				<a href="https://muslim-alim.com/salat-janaza.html"
+					><span>🕌</span><span>Apprendre Salat Janaza</span></a
+				>
+				<a href="https://muslim-alim.com/islam-alimentation.html"
+					><span>🍲</span><span>Alimentation</span></a
+				>
+				<a href="https://muslim-alim.com/restaurants-boutiques-hallal.html"
+					><span>🍽️</span><span>Restaurants Halal</span></a
+				>
+				<a href="https://muslim-alim.com/programme-lecture-coran-ramadan.html"
+					><span>📃</span><span>Programme Ramadan</span></a
+				>
+				<a href="https://muslim-alim.com/mois-sacres.html"
+					><span>📃</span><span>Fêtes / Mois sacrés</span></a
+				>
+				<a href="https://muslim-alim.com/distance-mecque.html"
+					><span>🛰️️</span><span>Distance à la Mecque</span></a
+				>
+				<a href="https://muslim-alim.com/contact.html"
+					><span>@</span><span>Contact</span></a
+				>
+			</nav>
+		</div>
+
+		<!-- Overlay -->
+		<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+		<!-- FIN MENU GAUCHE -->
+
+		<br /><br />
+
+		<!-- DEBUT PROCHAINE PRIERE -->
+		<div class="next-prayer">
+			<div class="city-name" id="city-name">Localisation...</div>
+			<div class="next-prayer-label">Prochaine prière</div>
+			<div class="next-prayer-name" id="next-prayer-name"></div>
+			<div class="next-prayer-time" id="next-prayer-time"></div>
+			<div class="view-notifications">
+				<button onclick="flutterCall()" style="display: block">🔔</button>
+			</div>
+			<div class="view-all">
+				<div>
+					<a href="https://muslim-alim.com/horaires-prieres.html">👁️</a>
+				</div>
+			</div>
+		</div>
+		<!-- FIN PROCHAINE PRIERE -->
+		<!-- DEBUT PLAYER -->
+		<div class="player-container">
+			<h2 class="title">Lecteur de Coran</h2>
+			<select id="surahSelect" onchange="changeSurah()">
+				<option value="">Sélectionner une sourate</option>
+			</select>
+			<div class="surah-info" id="surahInfo"></div>
+			<audio id="quranAudio"></audio>
+			<div class="progress-bar" id="progressBar">
+				<div class="progress" id="progress"></div>
+			</div>
+			<div class="time-display">
+				<span id="currentTime">00:00</span>
+				<span id="duration">00:00</span>
+			</div>
+			<div class="controls">
+				<button onclick="togglePlay()" id="playButton">Lecture</button>
+			</div>
+		</div>
+		<!-- FIN PLAYER -->
+		<a href="https://muslim-alim.com/islam-bot.html"
+			><img
+				src="https://muslim-alim.com/images/Muslim-Alim-bot.png"
+				alt="Mulim Alim Bot"
+		/></a>
+
+		<!-- DEBUT SOURATE DU JOUR ET VERSETS A LIRE -->
+		<div class="containerSourate">
+			<div id="suggestionContainer" class="suggestion-card"></div>
+		</div>
+
+		<!-- Fin SOURATE DU JOUR ET VERSETS A LIRE -->
+		<!-- DEBUT HADITH DU JOUR -->
+		<div id="hadithCard">
+			<div class="verse-header">Hadith du Jour</div>
+			<div class="date"></div>
+
+			<div class="hadith-content">
+				<div class="hadith-text"></div>
+				<div class="hadith-source"></div>
+			</div>
+
+			<div class="logo">❖ Muslim Alim ❖</div>
+			<button class="share-button" data-type="hadith">
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<circle cx="18" cy="5" r="3" />
+					<circle cx="6" cy="12" r="3" />
+					<circle cx="18" cy="19" r="3" />
+					<line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+					<line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+				</svg>
+				Partager
+			</button>
+		</div>
+		<!-- FIN HADITH DU JOUR -->
+		<!-- DEBUT VERSET DU JOUR -->
+		<div class="containeVerset" id="containeVerset">
+			<div class="verse-card">
+				<div class="verse-header">Verset du Jour</div>
+				<div class="verse-text" id="verseText"></div>
+				<div class="verse-source" id="verseSource"></div>
+				<div class="logo">❖ Muslim Alim ❖</div>
+				<button class="share-button" data-type="verset">
+					<svg
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<circle cx="18" cy="5" r="3" />
+						<circle cx="6" cy="12" r="3" />
+						<circle cx="18" cy="19" r="3" />
+						<line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+						<line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+					</svg>
+					Partager
+				</button>
+			</div>
+		</div>
+		<!-- FIN VERSET DU JOUR -->
+		<!-- DEBUT NOM ALLAH DU JOUR -->
+		<div class="containeAllah" id="containeAllah">
+			<div class="verse-header">Surnom du Jour</div>
+			<div id="dailyAllahName">
+				<div class="name-arabic"></div>
+				<div class="name-french"></div>
+				<div class="hadith-content">
+					<div class="hadith-text"></div>
+				</div>
+			</div>
+			<div class="logo">❖ Muslim Alim ❖</div>
+			<button class="share-button" data-type="nom-allah">
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<circle cx="18" cy="5" r="3" />
+					<circle cx="6" cy="12" r="3" />
+					<circle cx="18" cy="19" r="3" />
+					<line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+					<line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+				</svg>
+				Partager
+			</button>
+		</div>
+		<!-- FIN NOM ALLAH DU JOUR -->
+		<!-- DEBUT JUMAA -->
+		<div class="containeJumma" id="mainContainerJumma">
+			<div class="jumaa">
+				<div class="arabic">جمعة مباركة</div>
+				<div class="latin">Jumaa Mubarak</div>
+			</div>
+
+			<div class="doua" id="dailyDoua">
+				<!-- Rempli par JavaScript -->
+			</div>
+			<div class="logo">❖ Muslim Alim ❖</div>
+			<button class="share-button" data-type="doua-vendredi">
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<circle cx="18" cy="5" r="3" />
+					<circle cx="6" cy="12" r="3" />
+					<circle cx="18" cy="19" r="3" />
+					<line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+					<line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+				</svg>
+				Partager
+			</button>
+		</div>
+		<!-- FIN JUMAA -->
+		<!-- DEBUT LIEN VERS LE SITE -->
+		<div class="site-link-box">
+			<a href="https://muslim-alim.com">
+				<div class="icon-container">
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="white"
+						stroke-width="2"
+					>
+						<path
+							d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</div>
+				<div class="title">Visitez notre site web</div>
+				<div class="description">
+					Découvrez plus de ressources sur Muslim Alim.<br /><a
+						href="https://muslim-alim.com"
+						>https://muslim-alim.com</a
+					>
+				</div>
+			</a>
+		</div>
+		<!-- FIN LIEN VERS LE SITE -->
+		<!-- DEBUT VOTE -->
+		<div class="rating-container">
+			<h2>Notez Muslim Alim !</h2>
+			<p>Votre avis est précieux pour nous aider à améliorer l'application</p>
+
+			<div id="storeLink"></div>
+			<p>🤲 Jazak Allahu khayran 🤲</p>
+		</div>
+		<!-- FIN VOTE -->
+
+		<!-- Menu Navigation -->
+		<nav class="bottom-nav">
+			<a href="https://muslim-alim.com/accueil.html" class="active">
+				<span class="bottom-nav-icon">🏠</span>
+				<span>Accueil</span>
+			</a>
+			<a href="https://muslim-alim.com/coran.html">
+				<span class="bottom-nav-icon">🔊</span>
+				<span>Audio</span>
+			</a>
+			<a href="https://muslim-alim.com/lecture-coran.html">
+				<span class="bottom-nav-icon">📖</span>
+				<span>Coran</span>
+			</a>
+			<a href="https://muslim-alim.com/dikr.html">
+				<span class="bottom-nav-icon">📿</span>
+				<span>Dikr</span>
+			</a>
+			<a href="https://muslim-alim.com/horaires-prieres.html">
+				<span class="bottom-nav-icon">🕌</span>
+				<span>Prières</span>
+			</a>
+			<a href="https://muslim-alim.com/qibla-compass.html">
+				<span class="bottom-nav-icon">🕋</span>
+				<span>Qibla</span>
+			</a>
+		</nav>
+		<!-- DEBUT SOURATE DU JOUR -->
+		<script>
+			// Liste des sourates (ajoutée ici)
+			const surahs = [
+				{
+					number: 1,
+					nameAr: "الفاتحة",
+					name: "Al-Fatiha",
+					nameFr: "L'Ouverture",
+				},
+				{ number: 2, nameAr: "البقرة", name: "Al-Baqarah", nameFr: "La Vache" },
+				{
+					number: 3,
+					nameAr: "آل عمران",
+					name: "Al-Imran",
+					nameFr: "La Famille d'Imran",
+				},
+				{ number: 4, nameAr: "النساء", name: "An-Nisa", nameFr: "Les Femmes" },
+				{
+					number: 5,
+					nameAr: "المائدة",
+					name: "Al-Maidah",
+					nameFr: "La Table Servie",
+				},
+				{
+					number: 6,
+					nameAr: "الأنعام",
+					name: "Al-Anam",
+					nameFr: "Les Bestiaux",
+				},
+				{
+					number: 7,
+					nameAr: "الأعراف",
+					name: "Al-Araf",
+					nameFr: "Les Murailles",
+				},
+				{ number: 8, nameAr: "الأنفال", name: "Al-Anfal", nameFr: "Le Butin" },
+				{
+					number: 9,
+					nameAr: "التوبة",
+					name: "At-Tawbah",
+					nameFr: "Le Repentir",
+				},
+				{ number: 10, nameAr: "يونس", name: "Yunus", nameFr: "Jonas" },
+				{ number: 11, nameAr: "هود", name: "Hud", nameFr: "Hud" },
+				{ number: 12, nameAr: "يوسف", name: "Yusuf", nameFr: "Joseph" },
+				{ number: 13, nameAr: "الرعد", name: "Ar-Rad", nameFr: "Le Tonnerre" },
+				{ number: 14, nameAr: "ابراهيم", name: "Ibrahim", nameFr: "Abraham" },
+				{ number: 15, nameAr: "الحجر", name: "Al-Hijr", nameFr: "Al-Hijr" },
+				{
+					number: 16,
+					nameAr: "النحل",
+					name: "An-Nahl",
+					nameFr: "Les Abeilles",
+				},
+				{
+					number: 17,
+					nameAr: "الإسراء",
+					name: "Al-Isra",
+					nameFr: "Le Voyage Nocturne",
+				},
+				{ number: 18, nameAr: "الكهف", name: "Al-Kahf", nameFr: "La Caverne" },
+				{ number: 19, nameAr: "مريم", name: "Maryam", nameFr: "Marie" },
+				{ number: 20, nameAr: "طه", name: "Ta-Ha", nameFr: "Ta-Ha" },
+				{
+					number: 21,
+					nameAr: "الأنبياء",
+					name: "Al-Anbiya",
+					nameFr: "Les Prophètes",
+				},
+				{
+					number: 22,
+					nameAr: "الحج",
+					name: "Al-Hajj",
+					nameFr: "Le Pèlerinage",
+				},
+				{
+					number: 23,
+					nameAr: "المؤمنون",
+					name: "Al-Muminun",
+					nameFr: "Les Croyants",
+				},
+				{ number: 24, nameAr: "النور", name: "An-Nur", nameFr: "La Lumière" },
+				{
+					number: 25,
+					nameAr: "الفرقان",
+					name: "Al-Furqan",
+					nameFr: "Le Discernement",
+				},
+				{
+					number: 26,
+					nameAr: "الشعراء",
+					name: "Ash-Shuara",
+					nameFr: "Les Poètes",
+				},
+				{ number: 27, nameAr: "النمل", name: "An-Naml", nameFr: "Les Fourmis" },
+				{ number: 28, nameAr: "القصص", name: "Al-Qasas", nameFr: "Le Récit" },
+				{
+					number: 29,
+					nameAr: "العنكبوت",
+					name: "Al-Ankabut",
+					nameFr: "L'Araignée",
+				},
+				{ number: 30, nameAr: "الروم", name: "Ar-Rum", nameFr: "Les Romains" },
+				{ number: 31, nameAr: "لقمان", name: "Luqman", nameFr: "Luqman" },
+				{
+					number: 32,
+					nameAr: "السجدة",
+					name: "As-Sajdah",
+					nameFr: "La Prosternation",
+				},
+				{
+					number: 33,
+					nameAr: "الأحزاب",
+					name: "Al-Ahzab",
+					nameFr: "Les Coalisés",
+				},
+				{ number: 34, nameAr: "سبإ", name: "Saba", nameFr: "Saba" },
+				{ number: 35, nameAr: "فاطر", name: "Fatir", nameFr: "Le Créateur" },
+				{ number: 36, nameAr: "يس", name: "Ya-Sin", nameFr: "Ya-Sin" },
+				{
+					number: 37,
+					nameAr: "الصافات",
+					name: "As-Saffat",
+					nameFr: "Les Rangés",
+				},
+				{ number: 38, nameAr: "ص", name: "Sad", nameFr: "Sad" },
+				{
+					number: 39,
+					nameAr: "الزمر",
+					name: "Az-Zumar",
+					nameFr: "Les Groupes",
+				},
+				{ number: 40, nameAr: "غافر", name: "Ghafir", nameFr: "Le Pardonneur" },
+				{
+					number: 41,
+					nameAr: "فصلت",
+					name: "Fussilat",
+					nameFr: "Les Versets Détaillés",
+				},
+				{
+					number: 42,
+					nameAr: "الشورى",
+					name: "Ash-Shura",
+					nameFr: "La Consultation",
+				},
+				{
+					number: 43,
+					nameAr: "الزخرف",
+					name: "Az-Zukhruf",
+					nameFr: "L'Ornement",
+				},
+				{ number: 44, nameAr: "الدخان", name: "Ad-Dukhan", nameFr: "La Fumée" },
+				{
+					number: 45,
+					nameAr: "الجاثية",
+					name: "Al-Jathiyah",
+					nameFr: "L'Agenouillée",
+				},
+				{
+					number: 46,
+					nameAr: "الأحقاف",
+					name: "Al-Ahqaf",
+					nameFr: "Les Dunes",
+				},
+				{ number: 47, nameAr: "محمد", name: "Muhammad", nameFr: "Muhammad" },
+				{ number: 48, nameAr: "الفتح", name: "Al-Fath", nameFr: "La Victoire" },
+				{
+					number: 49,
+					nameAr: "الحجرات",
+					name: "Al-Hujurat",
+					nameFr: "Les Appartements",
+				},
+				{ number: 50, nameAr: "ق", name: "Qaf", nameFr: "Qaf" },
+				{
+					number: 51,
+					nameAr: "الذاريات",
+					name: "Adh-Dhariyat",
+					nameFr: "Qui Éparpillent",
+				},
+				{ number: 52, nameAr: "الطور", name: "At-Tur", nameFr: "Le Mont" },
+				{ number: 53, nameAr: "النجم", name: "An-Najm", nameFr: "L'Étoile" },
+				{ number: 54, nameAr: "القمر", name: "Al-Qamar", nameFr: "La Lune" },
+				{
+					number: 55,
+					nameAr: "الرحمن",
+					name: "Ar-Rahman",
+					nameFr: "Le Tout Miséricordieux",
+				},
+				{
+					number: 56,
+					nameAr: "الواقعة",
+					name: "Al-Waqiah",
+					nameFr: "L'Événement",
+				},
+				{ number: 57, nameAr: "الحديد", name: "Al-Hadid", nameFr: "Le Fer" },
+				{
+					number: 58,
+					nameAr: "المجادلة",
+					name: "Al-Mujadilah",
+					nameFr: "La Discussion",
+				},
+				{ number: 59, nameAr: "الحشر", name: "Al-Hashr", nameFr: "L'Exode" },
+				{
+					number: 60,
+					nameAr: "الممتحنة",
+					name: "Al-Mumtahanah",
+					nameFr: "L'Éprouvée",
+				},
+				{ number: 61, nameAr: "الصف", name: "As-Saff", nameFr: "Le Rang" },
+				{
+					number: 62,
+					nameAr: "الجمعة",
+					name: "Al-Jumuah",
+					nameFr: "Le Vendredi",
+				},
+				{
+					number: 63,
+					nameAr: "المنافقون",
+					name: "Al-Munafiqun",
+					nameFr: "Les Hypocrites",
+				},
+				{
+					number: 64,
+					nameAr: "التغابن",
+					name: "At-Taghabun",
+					nameFr: "La Grande Perte",
+				},
+				{
+					number: 65,
+					nameAr: "الطلاق",
+					name: "At-Talaq",
+					nameFr: "Le Divorce",
+				},
+				{
+					number: 66,
+					nameAr: "التحريم",
+					name: "At-Tahrim",
+					nameFr: "L'Interdiction",
+				},
+				{ number: 67, nameAr: "الملك", name: "Al-Mulk", nameFr: "La Royauté" },
+				{ number: 68, nameAr: "القلم", name: "Al-Qalam", nameFr: "La Plume" },
+				{
+					number: 69,
+					nameAr: "الحاقة",
+					name: "Al-Haqqah",
+					nameFr: "Celle Qui Montre la Vérité",
+				},
+				{
+					number: 70,
+					nameAr: "المعارج",
+					name: "Al-Maarij",
+					nameFr: "Les Voies d'Ascension",
+				},
+				{ number: 71, nameAr: "نوح", name: "Nuh", nameFr: "Noé" },
+				{ number: 72, nameAr: "الجن", name: "Al-Jinn", nameFr: "Les Djinns" },
+				{
+					number: 73,
+					nameAr: "المزمل",
+					name: "Al-Muzzammil",
+					nameFr: "L'Enveloppé",
+				},
+				{
+					number: 74,
+					nameAr: "المدثر",
+					name: "Al-Muddaththir",
+					nameFr: "Le Revêtu d'un Manteau",
+				},
+				{
+					number: 75,
+					nameAr: "القيامة",
+					name: "Al-Qiyamah",
+					nameFr: "La Résurrection",
+				},
+				{ number: 76, nameAr: "الانسان", name: "Al-Insan", nameFr: "L'Homme" },
+				{
+					number: 77,
+					nameAr: "المرسلات",
+					name: "Al-Mursalat",
+					nameFr: "Les Envoyés",
+				},
+				{ number: 78, nameAr: "النبإ", name: "An-Naba", nameFr: "La Nouvelle" },
+				{
+					number: 79,
+					nameAr: "النازعات",
+					name: "An-Naziat",
+					nameFr: "Les Anges Qui Arrachent",
+				},
+				{
+					number: 80,
+					nameAr: "عبس",
+					name: "Abasa",
+					nameFr: "Il s'est Renfrogné",
+				},
+				{
+					number: 81,
+					nameAr: "التكوير",
+					name: "At-Takwir",
+					nameFr: "L'Obscurcissement",
+				},
+				{
+					number: 82,
+					nameAr: "الإنفطار",
+					name: "Al-Infitar",
+					nameFr: "La Rupture",
+				},
+				{
+					number: 83,
+					nameAr: "المطففين",
+					name: "Al-Mutaffifin",
+					nameFr: "Les Fraudeurs",
+				},
+				{
+					number: 84,
+					nameAr: "الإنشقاق",
+					name: "Al-Inshiqaq",
+					nameFr: "La Déchirure",
+				},
+				{
+					number: 85,
+					nameAr: "البروج",
+					name: "Al-Buruj",
+					nameFr: "Les Constellations",
+				},
+				{
+					number: 86,
+					nameAr: "الطارق",
+					name: "At-Tariq",
+					nameFr: "L'Astre Nocturne",
+				},
+				{
+					number: 87,
+					nameAr: "الأعلى",
+					name: "Al-Ala",
+					nameFr: "Le Très-Haut",
+				},
+				{
+					number: 88,
+					nameAr: "الغاشية",
+					name: "Al-Ghashiyah",
+					nameFr: "L'Enveloppante",
+				},
+				{ number: 89, nameAr: "الفجر", name: "Al-Fajr", nameFr: "L'Aube" },
+				{ number: 90, nameAr: "البلد", name: "Al-Balad", nameFr: "La Cité" },
+				{ number: 91, nameAr: "الشمس", name: "Ash-Shams", nameFr: "Le Soleil" },
+				{ number: 92, nameAr: "الليل", name: "Al-Layl", nameFr: "La Nuit" },
+				{
+					number: 93,
+					nameAr: "الضحى",
+					name: "Ad-Duha",
+					nameFr: "Le Jour Montant",
+				},
+				{
+					number: 94,
+					nameAr: "الشرح",
+					name: "Ash-Sharh",
+					nameFr: "L'Ouverture",
+				},
+				{ number: 95, nameAr: "التين", name: "At-Tin", nameFr: "Le Figuier" },
+				{ number: 96, nameAr: "العلق", name: "Al-Alaq", nameFr: "L'Adhérence" },
+				{ number: 97, nameAr: "القدر", name: "Al-Qadr", nameFr: "La Destinée" },
+				{
+					number: 98,
+					nameAr: "البينة",
+					name: "Al-Bayyinah",
+					nameFr: "La Preuve",
+				},
+				{
+					number: 99,
+					nameAr: "الزلزلة",
+					name: "Az-Zalzalah",
+					nameFr: "La Secousse",
+				},
+				{
+					number: 100,
+					nameAr: "العاديات",
+					name: "Al-Adiyat",
+					nameFr: "Les Coursiers",
+				},
+				{
+					number: 101,
+					nameAr: "القارعة",
+					name: "Al-Qariah",
+					nameFr: "Le Fracas",
+				},
+				{
+					number: 102,
+					nameAr: "التكاثر",
+					name: "At-Takathur",
+					nameFr: "La Course aux Richesses",
+				},
+				{ number: 103, nameAr: "العصر", name: "Al-Asr", nameFr: "Le Temps" },
+				{
+					number: 104,
+					nameAr: "الهمزة",
+					name: "Al-Humazah",
+					nameFr: "Les Calomniateurs",
+				},
+				{ number: 105, nameAr: "الفيل", name: "Al-Fil", nameFr: "L'Éléphant" },
+				{ number: 106, nameAr: "قريش", name: "Quraysh", nameFr: "Les Quraysh" },
+				{
+					number: 107,
+					nameAr: "الماعون",
+					name: "Al-Maun",
+					nameFr: "L'Ustensile",
+				},
+				{
+					number: 108,
+					nameAr: "الكوثر",
+					name: "Al-Kawthar",
+					nameFr: "L'Abondance",
+				},
+				{
+					number: 109,
+					nameAr: "الكافرون",
+					name: "Al-Kafirun",
+					nameFr: "Les Infidèles",
+				},
+				{
+					number: 110,
+					nameAr: "النصر",
+					name: "An-Nasr",
+					nameFr: "Les Secours",
+				},
+				{
+					number: 111,
+					nameAr: "المسد",
+					name: "Al-Masad",
+					nameFr: "Les Fibres",
+				},
+				{
+					number: 112,
+					nameAr: "الإخلاص",
+					name: "Al-Ikhlas",
+					nameFr: "Le Monothéisme Pur",
+				},
+				{
+					number: 113,
+					nameAr: "الفلق",
+					name: "Al-Falaq",
+					nameFr: "L'Aube Naissante",
+				},
+				{ number: 114, nameAr: "الناس", name: "An-Nas", nameFr: "Les Hommes" },
+			];
+
+			function getDateSeed() {
+				const today = new Date();
+				return `${today.getFullYear()}${(today.getMonth() + 1)
+					.toString()
+					.padStart(2, "0")}${today.getDate().toString().padStart(2, "0")}`;
+			}
+
+			function generateDailySuggestion() {
+				const dateSeed = getDateSeed();
+				const rng = new Math.seedrandom(dateSeed);
+				const surahNumber = Math.floor(rng() * 114) + 1;
+				const surah = surahs[surahNumber - 1];
+
+				const containerSourate = document.getElementById("suggestionContainer");
+				containerSourate.innerHTML = `
+                <div class="date">
+                    ${new Date().toLocaleDateString("fr-FR", {
+											weekday: "long",
+											year: "numeric",
+											month: "long",
+											day: "numeric",
+										})}
+                </div>
+         <div class="surah-info"><h2 class="page-title">Suggestion de lecture quotidienne</h2>
+    Sourate ${surahNumber} - ${surah.name} (${surah.nameAr})<br>
+    ${surah.nameFr}
+</div>
+                <div>Versets suggérés pour aujourd'hui :</div>
+                <div class="verses-container">
+                    ${Array.from(
+											{ length: 7 },
+											(_, i) => `
+                        <div class="verse-number" 
+                             onclick="loadSurahAndScrollToVerse(${surahNumber}, ${
+												i + 1
+											})">
+                            ${i + 1}
+                        </div>
+                    `
+										).join("")}
+                </div>
+            `;
+			}
+
+			function loadSurahAndScrollToVerse(surahNumber, verseNumber) {
+				sessionStorage.setItem("targetVerse", verseNumber);
+				sessionStorage.setItem("targetSurah", surahNumber);
+				window.location.href = "lecture-coran.html";
+			}
+
+			document.addEventListener("DOMContentLoaded", generateDailySuggestion);
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+		<!-- FIn SOURATE DU JOUR -->
+		<script>
+			function getDailyVerse() {
+				const today = new Date();
+				const index = today.getDate() % versets.length;
+				return versets[index];
+			}
+
+			function updateVerse() {
+				const verse = getDailyVerse();
+				const verseContainer = document.querySelector(".containeVerset");
+
+				document.getElementById("verseText").textContent = verse.texte;
+				document.getElementById("verseSource").textContent = verse.source;
+
+				// Update gradient
+				verseContainer.style.background = getRandomGradient();
+			}
+
+			// Initialize on page load
+			document.addEventListener("DOMContentLoaded", updateVerse);
+		</script>
+		<script>
+			function flutterCall() {
+				window.flutter_inappwebview.postMessage("navigateToSettings");
+			}
+
+			const allahNames = [
+				{
+					arabic: "الله",
+					french: "Allah",
+					meaning:
+						"Le nom suprème qui désigne l'Être absolu, Celui qui possède la divinité incontestée.",
+				},
+				{
+					arabic: "الرَّحْمَنُ",
+					french: "Ar-Rahman",
+					meaning:
+						"Le Tout Miséricordieux, Celui dont la miséricorde s'étend à toutes les créatures sans distinction.",
+				},
+				{
+					arabic: "الرَّحِيمُ",
+					french: "Ar-Rahim",
+					meaning:
+						"Le Très Miséricordieux, Celui dont la miséricorde s'étend particulièrement aux croyants.",
+				},
+				{
+					arabic: "المَلِكُ",
+					french: "Al-Malik",
+					meaning: "Le Souverain, le Roi absolu qui gouverne tout l'univers.",
+				},
+				{
+					arabic: "القُدُّوسُ",
+					french: "Al-Quddus",
+					meaning:
+						"Le Pur, Le Saint, Celui qui est exempt de toute imperfection.",
+				},
+				{
+					arabic: "السَّلاَمُ",
+					french: "As-Salam",
+					meaning:
+						"La Paix, Celui qui est la source de toute paix et sécurité.",
+				},
+				{
+					arabic: "المُؤْمِنُ",
+					french: "Al-Mu'min",
+					meaning:
+						"Le Fidèle, Celui qui assure la sécurité et confirme la vérité.",
+				},
+				{
+					arabic: "المُهَيْمِنُ",
+					french: "Al-Muhaymin",
+					meaning: "Le Vigilant, Celui qui observe et protège toute chose.",
+				},
+				{
+					arabic: "العَزِيزُ",
+					french: "Al-Aziz",
+					meaning: "Le Tout Puissant, Celui qui est invincible.",
+				},
+				{
+					arabic: "الجَبَّارُ",
+					french: "Al-Jabbar",
+					meaning:
+						"Le Dominateur, Celui qui contraint Sa création à faire ce qu'Il veut.",
+				},
+				{
+					arabic: "المُتَكَبِّرُ",
+					french: "Al-Mutakabbir",
+					meaning: "Le Superbe, Celui à qui appartient toute la grandeur.",
+				},
+				{
+					arabic: "الخَالِقُ",
+					french: "Al-Khaliq",
+					meaning: "Le Créateur, Celui qui détermine et crée toute chose.",
+				},
+				{
+					arabic: "البَارِئُ",
+					french: "Al-Bari'",
+					meaning:
+						"Le Producteur, Celui qui donne existence à tout ce qu'Il a décrété.",
+				},
+				{
+					arabic: "المُصَوِّرُ",
+					french: "Al-Musawwir",
+					meaning: "Le Formateur, Celui qui donne forme à toute la création.",
+				},
+				{
+					arabic: "الغَفَّارُ",
+					french: "Al-Ghaffar",
+					meaning:
+						"Le Grand Pardonneur, Celui qui pardonne sans cesse les péchés.",
+				},
+				{
+					arabic: "القَهَّارُ",
+					french: "Al-Qahhar",
+					meaning: "Le Dominateur Suprême, Celui qui domine tout.",
+				},
+				{
+					arabic: "الوَهَّابُ",
+					french: "Al-Wahhab",
+					meaning: "Le Donateur, Celui qui donne gratuitement et abondamment.",
+				},
+				{
+					arabic: "الرَّزَّاقُ",
+					french: "Ar-Razzaq",
+					meaning:
+						"Le Pourvoyeur, Celui qui accorde tous les moyens de subsistance.",
+				},
+				{
+					arabic: "الفَتَّاحُ",
+					french: "Al-Fattah",
+					meaning: "Celui qui ouvre toutes les portes, qui donne la victoire.",
+				},
+				{
+					arabic: "العَلِيمُ",
+					french: "Al-'Alim",
+					meaning: "L'Omniscient, Celui qui sait tout.",
+				},
+				{
+					arabic: "القَابِضُ",
+					french: "Al-Qabid",
+					meaning: "Celui qui restreint, qui retient.",
+				},
+				{
+					arabic: "البَاسِطُ",
+					french: "Al-Basit",
+					meaning: "Celui qui étend, qui élargit.",
+				},
+				{
+					arabic: "الخَافِضُ",
+					french: "Al-Khafid",
+					meaning: "Celui qui abaisse qui Il veut.",
+				},
+				{
+					arabic: "الرَّافِعُ",
+					french: "Ar-Rafi'",
+					meaning: "Celui qui élève qui Il veut.",
+				},
+				{
+					arabic: "المُعِزُّ",
+					french: "Al-Mu'izz",
+					meaning: "Celui qui donne la puissance et l'honneur.",
+				},
+				{
+					arabic: "المُذِلُّ",
+					french: "Al-Muzill",
+					meaning: "Celui qui humilie qui Il veut.",
+				},
+				{
+					arabic: "السَّمِيعُ",
+					french: "As-Sami'",
+					meaning: "Celui qui entend tout.",
+				},
+				{
+					arabic: "البَصِيرُ",
+					french: "Al-Basir",
+					meaning: "Celui qui voit tout.",
+				},
+				{
+					arabic: "الحَكَمُ",
+					french: "Al-Hakam",
+					meaning: "Le Juge Suprême.",
+				},
+				{
+					arabic: "العَدْلُ",
+					french: "Al-'Adl",
+					meaning: "Le Juste, l'Équitable.",
+				},
+				{
+					arabic: "اللَّطِيفُ",
+					french: "Al-Latif",
+					meaning: "Le Subtil, le Bienveillant.",
+				},
+				{
+					arabic: "الخَبِيرُ",
+					french: "Al-Khabir",
+					meaning: "Celui qui est parfaitement informé.",
+				},
+				{
+					arabic: "الحَلِيمُ",
+					french: "Al-Halim",
+					meaning: "Le Très Patient.",
+				},
+				{
+					arabic: "العَظِيمُ",
+					french: "Al-'Azim",
+					meaning: "L'Immense, le Magnifique.",
+				},
+				{
+					arabic: "الغَفُورُ",
+					french: "Al-Ghafur",
+					meaning: "Celui qui pardonne beaucoup.",
+				},
+				{
+					arabic: "الشَّكُورُ",
+					french: "Ash-Shakur",
+					meaning: "Le Reconnaissant.",
+				},
+				{
+					arabic: "العَلِيُّ",
+					french: "Al-'Ali",
+					meaning: "Le Très Haut.",
+				},
+				{
+					arabic: "الكَبِيرُ",
+					french: "Al-Kabir",
+					meaning: "Le Grand.",
+				},
+				{
+					arabic: "الحَفِيظُ",
+					french: "Al-Hafiz",
+					meaning: "Le Gardien, le Préservateur.",
+				},
+				{
+					arabic: "المُقِيتُ",
+					french: "Al-Muqit",
+					meaning: "Celui qui nourrit et maintient.",
+				},
+				{
+					arabic: "الحَسِيبُ",
+					french: "Al-Hasib",
+					meaning: "Celui qui tient compte de tout.",
+				},
+				{
+					arabic: "الجَلِيلُ",
+					french: "Al-Jalil",
+					meaning: "Le Majestueux.",
+				},
+				{
+					arabic: "الكَرِيمُ",
+					french: "Al-Karim",
+					meaning: "Le Généreux.",
+				},
+				{
+					arabic: "الرَّقِيبُ",
+					french: "Ar-Raqib",
+					meaning: "L'Observateur.",
+				},
+				{
+					arabic: "المُجِيبُ",
+					french: "Al-Mujib",
+					meaning: "Celui qui répond aux prières.",
+				},
+				{
+					arabic: "الوَاسِعُ",
+					french: "Al-Wasi'",
+					meaning: "L'Omnipotent, le Vaste.",
+				},
+				{
+					arabic: "الحَكِيمُ",
+					french: "Al-Hakim",
+					meaning: "Le Sage.",
+				},
+				{
+					arabic: "الوَدُودُ",
+					french: "Al-Wadud",
+					meaning: "L'Affectueux.",
+				},
+				{
+					arabic: "المَجِيدُ",
+					french: "Al-Majid",
+					meaning: "Le Glorieux.",
+				},
+				{
+					arabic: "البَاعِثُ",
+					french: "Al-Ba'ith",
+					meaning: "Celui qui ressuscite.",
+				},
+				{
+					arabic: "الشَّهِيدُ",
+					french: "Ash-Shahid",
+					meaning: "Le Témoin.",
+				},
+				{
+					arabic: "الحَقُّ",
+					french: "Al-Haqq",
+					meaning: "La Vérité.",
+				},
+				{
+					arabic: "الوَكِيلُ",
+					french: "Al-Wakil",
+					meaning: "Le Gérant.",
+				},
+				{
+					arabic: "القَوِيُّ",
+					french: "Al-Qawi",
+					meaning: "Le Fort.",
+				},
+				{
+					arabic: "المَتِينُ",
+					french: "Al-Matin",
+					meaning: "L'Inébranlable.",
+				},
+				{
+					arabic: "الوَلِيُّ",
+					french: "Al-Wali",
+					meaning: "Le Protecteur.",
+				},
+				{
+					arabic: "الحَمِيدُ",
+					french: "Al-Hamid",
+					meaning: "Le Digne de louange.",
+				},
+				{
+					arabic: "المُحْصِي",
+					french: "Al-Muhsi",
+					meaning: "Celui qui dénombre tout.",
+				},
+				{
+					arabic: "المُبْدِئُ",
+					french: "Al-Mubdi'",
+					meaning: "Celui qui commence la création.",
+				},
+				{
+					arabic: "المُعِيدُ",
+					french: "Al-Mu'id",
+					meaning: "Celui qui fait revenir.",
+				},
+				{
+					arabic: "المُحْيِي",
+					french: "Al-Muhyi",
+					meaning: "Celui qui donne la vie.",
+				},
+				{
+					arabic: "المُمِيتُ",
+					french: "Al-Mumit",
+					meaning: "Celui qui donne la mort.",
+				},
+				{
+					arabic: "الحَيُّ",
+					french: "Al-Hayy",
+					meaning: "Le Vivant.",
+				},
+				{
+					arabic: "القَيُّومُ",
+					french: "Al-Qayyum",
+					meaning: "Celui qui subsiste par Lui-même.",
+				},
+				{
+					arabic: "الوَاجِدُ",
+					french: "Al-Wajid",
+					meaning: "Celui qui trouve.",
+				},
+				{
+					arabic: "المَاجِدُ",
+					french: "Al-Majid",
+					meaning: "Le Glorieux, le Noble.",
+				},
+				{
+					arabic: "الوَاحِدُ",
+					french: "Al-Wahid",
+					meaning: "L'Unique.",
+				},
+				{
+					arabic: "الصَّمَدُ",
+					french: "As-Samad",
+					meaning: "L'Absolu.",
+				},
+				{
+					arabic: "القَادِرُ",
+					french: "Al-Qadir",
+					meaning: "Le Puissant.",
+				},
+				{
+					arabic: "المُقْتَدِرُ",
+					french: "Al-Muqtadir",
+					meaning: "Le Tout-Puissant.",
+				},
+				{
+					arabic: "المُقَدِّمُ",
+					french: "Al-Muqaddim",
+					meaning: "Celui qui fait avancer.",
+				},
+				{
+					arabic: "المُؤَخِّرُ",
+					french: "Al-Mu'akhkhir",
+					meaning: "Celui qui fait reculer.",
+				},
+				{
+					arabic: "الأوَّلُ",
+					french: "Al-Awwal",
+					meaning: "Le Premier.",
+				},
+				{
+					arabic: "الآخِرُ",
+					french: "Al-Akhir",
+					meaning: "Le Dernier.",
+				},
+				{
+					arabic: "الظَّاهِرُ",
+					french: "Az-Zahir",
+					meaning: "L'Apparent.",
+				},
+				{
+					arabic: "البَاطِنُ",
+					french: "Al-Batin",
+					meaning: "Le Caché.",
+				},
+				{
+					arabic: "الوَالِي",
+					french: "Al-Wali",
+					meaning: "Le Gouverneur.",
+				},
+				{
+					arabic: "المُتَعَالِي",
+					french: "Al-Muta'ali",
+					meaning: "Le Très-Haut.",
+				},
+				{
+					arabic: "البَرُّ",
+					french: "Al-Barr",
+					meaning: "Le Bienfaisant.",
+				},
+				{
+					arabic: "التَّوَّابُ",
+					french: "At-Tawwab",
+					meaning: "Celui qui accepte le repentir.",
+				},
+				{
+					arabic: "المُنْتَقِمُ",
+					french: "Al-Muntaqim",
+					meaning: "Le Vengeur.",
+				},
+				{
+					arabic: "العَفُوُّ",
+					french: "Al-'Afuw",
+					meaning: "Celui qui efface les péchés.",
+				},
+				{
+					arabic: "الرَّؤُوفُ",
+					french: "Ar-Ra'uf",
+					meaning: "Le Compatissant.",
+				},
+				{
+					arabic: "مَالِكُ المُلْكِ",
+					french: "Malik-ul-Mulk",
+					meaning: "Le Maître de la Royauté.",
+				},
+				{
+					arabic: "ذُو الجَلاَلِ وَالإكْرَامِ",
+					french: "Dhul-Jalali-wal-Ikram",
+					meaning: "Le Seigneur de Majesté et de Générosité.",
+				},
+				{
+					arabic: "المُقْسِطُ",
+					french: "Al-Muqsit",
+					meaning: "L'Équitable.",
+				},
+				{
+					arabic: "الجَامِعُ",
+					french: "Al-Jami'",
+					meaning: "Celui qui réunit.",
+				},
+				{
+					arabic: "الغَنِيُّ",
+					french: "Al-Ghani",
+					meaning: "Celui qui se suffit à Lui-même.",
+				},
+				{
+					arabic: "المُغْنِي",
+					french: "Al-Mughni",
+					meaning: "Celui qui enrichit.",
+				},
+				{
+					arabic: "المَانِعُ",
+					french: "Al-Mani'",
+					meaning: "Celui qui empêche.",
+				},
+				{
+					arabic: "الضَّارُّ",
+					french: "Ad-Darr",
+					meaning: "Celui qui peut nuire.",
+				},
+				{
+					arabic: "النَّافِعُ",
+					french: "An-Nafi'",
+					meaning: "Celui qui est utile.",
+				},
+				{
+					arabic: "النُّورُ",
+					french: "An-Nur",
+					meaning: "La Lumière.",
+				},
+				{
+					arabic: "الهَادِي",
+					french: "Al-Hadi",
+					meaning: "Le Guide.",
+				},
+				{
+					arabic: "البَدِيعُ",
+					french: "Al-Badi'",
+					meaning: "L'Innovateur.",
+				},
+				{
+					arabic: "البَاقِي",
+					french: "Al-Baqi",
+					meaning: "L'Éternel.",
+				},
+				{
+					arabic: "الوَارِثُ",
+					french: "Al-Warith",
+					meaning: "L'Héritier.",
+				},
+				{
+					arabic: "الرَّشِيدُ",
+					french: "Ar-Rashid",
+					meaning: "Celui qui dirige dans la bonne direction.",
+				},
+				{
+					arabic: "الصَّبُورُ",
+					french: "As-Sabur",
+					meaning: "Le Patient.",
+				},
+			];
+
+			function getDailyAllahName() {
+				const today = new Date();
+				const index = today.getDate() % allahNames.length;
+				return allahNames[index];
+			}
+
+			function updateAllahName() {
+				const name = getDailyAllahName();
+
+				document.querySelector(".containeAllah .name-arabic").textContent =
+					name.arabic;
+				document.querySelector(".containeAllah .name-french").textContent =
+					name.french;
+				document.querySelector(".containeAllah .hadith-text").textContent =
+					name.meaning;
+
+				// Mise à jour du gradient
+				const randomGradient =
+					gradients[Math.floor(Math.random() * gradients.length)];
+				document.querySelector(".containeAllah").style.background =
+					randomGradient;
+			}
+
+			// Initialisation au chargement de la page
+			document.addEventListener("DOMContentLoaded", updateAllahName);
+
+			// Initialize on page load
+			document.addEventListener("DOMContentLoaded", updateAllahName);
+		</script>
+		<script>
+			const hadiths = [
+				{
+					text: "Les actes ne valent que par leurs intentions. Il sera tenu compte à chaque homme de ses intentions.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Quiconque croit en Allah et au Jour dernier, qu'il dise du bien ou qu'il se taise.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Nul d'entre vous n'aura véritablement la foi tant qu'il n'aimera pas pour son frère ce qu'il aime pour lui-même.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "La bonté est un bon caractère, et le péché est ce qui agite ton âme et que tu n'aimerais pas que les gens découvrent.",
+					source: "Rapporté par Muslim",
+				},
+				{
+					text: "Celui qui fraude n'est pas des nôtres.",
+					source: "Rapporté par Muslim",
+				},
+				{
+					text: "Le musulman est celui dont les musulmans sont à l'abri de sa langue et de sa main.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Ne vous enviez pas les uns les autres, ne vous haïssez pas les uns les autres, ne vous tournez pas le dos les uns aux autres, et soyez frères.",
+					source: "Rapporté par Al-Bukhari",
+				},
+				{
+					text: "La pudeur ne peut qu'apporter le bien.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Le fort n'est pas celui qui terrasse les autres, le fort est celui qui se maîtrise dans la colère.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Celui qui emprunte un chemin à la recherche de la science, Allah lui facilitera un chemin vers le Paradis.",
+					source: "Rapporté par Muslim",
+				},
+				{
+					text: "Le croyant pour le croyant est comme un édifice dont les parties se soutiennent les unes les autres.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "Le meilleur d'entre vous est celui qui est le meilleur avec sa famille, et je suis le meilleur d'entre vous avec ma famille.",
+					source: "Rapporté par At-Tirmidhi",
+				},
+				{
+					text: "Celui qui croit en Allah et au Jour dernier, qu'il honore son voisin.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+				{
+					text: "La propreté fait partie de la foi.",
+					source: "Rapporté par Muslim",
+				},
+				{
+					text: "Le sourire que tu adresses à ton frère est une aumône.",
+					source: "Rapporté par At-Tirmidhi",
+				},
+				{
+					text: "Quiconque ne remercie pas les gens ne remercie pas Allah.",
+					source: "Rapporté par Abu Dawud et At-Tirmidhi",
+				},
+				{
+					text: "N'entre au Paradis que celui qui a dans son cœur le poids d'un atome de foi.",
+					source: "Rapporté par Muslim",
+				},
+				{
+					text: "Le Paradis se trouve sous les pieds des mères.",
+					source: "Rapporté par An-Nasa'i",
+				},
+				{
+					text: "La meilleure des aumônes est celle que tu fais alors que tu es en bonne santé.",
+					source: "Rapporté par Al-Bukhari",
+				},
+				{
+					text: "Le croyant ne se fait pas piquer deux fois du même trou.",
+					source: "Rapporté par Al-Bukhari et Muslim",
+				},
+			];
+
+			const gradients = [
+				"linear-gradient(135deg, #667eea, #764ba2)",
+				"linear-gradient(135deg, #6C3483, #4A235A)",
+				"linear-gradient(135deg, #4b6cb7, #182848)",
+				"linear-gradient(135deg, #1e3c72, #2a5298)",
+				"linear-gradient(135deg, #4776E6, #8E54E9)",
+				"linear-gradient(135deg, #00467F, #A5CC82)",
+				"linear-gradient(135deg, #114357, #F29492)",
+				"linear-gradient(135deg, #1A2980, #26D0CE)",
+				"linear-gradient(135deg, #2C3E50, #3498DB)",
+				"linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
+				"linear-gradient(135deg, #4776E6 0%, #8E54E9 100%)",
+				"linear-gradient(135deg, #00467F 0%, #A5CC82 100%)",
+				"linear-gradient(135deg, #114357 0%, #F29492 100%)",
+				"linear-gradient(135deg, #1A2980 0%, #26D0CE 100%)",
+				"linear-gradient(135deg, #2C3E50 0%, #3498DB 100%)",
+				"linear-gradient(135deg, #4b6cb7 0%, #182848 100%)",
+			];
+
+			function getRandomGradient() {
+				return gradients[Math.floor(Math.random() * gradients.length)];
+			}
+
+			function getDailyHadith() {
+				const today = new Date();
+				const index = (today.getDate() - 1) % hadiths.length;
+				return hadiths[index];
+			}
+
+			function updateHadith() {
+				const hadith = getDailyHadith();
+				const hadithCard = document.getElementById("hadithCard");
+				const date = new Date().toLocaleDateString("fr-FR", {
+					weekday: "long",
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				});
+
+				document.querySelector(".date").textContent = date;
+				document.querySelector(".hadith-text").textContent = hadith.text;
+				document.querySelector(".hadith-source").textContent = hadith.source;
+
+				// Update gradient
+				hadithCard.style.background = getRandomGradient();
+			}
+
+			// Initialize on page load
+			document.addEventListener("DOMContentLoaded", updateHadith);
+		</script>
+
+		<script>
+			const douas = [
+				{
+					arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+					phonetic: "Allahoumma salli 'ala Muhammadin wa 'ala aali Muhammad",
+					translation:
+						"Ô Allah, répands Tes bénédictions sur Mohammed et sur la famille de Mohammed",
+				},
+				{
+					arabic:
+						"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+					phonetic:
+						"Rabbana atina fid-dunya hasanatan wa fil akhirati hasanatan waqina 'adhaban-nar",
+					translation:
+						"Notre Seigneur ! Accorde-nous belle part ici-bas, et belle part dans l'au-delà, et protège-nous du châtiment du Feu",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ اغْفِرْ لِي ذُنُوبِي وَافْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+					phonetic: "Allahumma-ghfir li dhunubi waftah li abwaba rahmatik",
+					translation:
+						"Ô Allah, pardonne-moi mes péchés et ouvre-moi les portes de Ta miséricorde",
+				},
+				{
+					arabic: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
+					phonetic: "Subhan-Allahi wa bihamdihi, subhan-Allahil-'adhim",
+					translation:
+						"Gloire et pureté à Allah et par Sa louange, gloire et pureté à Allah Le Très Grand",
+				},
+				{
+					arabic:
+						"لا إلهَ إلاّ اللّهُ وحدَهُ لا شريكَ لهُ، لهُ المُلكُ ولهُ الحمدُ، وهوَ على كلّ شيءٍ قديرٌ",
+					phonetic:
+						"La ilaha illallahu wahdahu la sharika lahu, lahul-mulku wa lahul-hamdu, wa huwa 'ala kulli shay'in qadir",
+					translation:
+						"Il n'y a pas de divinité [digne d'adoration] à part Allah, Unique sans associé. À Lui la Royauté et à Lui la Louange et Il est Omnipotent",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ",
+					phonetic:
+						"Allahumma anta Rabbi la ilaha illa anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastata't",
+					translation:
+						"Ô Allah, Tu es mon Seigneur, il n'y a pas de divinité à part Toi, Tu m'as créé et je suis Ton serviteur, je suis fidèle à mon engagement et à ma promesse autant que je peux",
+				},
+				{
+					arabic: "رَبِّ اغْفِرْ وَارْحَمْ وَأَنْتَ خَيْرُ الرَّاحِمِينَ",
+					phonetic: "Rabbigh-fir warham wa anta khairur-rahimin",
+					translation:
+						"Seigneur, pardonne et fais miséricorde, Tu es le Meilleur des miséricordieux",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ",
+					phonetic:
+						"Allahumma inni a'udhu bika minal-hammi wal-hazan, wa a'udhu bika minal-'ajzi wal-kasal",
+					translation:
+						"Ô Allah, je cherche refuge auprès de Toi contre le souci et la tristesse, et je cherche refuge auprès de Toi contre l'incapacité et la paresse",
+				},
+				{
+					arabic: "اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي",
+					phonetic: "Allahumma-hdini wa saddidni",
+					translation: "Ô Allah, guide-moi et dirige-moi vers la droiture",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ",
+					phonetic:
+						"Allahumma inni as'alukal-'afwa wal-'afiyata fid-dunya wal-akhirah",
+					translation:
+						"Ô Allah, je Te demande le pardon et la préservation dans ce bas monde et dans l'au-delà",
+				},
+				{
+					arabic: "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ",
+					phonetic: "Ya muqallibal-qulub, thabbit qalbi 'ala dinik",
+					translation:
+						"Ô Toi qui retourne les cœurs, affermis mon cœur sur Ta religion",
+				},
+				{
+					arabic:
+						"رَبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ الشَّيَاطِينِ وَأَعُوذُ بِكَ رَبِّ أَنْ يَحْضُرُونِ",
+					phonetic:
+						"Rabbi a'udhu bika min hamazatish-shayatin, wa a'udhu bika rabbi an yahdhurun",
+					translation:
+						"Seigneur, je cherche refuge auprès de Toi contre les suggestions des démons et je cherche refuge auprès de Toi, Seigneur, contre leur présence",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ مُصَرِّفَ الْقُلُوبِ صَرِّفْ قُلُوبَنَا عَلَى طَاعَتِكَ",
+					phonetic: "Allahumma musarrifal-qulubi, sarrif qulubana 'ala ta'atik",
+					translation:
+						"Ô Allah, Toi qui orientes les cœurs, oriente nos cœurs vers Ton obéissance",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ اجْعَلْ خَيْرَ عُمُرِي آخِرَهُ، وَخَيْرَ عَمَلِي خَوَاتِمَهُ، وَخَيْرَ أَيَّامِي يَوْمَ أَلْقَاكَ فِيهِ",
+					phonetic:
+						"Allahumma-j'al khayra 'umuri akhirahu, wa khayra 'amali khawatimahu, wa khayra ayyami yawma alqaka fih",
+					translation:
+						"Ô Allah, fais que le meilleur de ma vie soit sa fin, que les meilleures de mes œuvres soient les dernières, et que le meilleur de mes jours soit celui où je Te rencontrerai",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا",
+					phonetic:
+						"Allahumma la sahla illa ma ja'altahu sahla, wa anta taj'alul-hazna idha shi'ta sahla",
+					translation:
+						"Ô Allah, il n'y a de facilité que celle que Tu accordes, et Tu peux, si Tu le veux, transformer la difficulté en facilité",
+				},
+				{
+					arabic:
+						"رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَى وَالِدَيَّ",
+					phonetic:
+						"Rabbi awzi'ni an ashkura ni'matakal-lati an'amta 'alayya wa 'ala walidayya",
+					translation:
+						"Seigneur, inspire-moi pour que je rende grâce aux bienfaits dont Tu m'as comblé ainsi que mes parents",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَسْأَلَةِ، وَخَيْرَ الدُّعَاءِ، وَخَيْرَ النَّجَاحِ، وَخَيْرَ الْعَمَلِ",
+					phonetic:
+						"Allahumma inni as'aluka khayral-mas'alati, wa khayrad-du'a'i, wa khayran-najahi, wa khayral-'amal",
+					translation:
+						"Ô Allah, je Te demande le meilleur des demandes, la meilleure des invocations, la meilleure des réussites et la meilleure des œuvres",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ أَحْسِنْ عَاقِبَتَنَا فِي الْأُمُورِ كُلِّهَا، وَأَجِرْنَا مِنْ خِزْيِ الدُّنْيَا وَعَذَابِ الْآخِرَةِ",
+					phonetic:
+						"Allahumma ahsin 'aqibatana fil-umuri kulliha, wa ajirna min khizyid-dunya wa 'adhabil-akhirah",
+					translation:
+						"Ô Allah, accorde-nous une bonne fin dans toutes nos affaires et préserve-nous de l'humiliation dans ce bas monde et du châtiment dans l'au-delà",
+				},
+				{
+					arabic:
+						"رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ",
+					phonetic:
+						"Rabbana la tuzigh qulubana ba'da idh hadaytana wa hab lana min ladunka rahmatan innaka antal-Wahhab",
+					translation:
+						"Seigneur, ne dévie pas nos cœurs après nous avoir guidés, et accorde-nous de Ta part une miséricorde. C'est Toi, certes, le Grand Donateur",
+				},
+				{
+					arabic:
+						"اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ",
+					phonetic:
+						"Allahumma-kfini bi halalika 'an haramika wa aghnini bi fadlika 'amman siwak",
+					translation:
+						"Ô Allah, fais-moi me suffire de ce qui est licite plutôt que de ce qui est illicite, et par Ta grâce, dispense-moi de tout autre que Toi",
+				},
+			];
+
+			function getRandomItem(array) {
+				return array[Math.floor(Math.random() * array.length)];
+			}
+
+			function updateDoua() {
+				const doua = getRandomItem(douas);
+				const douaElement = document.getElementById("dailyDoua");
+				douaElement.innerHTML = `
+        <div class="loader"></div>
+    `;
+
+				// Simuler un petit chargement pour une meilleure UX
+				setTimeout(() => {
+					douaElement.innerHTML = `
+            <div class="arabic">${doua.arabic}</div>
+            <div class="phonetic">${doua.phonetic}</div>
+            <div class="translation">${doua.translation}</div>
+        `;
+					// Utiliser getRandomGradient() comme les autres conteneurs
+					document.querySelector(".containeJumma").style.background =
+						getRandomGradient();
+				}, 300);
+			}
+
+			function shareImage() {
+				if (navigator.share) {
+					navigator.share({
+						title: "Jumaa Mubarak",
+						text: "Doua du Vendredi",
+						url: window.location.href,
+					});
+				} else {
+					alert("Le partage n'est pas disponible sur votre appareil");
+				}
+			}
+
+			// Initialisation
+			updateDoua();
+		</script>
+		<script>
+			const versets = [
+				{
+					texte:
+						"Ô les croyants ! Cherchez secours dans l'endurance et la prière. Car Allah est avec ceux qui sont endurants.",
+					source: "Sourate Al-Baqara (2:153)",
+				},
+				{
+					texte: "Et votre Seigneur dit : 'Appelez-Moi, Je vous répondrai'.",
+					source: "Sourate Ghafir (40:60)",
+				},
+				{
+					texte:
+						"Allah n'impose à aucune âme une charge supérieure à sa capacité.",
+					source: "Sourate Al-Baqara (2:286)",
+				},
+				{
+					texte:
+						"Certes, Allah aime ceux qui se repentent, et Il aime ceux qui se purifient.",
+					source: "Sourate Al-Baqara (2:222)",
+				},
+				{
+					texte:
+						"Et c'est en Allah que les croyants doivent placer leur confiance.",
+					source: "Sourate Al-Imran (3:122)",
+				},
+				{
+					texte:
+						"Quiconque fait une bonne œuvre, c'est pour son bien. Et quiconque fait le mal, il le fait à ses dépens.",
+					source: "Sourate Fussilat (41:46)",
+				},
+				{
+					texte:
+						"La récompense de la bienfaisance est-elle autre que la bienfaisance ?",
+					source: "Sourate Ar-Rahman (55:60)",
+				},
+				{
+					texte: "Ô vous qui croyez ! Craignez Allah et parlez avec droiture.",
+					source: "Sourate Al-Ahzab (33:70)",
+				},
+				{
+					texte: "Et dis : 'Ô mon Seigneur, accrois mes connaissances !'",
+					source: "Sourate Ta-Ha (20:114)",
+				},
+				{
+					texte:
+						"Certainement, la prière préserve de la turpitude et du blâmable.",
+					source: "Sourate Al-Ankabut (29:45)",
+				},
+				{
+					texte:
+						"Allah ne modifie pas l'état d'un peuple tant qu'ils ne modifient pas ce qui est en eux-mêmes.",
+					source: "Sourate Ar-Ra'd (13:11)",
+				},
+				{
+					texte:
+						"Et quiconque craint Allah, Il lui donnera une issue favorable.",
+					source: "Sourate At-Talaq (65:2)",
+				},
+				{
+					texte: "Certes, avec la difficulté il y a une facilité.",
+					source: "Sourate Ash-Sharh (94:6)",
+				},
+				{
+					texte: "Et adorez Allah et ne Lui donnez aucun associé.",
+					source: "Sourate An-Nisa (4:36)",
+				},
+				{
+					texte: "Ô vous qui croyez ! Soyez fermes en pratiquant la justice.",
+					source: "Sourate An-Nisa (4:135)",
+				},
+				{
+					texte: "Et quiconque place sa confiance en Allah, Il lui suffit.",
+					source: "Sourate At-Talaq (65:3)",
+				},
+				{
+					texte:
+						"Dis : 'Mes prières, mes actes de dévotion, ma vie et ma mort appartiennent à Allah, Seigneur de l'Univers.'",
+					source: "Sourate Al-An'am (6:162)",
+				},
+				{
+					texte: "Ô vous qui croyez ! Évoquez Allah d'une façon abondante.",
+					source: "Sourate Al-Ahzab (33:41)",
+				},
+				{
+					texte:
+						"Et ton Seigneur a décrété : 'N'adorez que Lui et marquez de la bonté envers les père et mère.'",
+					source: "Sourate Al-Isra (17:23)",
+				},
+				{
+					texte:
+						"Les croyants ne sont que des frères. Établissez la concorde entre vos frères.",
+					source: "Sourate Al-Hujurat (49:10)",
+				},
+				{
+					texte: "Et Nous avons certainement honoré les fils d'Adam.",
+					source: "Sourate Al-Isra (17:70)",
+				},
+				{
+					texte:
+						"Certes, Allah commande l'équité, la bienfaisance et l'assistance aux proches.",
+					source: "Sourate An-Nahl (16:90)",
+				},
+				{
+					texte: "Et ne marche pas sur terre avec arrogance.",
+					source: "Sourate Al-Isra (17:37)",
+				},
+				{
+					texte: "Ô les croyants ! Remplissez fidèlement vos engagements.",
+					source: "Sourate Al-Ma'ida (5:1)",
+				},
+				{
+					texte: "Celui qui fait un bien fût-ce du poids d'un atome, le verra.",
+					source: "Sourate Az-Zalzalah (99:7)",
+				},
+			];
+
+			function getRandomVerse() {
+				const today = new Date();
+				const index = today.getDate() % versets.length;
+				return versets[index];
+			}
+
+			window.onload = function () {
+				const versetDuJour = getRandomVerse();
+				document.getElementById("verseText").innerText = versetDuJour.texte;
+				document.getElementById("verseSource").innerText = versetDuJour.source;
+			};
+		</script>
+
+		<script>
+			// Fonction pour détecter le système d'exploitation
+			function detectOS() {
+				const userAgent = navigator.userAgent.toLowerCase();
+
+				// Détection iOS (iPhone, iPad, iPod)
+				if (/ipad|iphone|ipod/.test(userAgent)) {
+					return "iOS";
+				}
+				// Détection Android
+				else if (/android/.test(userAgent)) {
+					return "Android";
+				}
+				// Autre système d'exploitation (affichera les deux liens)
+				else {
+					return "other";
+				}
+			}
+
+			// Configuration des liens et du contenu
+			const storeConfigs = {
+				Android: {
+					url: "https://play.google.com/store/apps/details?id=appmuslimalimcom.wpapp",
+					class: "android-link",
+					name: "Noter sur Google Play",
+					platform: "Pour Android",
+				},
+				iOS: {
+					url: "https://apps.apple.com/fr/app/muslim-alim-coran-et-adhan/id6738008542",
+					class: "ios-link",
+					name: "Noter sur l'App Store",
+					platform: "Pour iPhone",
+				},
+			};
+
+			// Fonction pour créer un lien de store
+			function createStoreLink(config) {
+				return `
+                <a href="${config.url}" 
+                   class="store-link ${config.class}" 
+                   target="_blank">
+                    <img src="images/muslim-pro-logo-apple.png" width="40px" height="40px"alt="Store Icon" class="store-icon">
+                    <div class="store-text">
+                        <div class="store-name">${config.name}</div>
+                        <div class="store-platform">${config.platform}</div>
+                    </div>
+                    ⭐
+                </a>
+            `;
+			}
+
+			// Afficher le(s) bon(s) lien(s) selon le système d'exploitation
+			window.onload = function () {
+				const os = detectOS();
+				const storeLinkDiv = document.getElementById("storeLink");
+
+				if (os === "iOS") {
+					storeLinkDiv.innerHTML = createStoreLink(storeConfigs.iOS);
+				} else if (os === "Android") {
+					storeLinkDiv.innerHTML = createStoreLink(storeConfigs.Android);
+				} else {
+					// Sur desktop, afficher les deux liens
+					storeLinkDiv.innerHTML =
+						createStoreLink(storeConfigs.Android) +
+						createStoreLink(storeConfigs.iOS);
+				}
+			};
+		</script>
+		<!-- <script>
+			// Ajout de html2canvas
+			const script = document.createElement("script");
+			script.src =
+				"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+			document.head.appendChild(script);
+
+			// Fonction pour générer et partager l'image
+			async function shareAsImage(containerSelector, type) {
+				const container = document.querySelector(containerSelector);
+				const shareButton = container.querySelector(".share-button");
+
+				// Cacher le bouton pendant la capture
+				shareButton.style.display = "none";
+
+				try {
+					const canvas = await html2canvas(container, {
+						backgroundColor: null,
+						scale: 2, // Meilleure qualité
+					});
+
+					// Réafficher le bouton
+					shareButton.style.display = "block";
+
+					const blob = await new Promise((resolve) =>
+						canvas.toBlob(resolve, "image/png")
+					);
+					const file = new File([blob], `muslim-alim-${type}.png`, {
+						type: "image/png",
+					});
+
+					const shareData = {
+						title: `${
+							type === "hadith"
+								? "Hadith"
+								: type === "verset"
+								? "Verset"
+								: type === "doua-vendredi"
+								? "Doua du Vendredi"
+								: "Nom d'Allah"
+						} - Muslim Alim`,
+						text: `${
+							type === "hadith"
+								? "Hadith"
+								: type === "verset"
+								? "Verset"
+								: type === "doua-vendredi"
+								? "Doua du Vendredi"
+								: "Nom d'Allah"
+						} - Muslim Alim\n\n📱 Téléchargez notre application :\n\nMuslim Alim iOS : apps.apple.com/fr/app/muslim-alim-coran-et-adhan/id6738008542\n\nMuslim Alim Android : play.google.com/store/apps/details?id=appmuslimalimcom.wpapp&hl=fr`,
+						files: [file],
+					};
+
+					if (navigator.share && navigator.canShare(shareData)) {
+						await navigator.share(shareData);
+					} else {
+						// Alternative : téléchargement
+						const link = document.createElement("a");
+						link.download = `muslim-alim-${type}.png`;
+						link.href = canvas.toDataURL();
+						link.click();
+					}
+				} catch (error) {
+					console.error("Erreur de partage:", error);
+					shareButton.style.display = "block";
+				}
+			}
+
+			// Écouteurs d'événements pour les boutons de partage
+			document.querySelectorAll(".share-button").forEach((button) => {
+				button.addEventListener("click", () => {
+					const type = button.dataset.type;
+					let containerSelector;
+
+					switch (type) {
+						case "hadith":
+							containerSelector = "#hadithCard";
+							break;
+						case "verset":
+							containerSelector = ".containeVerset";
+							break;
+						case "nom-allah":
+							containerSelector = ".containeAllah";
+							break;
+						case "doua-vendredi":
+							containerSelector = ".containeJumma";
+							break;
+					}
+
+					if (containerSelector) {
+						shareAsImage(containerSelector, type);
+					}
+				});
+			});
+		</script> -->
+		<script>
+			// Les données des sourates
+			const audioSurahs = [
+				{
+					number: 1,
+					name: "الفاتحة",
+					englishName: "Al-Fatiha",
+					numberOfAyahs: 7,
+				},
+				{
+					number: 2,
+					name: "البقرة",
+					englishName: "Al-Baqara",
+					numberOfAyahs: 286,
+				},
+				{
+					number: 3,
+					name: "آل عمران",
+					englishName: "Ali 'Imran",
+					numberOfAyahs: 200,
+				},
+				{
+					number: 4,
+					name: "النساء",
+					englishName: "An-Nisa",
+					numberOfAyahs: 176,
+				},
+				{
+					number: 5,
+					name: "المائدة",
+					englishName: "Al-Ma'ida",
+					numberOfAyahs: 120,
+				},
+				{
+					number: 6,
+					name: "الأنعام",
+					englishName: "Al-An'am",
+					numberOfAyahs: 165,
+				},
+				{
+					number: 7,
+					name: "الأعراف",
+					englishName: "Al-A'raf",
+					numberOfAyahs: 206,
+				},
+				{
+					number: 8,
+					name: "الأنفال",
+					englishName: "Al-Anfal",
+					numberOfAyahs: 75,
+				},
+				{
+					number: 9,
+					name: "التوبة",
+					englishName: "At-Tawba",
+					numberOfAyahs: 129,
+				},
+				{ number: 10, name: "يونس", englishName: "Yunus", numberOfAyahs: 109 },
+				{ number: 11, name: "هود", englishName: "Hud", numberOfAyahs: 123 },
+				{ number: 12, name: "يوسف", englishName: "Yusuf", numberOfAyahs: 111 },
+				{
+					number: 13,
+					name: "الرعد",
+					englishName: "Ar-Ra'd",
+					numberOfAyahs: 43,
+				},
+				{
+					number: 14,
+					name: "ابراهيم",
+					englishName: "Ibrahim",
+					numberOfAyahs: 52,
+				},
+				{
+					number: 15,
+					name: "الحجر",
+					englishName: "Al-Hijr",
+					numberOfAyahs: 99,
+				},
+				{
+					number: 16,
+					name: "النحل",
+					englishName: "An-Nahl",
+					numberOfAyahs: 128,
+				},
+				{
+					number: 17,
+					name: "الإسراء",
+					englishName: "Al-Isra",
+					numberOfAyahs: 111,
+				},
+				{
+					number: 18,
+					name: "الكهف",
+					englishName: "Al-Kahf",
+					numberOfAyahs: 110,
+				},
+				{ number: 19, name: "مريم", englishName: "Maryam", numberOfAyahs: 98 },
+				{ number: 20, name: "طه", englishName: "Ta-Ha", numberOfAyahs: 135 },
+				{
+					number: 21,
+					name: "الأنبياء",
+					englishName: "Al-Anbya",
+					numberOfAyahs: 112,
+				},
+				{ number: 22, name: "الحج", englishName: "Al-Hajj", numberOfAyahs: 78 },
+				{
+					number: 23,
+					name: "المؤمنون",
+					englishName: "Al-Mu'minun",
+					numberOfAyahs: 118,
+				},
+				{ number: 24, name: "النور", englishName: "An-Nur", numberOfAyahs: 64 },
+				{
+					number: 25,
+					name: "الفرقان",
+					englishName: "Al-Furqan",
+					numberOfAyahs: 77,
+				},
+				{
+					number: 26,
+					name: "الشعراء",
+					englishName: "Ash-Shu'ara",
+					numberOfAyahs: 227,
+				},
+				{
+					number: 27,
+					name: "النمل",
+					englishName: "An-Naml",
+					numberOfAyahs: 93,
+				},
+				{
+					number: 28,
+					name: "القصص",
+					englishName: "Al-Qasas",
+					numberOfAyahs: 88,
+				},
+				{
+					number: 29,
+					name: "العنكبوت",
+					englishName: "Al-Ankabut",
+					numberOfAyahs: 69,
+				},
+				{ number: 30, name: "الروم", englishName: "Ar-Rum", numberOfAyahs: 60 },
+				{ number: 31, name: "لقمان", englishName: "Luqman", numberOfAyahs: 34 },
+				{
+					number: 32,
+					name: "السجدة",
+					englishName: "As-Sajda",
+					numberOfAyahs: 30,
+				},
+				{
+					number: 33,
+					name: "الأحزاب",
+					englishName: "Al-Ahzab",
+					numberOfAyahs: 73,
+				},
+				{ number: 34, name: "سبإ", englishName: "Saba", numberOfAyahs: 54 },
+				{ number: 35, name: "فاطر", englishName: "Fatir", numberOfAyahs: 45 },
+				{ number: 36, name: "يس", englishName: "Ya-Sin", numberOfAyahs: 83 },
+				{
+					number: 37,
+					name: "الصافات",
+					englishName: "As-Saffat",
+					numberOfAyahs: 182,
+				},
+				{ number: 38, name: "ص", englishName: "Sad", numberOfAyahs: 88 },
+				{
+					number: 39,
+					name: "الزمر",
+					englishName: "Az-Zumar",
+					numberOfAyahs: 75,
+				},
+				{ number: 40, name: "غافر", englishName: "Ghafir", numberOfAyahs: 85 },
+				{
+					number: 41,
+					name: "فصلت",
+					englishName: "Fussilat",
+					numberOfAyahs: 54,
+				},
+				{
+					number: 42,
+					name: "الشورى",
+					englishName: "Ash-Shura",
+					numberOfAyahs: 53,
+				},
+				{
+					number: 43,
+					name: "الزخرف",
+					englishName: "Az-Zukhruf",
+					numberOfAyahs: 89,
+				},
+				{
+					number: 44,
+					name: "الدخان",
+					englishName: "Ad-Dukhan",
+					numberOfAyahs: 59,
+				},
+				{
+					number: 45,
+					name: "الجاثية",
+					englishName: "Al-Jathiya",
+					numberOfAyahs: 37,
+				},
+				{
+					number: 46,
+					name: "الأحقاف",
+					englishName: "Al-Ahqaf",
+					numberOfAyahs: 35,
+				},
+				{
+					number: 47,
+					name: "محمد",
+					englishName: "Muhammad",
+					numberOfAyahs: 38,
+				},
+				{
+					number: 48,
+					name: "الفتح",
+					englishName: "Al-Fath",
+					numberOfAyahs: 29,
+				},
+				{
+					number: 49,
+					name: "الحجرات",
+					englishName: "Al-Hujurat",
+					numberOfAyahs: 18,
+				},
+				{ number: 50, name: "ق", englishName: "Qaf", numberOfAyahs: 45 },
+				{
+					number: 51,
+					name: "الذاريات",
+					englishName: "Adh-Dhariyat",
+					numberOfAyahs: 60,
+				},
+				{ number: 52, name: "الطور", englishName: "At-Tur", numberOfAyahs: 49 },
+				{
+					number: 53,
+					name: "النجم",
+					englishName: "An-Najm",
+					numberOfAyahs: 62,
+				},
+				{
+					number: 54,
+					name: "القمر",
+					englishName: "Al-Qamar",
+					numberOfAyahs: 55,
+				},
+				{
+					number: 55,
+					name: "الرحمن",
+					englishName: "Ar-Rahman",
+					numberOfAyahs: 78,
+				},
+				{
+					number: 56,
+					name: "الواقعة",
+					englishName: "Al-Waqi'a",
+					numberOfAyahs: 96,
+				},
+				{
+					number: 57,
+					name: "الحديد",
+					englishName: "Al-Hadid",
+					numberOfAyahs: 29,
+				},
+				{
+					number: 58,
+					name: "المجادلة",
+					englishName: "Al-Mujadila",
+					numberOfAyahs: 22,
+				},
+				{
+					number: 59,
+					name: "الحشر",
+					englishName: "Al-Hashr",
+					numberOfAyahs: 24,
+				},
+				{
+					number: 60,
+					name: "الممتحنة",
+					englishName: "Al-Mumtahina",
+					numberOfAyahs: 13,
+				},
+				{ number: 61, name: "الصف", englishName: "As-Saf", numberOfAyahs: 14 },
+				{
+					number: 62,
+					name: "الجمعة",
+					englishName: "Al-Jumu'a",
+					numberOfAyahs: 11,
+				},
+				{
+					number: 63,
+					name: "المنافقون",
+					englishName: "Al-Munafiqun",
+					numberOfAyahs: 11,
+				},
+				{
+					number: 64,
+					name: "التغابن",
+					englishName: "At-Taghabun",
+					numberOfAyahs: 18,
+				},
+				{
+					number: 65,
+					name: "الطلاق",
+					englishName: "At-Talaq",
+					numberOfAyahs: 12,
+				},
+				{
+					number: 66,
+					name: "التحريم",
+					englishName: "At-Tahrim",
+					numberOfAyahs: 12,
+				},
+				{
+					number: 67,
+					name: "الملك",
+					englishName: "Al-Mulk",
+					numberOfAyahs: 30,
+				},
+				{
+					number: 68,
+					name: "القلم",
+					englishName: "Al-Qalam",
+					numberOfAyahs: 52,
+				},
+				{
+					number: 69,
+					name: "الحاقة",
+					englishName: "Al-Haaqqa",
+					numberOfAyahs: 52,
+				},
+				{
+					number: 70,
+					name: "المعارج",
+					englishName: "Al-Ma'arij",
+					numberOfAyahs: 44,
+				},
+				{ number: 71, name: "نوح", englishName: "Nuh", numberOfAyahs: 28 },
+				{ number: 72, name: "الجن", englishName: "Al-Jinn", numberOfAyahs: 28 },
+				{
+					number: 73,
+					name: "المزمل",
+					englishName: "Al-Muzzammil",
+					numberOfAyahs: 20,
+				},
+				{
+					number: 74,
+					name: "المدثر",
+					englishName: "Al-Muddaththir",
+					numberOfAyahs: 56,
+				},
+				{
+					number: 75,
+					name: "القيامة",
+					englishName: "Al-Qiyama",
+					numberOfAyahs: 40,
+				},
+				{
+					number: 76,
+					name: "الانسان",
+					englishName: "Al-Insan",
+					numberOfAyahs: 31,
+				},
+				{
+					number: 77,
+					name: "المرسلات",
+					englishName: "Al-Mursalat",
+					numberOfAyahs: 50,
+				},
+				{
+					number: 78,
+					name: "النبإ",
+					englishName: "An-Naba",
+					numberOfAyahs: 40,
+				},
+				{
+					number: 79,
+					name: "النازعات",
+					englishName: "An-Nazi'at",
+					numberOfAyahs: 46,
+				},
+				{ number: 80, name: "عبس", englishName: "Abasa", numberOfAyahs: 42 },
+				{
+					number: 81,
+					name: "التكوير",
+					englishName: "At-Takwir",
+					numberOfAyahs: 29,
+				},
+				{
+					number: 82,
+					name: "الإنفطار",
+					englishName: "Al-Infitar",
+					numberOfAyahs: 19,
+				},
+				{
+					number: 83,
+					name: "المطففين",
+					englishName: "Al-Mutaffifin",
+					numberOfAyahs: 36,
+				},
+				{
+					number: 84,
+					name: "الإنشقاق",
+					englishName: "Al-Inshiqaq",
+					numberOfAyahs: 25,
+				},
+				{
+					number: 85,
+					name: "البروج",
+					englishName: "Al-Buruj",
+					numberOfAyahs: 22,
+				},
+				{
+					number: 86,
+					name: "الطارق",
+					englishName: "At-Tariq",
+					numberOfAyahs: 17,
+				},
+				{
+					number: 87,
+					name: "الأعلى",
+					englishName: "Al-A'la",
+					numberOfAyahs: 19,
+				},
+				{
+					number: 88,
+					name: "الغاشية",
+					englishName: "Al-Ghashiyah",
+					numberOfAyahs: 26,
+				},
+				{
+					number: 89,
+					name: "الفجر",
+					englishName: "Al-Fajr",
+					numberOfAyahs: 30,
+				},
+				{
+					number: 90,
+					name: "البلد",
+					englishName: "Al-Balad",
+					numberOfAyahs: 20,
+				},
+				{
+					number: 91,
+					name: "الشمس",
+					numberOfAyahs: 15,
+				},
+				{
+					number: 92,
+					name: "الليل",
+					englishName: "Al-Layl",
+					numberOfAyahs: 21,
+				},
+				{
+					number: 93,
+					name: "الضحى",
+					englishName: "Ad-Dhuha",
+					numberOfAyahs: 11,
+				},
+				{
+					number: 94,
+					name: "الشرح",
+					englishName: "Ash-Sharh",
+					numberOfAyahs: 8,
+				},
+				{ number: 95, name: "التين", englishName: "At-Tin", numberOfAyahs: 8 },
+				{
+					number: 96,
+					name: "العلق",
+					englishName: "Al-Alaq",
+					numberOfAyahs: 19,
+				},
+				{ number: 97, name: "القدر", englishName: "Al-Qadr", numberOfAyahs: 5 },
+				{
+					number: 98,
+					name: "البينة",
+					englishName: "Al-Bayyinah",
+					numberOfAyahs: 8,
+				},
+				{
+					number: 99,
+					name: "الزلزلة",
+					englishName: "Az-Zalzalah",
+					numberOfAyahs: 8,
+				},
+				{
+					number: 100,
+					name: "العاديات",
+					englishName: "Al-Adiyat",
+					numberOfAyahs: 11,
+				},
+				{
+					number: 101,
+					name: "القارعة",
+					englishName: "Al-Qari'ah",
+					numberOfAyahs: 11,
+				},
+				{
+					number: 102,
+					name: "التكاثر",
+					englishName: "At-Takathur",
+					numberOfAyahs: 8,
+				},
+				{ number: 103, name: "العصر", englishName: "Al-Asr", numberOfAyahs: 3 },
+				{
+					number: 104,
+					name: "الهمزة",
+					englishName: "Al-Humazah",
+					numberOfAyahs: 9,
+				},
+				{ number: 105, name: "الفيل", englishName: "Al-Fil", numberOfAyahs: 5 },
+				{ number: 106, name: "قريش", englishName: "Quraysh", numberOfAyahs: 4 },
+				{
+					number: 107,
+					name: "الماعون",
+					englishName: "Al-Ma'un",
+					numberOfAyahs: 7,
+				},
+				{
+					number: 108,
+					name: "الكوثر",
+					englishName: "Al-Kawthar",
+					numberOfAyahs: 3,
+				},
+				{
+					number: 109,
+					name: "الكافرون",
+					englishName: "Al-Kafirun",
+					numberOfAyahs: 6,
+				},
+				{
+					number: 110,
+					name: "النصر",
+					englishName: "An-Nasr",
+					numberOfAyahs: 3,
+				},
+				{
+					number: 111,
+					name: "المسد",
+					englishName: "Al-Masad",
+					numberOfAyahs: 5,
+				},
+				{
+					number: 112,
+					name: "الإخلاص",
+					englishName: "Al-Ikhlas",
+					numberOfAyahs: 4,
+				},
+				{
+					number: 113,
+					name: "الفلق",
+					englishName: "Al-Falaq",
+					numberOfAyahs: 5,
+				},
+				{ number: 114, name: "الناس", englishName: "An-Nas", numberOfAyahs: 6 },
+			];
+
+			// Les gestionnaires d'événements audio existants
+			const audio = document.getElementById("quranAudio");
+			const select = document.getElementById("surahSelect");
+			const playButton = document.getElementById("playButton");
+			const progressBar = document.getElementById("progressBar");
+			const progress = document.getElementById("progress");
+			const currentTimeDisplay = document.getElementById("currentTime");
+			const durationDisplay = document.getElementById("duration");
+			const surahInfo = document.getElementById("surahInfo");
+			let isPlaying = false;
+
+			// Chargement des sourates
+			function loadSurahs() {
+				const select = document.getElementById("surahSelect");
+				select.innerHTML = '<option value="">Sélectionner une sourate</option>';
+				audioSurahs.forEach((surah) => {
+					const option = document.createElement("option");
+					option.value = surah.number;
+					option.textContent = `${surah.number}. ${surah.name} - ${surah.englishName}`;
+					select.appendChild(option);
+				});
+			}
+
+			// Puis assurez-vous que tout est chargé avant l'initialisation
+			document.addEventListener("DOMContentLoaded", function () {
+				loadSurahs(); // Charge les sourates dans le sélecteur
+			});
+
+			// Gestionnaire pour passer à la sourate suivante
+			function playNextSurah() {
+				const currentSurahId = parseInt(select.value);
+				const nextSurahId = currentSurahId + 1;
+
+				// Vérifier si une sourate suivante existe
+				if (nextSurahId <= 114) {
+					select.value = nextSurahId;
+					changeSurah();
+					// Démarrer automatiquement la lecture
+					audio.play();
+					isPlaying = true;
+					playButton.textContent = "Pause";
+				} else {
+					// Retour à la première sourate si on est à la fin
+					select.value = 1;
+					changeSurah();
+					isPlaying = false;
+					playButton.textContent = "Lecture";
+				}
+			}
+
+			// Gestionnaire pour le changement de sourate
+			function changeSurah() {
+				const surahId = select.value;
+				if (surahId) {
+					const audioUrl = `https://server8.mp3quran.net/afs/${surahId.padStart(
+						3,
+						"0"
+					)}.mp3`;
+					audio.src = audioUrl;
+					isPlaying = false;
+					playButton.textContent = "Lecture";
+
+					const selectedSurah = audioSurahs.find(
+						(s) => s.number === parseInt(surahId)
+					);
+					if (selectedSurah) {
+						surahInfo.textContent = `${selectedSurah.englishName} - ${selectedSurah.numberOfAyahs} versets`;
+					}
+				}
+			}
+
+			// Gestionnaire lecture/pause
+			function togglePlay() {
+				if (!audio.src) return;
+
+				if (isPlaying) {
+					audio.pause();
+					playButton.textContent = "Lecture";
+				} else {
+					audio.play();
+					playButton.textContent = "Pause";
+				}
+				isPlaying = !isPlaying;
+			}
+
+			// Mettre à jour la barre de progression
+			audio.addEventListener("timeupdate", () => {
+				const progressPercent = (audio.currentTime / audio.duration) * 100;
+				progress.style.width = `${progressPercent}%`;
+
+				currentTimeDisplay.textContent = formatTime(audio.currentTime);
+				durationDisplay.textContent = formatTime(audio.duration);
+			});
+
+			// Permettre le clic sur la barre de progression
+			progressBar.addEventListener("click", (e) => {
+				const progressBarWidth = progressBar.clientWidth;
+				const clickPosition = e.offsetX;
+				const percentageClicked = clickPosition / progressBarWidth;
+				audio.currentTime = audio.duration * percentageClicked;
+			});
+
+			// Formater le temps en minutes:secondes
+			function formatTime(seconds) {
+				if (isNaN(seconds)) return "00:00";
+				const minutes = Math.floor(seconds / 60);
+				const remainingSeconds = Math.floor(seconds % 60);
+				return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+					.toString()
+					.padStart(2, "0")}`;
+			}
+
+			// Ajouter l'événement pour la lecture automatique de la sourate suivante
+			audio.addEventListener("ended", playNextSurah);
+
+			// Charger les sourates au démarrage
+			loadSurahs();
+		</script>
+		<script>
+			let prayerTimes = {};
+			document.getElementById("city-name").textContent = "Localisation...";
+			document.getElementById("next-prayer-name").textContent = "Chargement...";
+			document.getElementById("next-prayer-time").textContent = "Chargement...";
+
+			function handleLocationError() {
+				document.getElementById("city-name").textContent =
+					"Erreur de localisation";
+				document.getElementById("next-prayer-name").textContent = "Erreur";
+				document.getElementById("next-prayer-time").textContent =
+					"Indisponible";
+			}
+
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(
+						handleLocationSuccess,
+						handleLocationError
+					);
+				} else {
+					document.getElementById("error-message").innerText =
+						"La géolocalisation n'est pas supportée par ce navigateur";
+				}
+			}
+
+			function handleLocationSuccess(position) {
+				const { latitude, longitude } = position.coords;
+
+				fetch(
+					`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&accept-language=fr`
+				)
+					.then((response) => response.json())
+					.then((data) => {
+						const city =
+							data.address.city ||
+							data.address.town ||
+							data.address.village ||
+							"Ville inconnue";
+						document.getElementById("city-name").textContent = city;
+					});
+
+				const params = {
+					latitude: latitude,
+					longitude: longitude,
+					method: 12,
+					fajr_angle: 18,
+					isha_angle: 17,
+				};
+				const queryString = new URLSearchParams(params).toString();
+
+				fetch(`https://api.aladhan.com/v1/timings?${queryString}`)
+					.then((response) => response.json())
+					.then((data) => {
+						const timings = data.data.timings;
+						prayerTimes = {
+							Fajr: adjustTime(timings.Fajr, -6),
+							Dhuhr: adjustTime(timings.Dhuhr, 5),
+							Asr: adjustTime(timings.Asr, 0),
+							Maghrib: adjustTime(timings.Maghrib, 2),
+							Isha: adjustTime(timings.Isha, 20),
+						};
+						updateNextPrayer(prayerTimes);
+						setInterval(() => updateNextPrayer(prayerTimes), 1000);
+					});
+			}
+
+			function updateNextPrayer(prayerTimes) {
+				const now = new Date();
+				const currentTime = now.getHours() * 60 + now.getMinutes();
+
+				let nextPrayer = null;
+				let nextPrayerTime = null;
+				let timeDiff = Infinity;
+
+				for (const [prayer, time] of Object.entries(prayerTimes)) {
+					const [hours, minutes] = time.split(":").map(Number);
+					const prayerMinutes = hours * 60 + minutes;
+					const diff = prayerMinutes - currentTime;
+
+					if (diff > 0 && diff < timeDiff) {
+						timeDiff = diff;
+						nextPrayer = prayer;
+						nextPrayerTime = time.replace(":", "h");
+					}
+				}
+
+				if (!nextPrayer) {
+					nextPrayer = "Fajr";
+					nextPrayerTime = prayerTimes.Fajr.replace(":", "h");
+					const [hours, minutes] = prayerTimes.Fajr.split(":").map(Number);
+					timeDiff = 24 * 60 - currentTime + (hours * 60 + minutes);
+				}
+
+				const hours = Math.floor(timeDiff / 60);
+				const minutes = timeDiff % 60;
+				const seconds = 60 - new Date().getSeconds();
+
+				document.getElementById(
+					"next-prayer-name"
+				).textContent = `${nextPrayer} : ${nextPrayerTime}`;
+				document.getElementById(
+					"next-prayer-time"
+				).textContent = `Dans ${hours}h ${minutes}m ${seconds}s`;
+			}
+
+			function adjustTime(time, minutes) {
+				const date = new Date(`1970-01-01T${time}Z`);
+				date.setMinutes(date.getMinutes() + minutes);
+				return date.toISOString().substr(11, 5);
+			}
+
+			getLocation();
+		</script>
+
+		<script>
+			function toggleSidebar() {
+				const sidebar = document.getElementById("sidebar");
+				const overlay = document.getElementById("overlay");
+
+				if (sidebar && overlay) {
+					sidebar.classList.toggle("active");
+					overlay.classList.toggle("active");
+				}
+			}
+		</script>
+		<script>
+			// Function to share text only
+			async function shareText(text, subject) {
+				const data = {
+					text: text,
+					subject: subject,
+				};
+				window.flutter_inappwebview.postMessage(
+					"share:" + JSON.stringify(data)
+				);
+			}
+
+			// Function to share content as image
+			async function shareAsImage(elementId, text, subject) {
+				const element = document.getElementById(elementId);
+				if (!element) return;
+
+				try {
+					const canvas = await html2canvas(element, {
+						backgroundColor: null,
+						scale: 2, // Better quality
+					});
+					const imageData = canvas.toDataURL("image/png");
+
+					// Add app download links to the share text
+					const appLinks =
+						"\n\n📱 Téléchargez notre application :\n\nMuslim Alim iOS : apps.apple.com/fr/app/muslim-alim-coran-et-adhan/id6738008542\n\nMuslim Alim Android : play.google.com/store/apps/details?id=appmuslimalimcom.wpapp&hl=fr";
+
+					const data = {
+						text: text + appLinks,
+						subject: subject,
+						imagePath: imageData,
+					};
+
+					window.flutter_inappwebview.postMessage(
+						"share:" + JSON.stringify(data)
+					);
+				} catch (error) {
+					console.error("Error generating image:", error);
+				}
+			}
+
+			// Add click handlers to share buttons
+			document.addEventListener("DOMContentLoaded", function () {
+				// For hadith sharing
+				const hadithShareBtn = document.querySelector(
+					"#hadithCard .share-button"
+				);
+				if (hadithShareBtn) {
+					hadithShareBtn.onclick = function () {
+						const hadithText =
+							document.querySelector(".hadith-text")?.textContent;
+						const hadithSource =
+							document.querySelector(".hadith-source")?.textContent;
+						if (hadithText) {
+							shareAsImage(
+								"hadithCard",
+								hadithText + "\n\n" + hadithSource,
+								"Hadith du jour"
+							);
+						}
+					};
+				}
+
+				// For verse sharing
+				// Get the share button element for the verse of the day
+				// This will get the first element that matches the selector
+				// which is the share button inside the verse container
+				const verseShareBtn = document.querySelector(
+					".containeVerset .share-button"
+				);
+				if (verseShareBtn) {
+					verseShareBtn.onclick = function () {
+						const verseText =
+							document.querySelector(".verse-text")?.textContent;
+						const verseSource =
+							document.querySelector(".verse-source")?.textContent;
+						if (verseText) {
+							shareAsImage(
+								"containeVerset",
+								verseText + "\n\n" + verseSource,
+								"Verset du jour"
+							);
+						}
+					};
+				}
+
+				// For Allah's name sharing
+				const allahNameShareBtn = document.querySelector(
+					".containeAllah .share-button"
+				);
+				if (allahNameShareBtn) {
+					allahNameShareBtn.onclick = function () {
+						const nameArabic =
+							document.querySelector(".name-arabic")?.textContent;
+						const nameFrench =
+							document.querySelector(".name-french")?.textContent;
+						const meaning = document.querySelector(".meaning")?.textContent;
+						if (nameArabic && nameFrench) {
+							shareAsImage(
+								"containeAllah",
+								`${nameArabic}\n${nameFrench}\n\n${meaning}`,
+								"Nom d'Allah"
+							);
+						}
+					};
+				}
+
+				// For Friday doua sharing
+				const fridayShareBtn = document.querySelector(
+					".containeJumma .share-button"
+				);
+				if (fridayShareBtn) {
+					fridayShareBtn.onclick = function () {
+						const arabic = document.querySelector(".arabic")?.textContent;
+						const phonetic = document.querySelector(".phonetic")?.textContent;
+						const translation =
+							document.querySelector(".translation")?.textContent;
+						if (arabic) {
+							shareAsImage(
+								"mainContainerJumma",
+								`${arabic}\n\n${phonetic}\n\n${translation}`,
+								"Doua du Vendredi"
+							);
+						}
+					};
+				}
+			});
+		</script>
+	</body>
+</html>

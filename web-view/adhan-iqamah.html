@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <title>Heures de prières pour chaque jour avec l'adhgan par géolocalisation sur Muslim ALim Pro.</title>
+	    <title>Découvrez les heures de prières sur notre application Muslim Alim Pro disponible sur l'apple et le google play store.</title>
+			<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #000000;
+            line-height: 1.8;
+            padding: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #2E7D32, #1565C0);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+ /*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        /* Animation de brillance au survol */
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .prayer-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1565C0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2196F3;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            margin: 15px 0;
+            padding: 15px;
+            background: #E8F5E9;
+            border-radius: 15px;
+            color: #1B5E20;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .prayer-line {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .prayer-line:active {
+            background: #f1f3f5;
+        }
+
+        .arabic {
+            font-size: 1.8rem;
+            color: #1976D2;
+            text-align: right;
+            margin-bottom: 12px;
+            font-weight: 500;
+            line-height: 1.6;
+            font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+        }
+
+        .phonetic {
+            color: #424242;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .french {
+            color: #000000;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .repetition {
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 10px;
+            background: #ff0000;
+            margin-left: 10px;
+            box-shadow: 0 2px 4px rgba(255,0,0,0.2);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        .audio-player {
+            background: linear-gradient(45deg, #1565C0, #2196F3);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .audio-player div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .audio-player div i {
+            margin-right: 10px;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .note {
+            background: #E3F2FD;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            border-left: 5px solid #1976D2;
+            line-height: 1.6;
+        }
+
+        .note ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+
+        .note li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        /* Optimisations pour petits écrans */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .header {
+                padding: 20px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .prayer-section {
+                padding: 15px;
+            }
+
+            .arabic {
+                font-size: 1.6rem;
+            }
+
+            .french {
+                font-size: 1.1rem;
+            }
+
+            .phonetic {
+                font-size: 1rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .prayer-line {
+                padding: 15px;
+            }
+
+            .note {
+                font-size: 1rem;
+                padding: 15px;
+            }
+        }
+
+        /* Optimisations tactiles */
+        @media (hover: hover) {
+            .prayer-line:hover {
+                background: #f1f3f5;
+                transform: translateY(-1px);
+                transition: all 0.2s ease;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>L'Appel à la Prière</h1>
+        <p>Al-Adhan & Al-Iqamah</p>
+    </div>
+
+    <div class="prayer-section">
+        <h2 class="section-title">Al-Adhan (الأذان)</h2>
+        <div class="section-description">
+            <i class="fas fa-mosque"></i> Premier appel qui annonce l'entrée du temps de la prière
+        </div>
+        
+        <div class="audio-player">
+            <div>
+                <i class="fas fa-play-circle"></i> Écouter l'Adhan complet
+            </div>
+            <audio controls>
+                <source src="/audios-adhan-iqama/adhan.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">الله أكبر</div>
+            <div class="phonetic">Allāhu akbar</div>
+            <div class="french">Allah est le plus grand <span class="repetition">×4</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">أشهد أن لا إله إلا الله</div>
+            <div class="phonetic">Ash-hadu an lā ilāha illā Allāh</div>
+            <div class="french">J'atteste qu'il n'y a de divinité qu'Allah <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">أشهد أن محمدا رسول الله</div>
+            <div class="phonetic">Ash-hadu anna Muḥammadan rasūlu Allāh</div>
+            <div class="french">J'atteste que Muhammad est le messager d'Allah <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">حي على الصلاة</div>
+            <div class="phonetic">Ḥayya ʿalā ṣ-ṣalāh</div>
+            <div class="french">Venez à la prière <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">حي على الفلاح</div>
+            <div class="phonetic">Ḥayya ʿalā l-falāḥ</div>
+            <div class="french">Venez au succès <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">الله أكبر</div>
+            <div class="phonetic">Allāhu akbar</div>
+            <div class="french">Allah est le plus grand <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">لا إله إلا الله</div>
+            <div class="phonetic">Lā ilāha illā Allāh</div>
+            <div class="french">Il n'y a de divinité qu'Allah <span class="repetition">×1</span></div>
+        </div>
+
+        <div class="note">
+            Pour la prière de Fajr uniquement, on ajoute après "Ḥayya ʿalā l-falāḥ" :
+            <div class="prayer-line">
+                <div class="arabic">الصلاة خير من النوم</div>
+                <div class="phonetic">Aṣ-ṣalātu khayrun min an-nawm</div>
+                <div class="french">La prière est meilleure que le sommeil <span class="repetition">×2</span></div>
+            </div>
+        </div>
+		     <div class="audio-player">
+            <div>
+                <i class="fas fa-play-circle"></i> Écouter l'Adhan au fajr
+            </div>
+            <audio controls>
+                <source src="/audios-adhan-iqama/AdhanSoubh.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+    </div>
+
+    <div class="prayer-section">
+        <h2 class="section-title">Al-Iqamah (الإقامة)</h2>
+        <div class="section-description">
+            <i class="fas fa-clock"></i> Second appel qui annonce le début immédiat de la prière
+        </div>
+
+        <div class="audio-player">
+            <div>
+                <i class="fas fa-play-circle"></i> Écouter l'Iqamah complète
+            </div>
+            <audio controls>
+                <source src="/audios-adhan-iqama/iqamah.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">الله أكبر</div>
+            <div class="phonetic">Allāhu akbar</div>
+            <div class="french">Allah est le plus grand <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">أشهد أن لا إله إلا الله</div>
+            <div class="phonetic">Ash-hadu an lā ilāha illā Allāh</div>
+            <div class="french">J'atteste qu'il n'y a de divinité qu'Allah <span class="repetition">×1</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">أشهد أن محمدا رسول الله</div>
+            <div class="phonetic">Ash-hadu anna Muḥammadan rasūlu Allāh</div>
+            <div class="french">J'atteste que Muhammad est le messager d'Allah <span class="repetition">×1</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">حي على الصلاة</div>
+            <div class="phonetic">Ḥayya ʿalā ṣ-ṣalāh</div>
+            <div class="french">Venez à la prière <span class="repetition">×1</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">حي على الفلاح</div>
+            <div class="phonetic">Ḥayya ʿalā l-falāḥ</div>
+            <div class="french">Venez au succès <span class="repetition">×1</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">قد قامت الصلاة</div>
+            <div class="phonetic">Qad qāmat iṣ-ṣalāh</div>
+            <div class="french">La prière est établie <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">الله أكبر</div>
+            <div class="phonetic">Allāhu akbar</div>
+            <div class="french">Allah est le plus grand <span class="repetition">×2</span></div>
+        </div>
+
+        <div class="prayer-line">
+            <div class="arabic">لا إله إلا الله</div>
+            <div class="phonetic">Lā ilāha illā Allāh</div>
+            <div class="french">Il n'y a de divinité qu'Allah <span class="repetition">×1</span></div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Différences principales entre l'Adhan et l'Iqamah :</strong>
+        <ul>
+            <li>L'Iqamah est plus courte (formules répétées une seule fois)</li>
+            <li>L'Iqamah inclut "Qad qāmat iṣ-ṣalāh" (La prière est établie)</li>
+            <li>Le "Allāhu akbar" initial est répété 2 fois dans l'Iqamah (contre 4 fois dans l'Adhan)</li>
+        </ul>
+    </div>
+	<br/><br/><br/><br/>
+	 <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</body>
+</html>

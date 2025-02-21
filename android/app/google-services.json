@@ -1,0 +1,29 @@
+{
+	"project_info": {
+		"project_number": "250238405129",
+		"project_id": "muslim-alim-583c3",
+		"storage_bucket": "muslim-alim-583c3.firebasestorage.app"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:250238405129:android:76030e5a38dad4c27146d8",
+				"android_client_info": {
+					"package_name": "appmuslimalimcom.wpapp"
+				}
+			},
+			"oauth_client": [],
+			"api_key": [
+				{
+					"current_key": "AIzaSyA0deIIFmggzrcffXmlbkuF2EaVCKYvuMw"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": []
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
+}

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Alimentation en Islam et les remèdes prophétiques issus de la sunna.</title>
+<meta name="description" content="De nombreux conseils d'alimentation pour le musulman issus de la sunna du prophète Muhamed ﷺ.">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2C3E50;
+            --light-bg: #f5f5f5;
+            --border-color: #ddd;
+            --citation-bg: #f9f9f9;
+            --warning-color: #ff6b6b;
+            --success-color: #51cf66;
+            --text-color: #333;
+            --heading-color: #2C3E50;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: #f0f2f5;
+        }
+
+        .container {
+            width: 100%;
+            padding: 1rem;
+            margin: 0 auto;
+            margin-bottom: 80px;
+        }
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Typography */
+        h1 { 
+            font-size: 1.75rem; 
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        h2 { 
+            font-size: 1.5rem; 
+            margin: 1.5rem 0 1rem;
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 { 
+            font-size: 1.25rem; 
+            margin: 1.25rem 0 0.75rem;
+            color: var(--heading-color);
+        }
+        
+        h4 { 
+            font-size: 1.1rem; 
+            margin: 1rem 0 0.5rem;
+            color: var(--heading-color);
+        }
+
+        p, li { 
+            font-size: 1rem; 
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin: -1rem -1rem 1.5rem -1rem;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Citations */
+        .citation {
+            background-color: var(--citation-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+        .source {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: normal;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        /* Info boxes */
+        .info-box, .recommandation, .interdit, .bienfait {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .info-box {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .recommandation {
+            background: #e8f5e9;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .interdit {
+            background: #ffebee;
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .bienfait {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 1.25rem;
+            margin: 0.75rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+     
+
+        .etiquette {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            font-weight: 600;
+        }
+
+        .halal { 
+            background: var(--success-color); 
+            color: white; 
+        }
+
+        .haram { 
+            background: var(--warning-color); 
+            color: white; 
+        }
+
+        .makrouh { 
+            background: #ffd700; 
+            color: black; 
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+                padding: 2rem;
+                margin: 0 auto 80px auto;
+            }
+
+            .header {
+                margin: -2rem -2rem 2rem -2rem;
+                border-radius: 0;
+            }
+
+            table {
+                font-size: 1rem;
+            }
+
+            .nav-item {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Guide Complet de l'Alimentation en Islam</h1>
+            <p>Les prescriptions alimentaires selon le Coran et les Hadiths</p>
+        </div>
+
+        <section id="principes" class="section">
+            <h2>Principes Fondamentaux</h2>
+
+            <div class="citation">
+                "Ô les croyants ! Mangez des (nourritures) licites et pures que Nous vous avons attribuées. Et remerciez Allah si c'est Lui que vous adorez."
+                <div class="source">- Sourate Al-Baqara, verset 172</div>
+            </div>
+
+            <div class="info-box">
+                <h3>Les Catégories d'Aliments en Islam</h3>
+                <p><span class="etiquette halal">Halal</span> - Permis et pur</p>
+                <p><span class="etiquette haram">Haram</span> - Strictement interdit</p>
+                <p><span class="etiquette makrouh">Makrouh</span> - Déconseillé mais non interdit</p>
+            </div>
+        </section>
+
+        <section id="aliments-recommandes" class="section">
+            <h2>Aliments Recommandés (Halal)</h2>
+
+            <div class="aliment">
+                <h3>1. Fruits du Paradis (فواكه الجنة)</h3>
+                
+                <h4>Les Dattes (التمر)</h4>
+                <div class="citation">
+                    "Marie! Secoue vers toi le tronc du palmier: il fera tomber sur toi des dattes fraîches et mûres."
+                    <div class="source">- Sourate Maryam, verset 25</div>
+                </div>
+                <div class="bienfait">
+                    <h4>Bienfaits selon les Hadiths:</h4>
+                    <ul>
+                        <li>Recommandées pour rompre le jeûne</li>
+                        <li>Protection contre le poison et la magie noire (dattes Ajwa)</li>
+                        <li>Fortifiant naturel</li>
+                    </ul>
+                </div>
+
+                <h4>Les Figues et les Olives (التين والزيتون)</h4>
+                <div class="citation">
+                    "Par le figuier et l'olivier! Et par le Mont Sinin!"
+                    <div class="source">- Sourate At-Tin, versets 1-2</div>
+                </div>
+                <div class="bienfait">
+                    <h4>Bienfaits Mentionnés:</h4>
+                    <ul>
+                        <li>L'huile d'olive est considérée comme une lumière bénie</li>
+                        <li>Utilisée comme remède et condiment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="aliment">
+                <h3>2. Viandes Licites (اللحوم الحلال)</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Conditions</th>
+                        <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td>Mouton/Agneau</td>
+                        <td>Abattage rituel requis</td>
+                        <td>Sourate Al-An'am, 142</td>
+                    </tr>
+                    <tr>
+                        <td>Bœuf</td>
+                        <td>Abattage rituel requis</td>
+                        <td>Sourate Al-An'am, 142</td>
+                    </tr>
+                    <tr>
+                        <td>Chameau</td>
+                        <td>Abattage rituel spécifique</td>
+                        <td>Hadiths authentiques</td>
+                    </tr>
+                    <tr>
+                        <td>Volailles</td>
+                        <td>Abattage rituel requis</td>
+                        <td>Consensus des savants</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="aliment">
+                <h3>3. Produits de la Mer (مأكولات بحرية)</h3>
+                <div class="citation">
+                    "La chasse en mer vous est permise, de même que sa consommation."
+                    <div class="source">- Sourate Al-Ma'ida, verset 96</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="aliments-interdits" class="section">
+            <h2>Aliments Interdits (Haram)</h2>
+
+            <div class="interdit">
+                <h3>1. Interdits Explicites du Coran</h3>
+                <div class="citation">
+                    "Vous sont interdits la bête morte, le sang, la chair de porc, ce sur quoi on a invoqué un autre nom que celui d'Allah..."
+                    <div class="source">- Sourate Al-Ma'ida, verset 3</div>
+                </div>
+                
+                <table>
+                    <tr>
+                        <th>Aliment/Boisson</th>
+                        <th>Raison de l'Interdiction</th>
+                        <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td>Porc et dérivés</td>
+                        <td>Interdit explicitement</td>
+                        <td>Coran, Al-Ma'ida:3</td>
+                    </tr>
+                    <tr>
+                        <td>Alcool</td>
+                        <td>Intoxicant</td>
+                        <td>Coran, Al-Ma'ida:90</td>
+                    </tr>
+                    <tr>
+                        <td>Sang</td>
+                        <td>Impureté</td>
+                        <td>Coran, Al-Ma'ida:3</td>
+                    </tr>
+                    <tr>
+                        <td>Charogne</td>
+                        <td>Non abattu rituellement</td>
+                        <td>Coran, Al-Ma'ida:3</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="regles" class="section">
+            <h2>Règles de l'Alimentation</h2>
+
+            <div class="recommandation">
+                <h3>1. Règles Générales</h3>
+                <ul>
+                    <li>Prononcer "Bismillah" avant de manger</li>
+                    <li>Manger avec la main droite</li>
+                    <li>Manger assis</li>
+                    <li>Ne pas souffler sur la nourriture</li>
+                    <li>Manger modérément</li>
+                </ul>
+                <div class="citation">
+                    "Ô fils d'Adam, portez vos beaux habits à chaque prière, mangez et buvez, mais sans excès. Il n'aime pas ceux qui commettent des excès."
+                    <div class="source">- Sourate Al-A'raf, verset 31</div>
+                </div>
+            </div>
+
+            <div class="recommandation">
+        <h3>2. Étiquette du Repas</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Recommandation</th>
+                        <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td>Avant le repas</td>
+                        <td>Se laver les mains et dire Bismillah</td>
+                        <td>Hadiths authentiques</td>
+                    </tr>
+                    <tr>
+                        <td>Pendant le repas</td>
+                        <td>Manger avec trois doigts, par petites bouchées</td>
+                        <td>Sunna du Prophète ﷺ</td>
+                    </tr>
+                    <tr>
+                        <td>Après le repas</td>
+                        <td>Dire Alhamdulillah et se laver les mains</td>
+                        <td>Hadiths authentiques</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="bienfaits" class="section">
+            <h2>Bienfaits spirituels et physiques</h2>
+            
+            <div class="recommandation">
+                <h3>1. Bienfaits de l'alimentation halal</h3>
+                <ul>
+                    <li>Purification de l'âme</li>
+                    <li>Bénédiction dans la nourriture</li>
+                    <li>Amélioration de la santé physique</li>
+                    <li>Renforcement de la foi</li>
+                    <li>Protection contre les maladies</li>
+                </ul>
+            </div>
+
+            <div class="bienfait">
+                <h3>2. Impact sur la Spiritualité</h3>
+                <div class="citation">
+                    "L'homme est ce qu'il mange"
+                    <div class="source">- Sagesse islamique</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>3. Aspects Traditionnels et Modernes</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Traditionnel</th>
+                        <th>Moderne</th>
+                    </tr>
+                    <tr>
+                        <td>Source</td>
+                        <td>Production locale</td>
+                        <td>Certification halal</td>
+                    </tr>
+                    <tr>
+                        <td>Vérification</td>
+                        <td>Connaissance directe</td>
+                        <td>Labels et certifications</td>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td>Marchés locaux</td>
+                        <td>Commerce international</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusion" class="section">
+            <h2>Conclusion</h2>
+            <div class="citation">
+                "Mangez donc de ce sur quoi le nom d'Allah a été prononcé si vous croyez en Ses versets."
+                <div class="source">- Sourate Al-An'am, verset 118</div>
+            </div>
+            
+            <div class="recommandation">
+                <h3>Points Essentiels à Retenir</h3>
+                <ul>
+                    <li>Importance de la pureté des aliments</li>
+                    <li>Respect des règles d'abattage</li>
+                    <li>Modération dans la consommation</li>
+                    <li>Étiquette et bonnes manières</li>
+                    <li>Reconnaissance envers Allah pour la nourriture</li>
+                </ul>
+            </div>
+        </section>
+
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    </div>
+</body>
+</html>

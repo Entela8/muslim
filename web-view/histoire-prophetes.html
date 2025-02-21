@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <title>Histoire des 25 prophètes cités dans le coran pour le musulman.</title>
+<meta name="description" content="Les histoires des 25 prophètes cités dans le Saint Coran avec leur biographie et des histoires à connaître.">
+    <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            font-family: 'Tajawal', sans-serif;
+            background: #0f0c29;
+            background: linear-gradient(135deg, #24243e, #302b63, #0f0c29);
+            min-height: 100vh;
+            padding: 16px;
+            padding-bottom: 85px;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        .page-title {
+            font-size: 1.8rem;
+            text-align: center;
+            color: white;
+            margin: 20px 0;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #00f260, #0575e6);
+            border-radius: 2px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 10px 0;
+        }
+
+        .dashboard-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .dashboard-item:active {
+            transform: scale(0.98);
+        }
+
+        .dashboard-item:nth-child(8n+1) {
+            background: linear-gradient(135deg, #FF416C, #FF4B2B);
+        }
+
+        .dashboard-item:nth-child(8n+2) {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .dashboard-item:nth-child(8n+3) {
+            background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+        }
+
+        .dashboard-item:nth-child(8n+4) {
+            background: linear-gradient(135deg, #F2994A, #F2C94C);
+        }
+
+        .dashboard-item:nth-child(8n+5) {
+            background: linear-gradient(135deg, #ee0979, #ff6a00);
+        }
+
+        .dashboard-item:nth-child(8n+6) {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .dashboard-item:nth-child(8n+7) {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .dashboard-item:nth-child(8n+8) {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+        }
+
+        .dashboard-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+
+        .dashboard-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        
+
+        @media (max-width: 380px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .dashboard-item {
+                min-height: 120px;
+            }
+            
+            .dashboard-title {
+                font-size: 1rem;
+            }
+            
+            .nav-icon {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Animation de chargement */
+        .loading-animation {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+            position: fixed;
+            top: 0;
+            left: 0;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-animation"></div>
+    <div class="container">
+        <div id="home-page" class="page active">
+            <h1 class="page-title">Histoire des Prophètes</h1>
+            <div class="dashboard">
+                <a href="adam.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">1. Âdam (as)</div>
+                    <div class="dashboard-subtitle">Adam</div>
+                </a>
+                <a href="idriss.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">2. Idrîss (as)</div>
+                    <div class="dashboard-subtitle">Hénoch</div>
+                </a>
+                <a href="nouh.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">3. Nouh (as)</div>
+                    <div class="dashboard-subtitle">Noé</div>
+                </a>
+                <a href="houd.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">4. Houd (as)</div>
+                    <div class="dashboard-subtitle">Histoire</div>
+                </a>
+                <a href="salih.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">5. Sâlih (as)</div>
+                    <div class="dashboard-subtitle">Histoire</div>
+                </a>
+                <a href="ibrahim.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">6. Ibrahim (as)</div>
+                    <div class="dashboard-subtitle">Abraham</div>
+                </a>
+                <a href="ismail.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">7. Ismâ'îl (as)</div>
+                    <div class="dashboard-subtitle">Ismaël</div>
+                </a>
+                <a href="ishaq.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">8. Is-hâq (as)</div>
+                    <div class="dashboard-subtitle">Isaac</div>
+                </a>
+                <a href="yaqub.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">9. Yaqub (as)</div>
+                    <div class="dashboard-subtitle">Jacob</div>
+                </a>
+                <a href="lot.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">10. Lout (as)</div>
+                    <div class="dashboard-subtitle">Loth</div>
+                </a>
+                <a href="youssouf.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">11. Youssuf (as)</div>
+                    <div class="dashboard-subtitle">Joseph</div>
+                </a>
+                <a href="ayyoub.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">12. Ayyoub (as)</div>
+                    <div class="dashboard-subtitle">Job</div>
+                </a>
+                <a href="chuayb.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">13. Chu'ayb (as)</div>
+                    <div class="dashboard-subtitle">Histoire</div>
+                </a>
+                <a href="moussa.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">14. Moussa (as)</div>
+                    <div class="dashboard-subtitle">Moïse</div>
+                </a>
+                <a href="haroun.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">15. Haroun (as)</div>
+                    <div class="dashboard-subtitle">Aaron</div>
+                </a>
+                <a href="dhoulkifl.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">16. Dhou-Lkifl (as)</div>
+                    <div class="dashboard-subtitle">Histoire</div>
+                </a>
+                <a href="daoud.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">17. Dawoud (as)</div>
+                    <div class="dashboard-subtitle">David</div>
+                </a>
+                <a href="suleyman.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">18. Sulaymân (as)</div>
+                    <div class="dashboard-subtitle">Salomon</div>
+                </a>
+                <a href="ilyas.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">19. Ilyâs (as)</div>
+                    <div class="dashboard-subtitle">Élie</div>
+                </a>
+                <a href="alyassa.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">20. Alyassa' (as)</div>
+                    <div class="dashboard-subtitle">Élisée</div>
+                </a>
+                <a href="younus.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">21. Younus (as)</div>
+                    <div class="dashboard-subtitle">Jonas</div>
+                </a>
+                <a href="zakariya.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">22. Zakariya (as)</div>
+                    <div class="dashboard-subtitle">Zacharie</div>
+                </a>
+                <a href="yahya.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">23. Yahya (as)</div>
+                    <div class="dashboard-subtitle">Jean</div>
+                </a>
+                <a href="issa.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">24. Issa (as)</div>
+                    <div class="dashboard-subtitle">Jésus</div>
+                </a>
+                <a href="muhammad.html" class="dashboard-item">
+                    <div class="dashboard-icon">📖</div>
+                    <div class="dashboard-title">25. Muhammad ﷺ</div>
+                    <div class="dashboard-subtitle">Mohamed ﷺ</div>
+                </a>
+            </div>
+        </div>
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+	<title>Hisnul Muslim - La Forteresse du Musulman avec les hadiths les plus connus avec leur référence.</title>
+	   <meta name="description" content="De nombreux hadiths issus de Hisnul Muslim pour le musulman qui traduit la sunna et la vie du prophète Muhamed ﷺ.">
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 10px;
+            padding-bottom: 90px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+		/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+        .header {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .header p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .section:nth-child(2) { background: linear-gradient(135deg, rgba(255,65,108,0.1), rgba(255,75,43,0.1)); }
+        .section:nth-child(3) { background: linear-gradient(135deg, rgba(17,153,142,0.1), rgba(56,239,125,0.1)); }
+        .section:nth-child(4) { background: linear-gradient(135deg, rgba(142,45,226,0.1), rgba(74,0,224,0.1)); }
+        .section:nth-child(5) { background: linear-gradient(135deg, rgba(238,9,121,0.1), rgba(255,106,0,0.1)); }
+
+        h3 {
+            color: #4facfe;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .arabic {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 26px;
+            text-align: right;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .phonetic {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .translation {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+            margin: 15px 0;
+            line-height: 1.6;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+
+        .reference {
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+ 
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 24px; }
+            .header h2 { font-size: 18px; }
+            .header p { font-size: 14px; }
+            h3 { font-size: 18px; }
+            .arabic { font-size: 22px; }
+            .phonetic, .translation { font-size: 15px; }
+            .reference { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+    <div class="header">
+        <h1>Hisnul Muslim</h1>
+        <h2>La Forteresse du Musulman</h2>
+        <p>Recueil d'invocations du Prophète ﷺ</p>
+    </div>
+
+    <div class="section">
+        <h3>Au Réveil</h3>
+        <div class="arabic">
+            الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ
+        </div>
+        <div class="phonetic">
+            "Alhamdoulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-noushour"
+        </div>
+        <div class="translation">
+            "Louange à Allah qui nous a fait revivre après nous avoir fait mourir et c'est vers Lui que se fera la résurrection."
+        </div>
+        <div class="reference">
+            [Rapporté par Al-Bukhari]
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Invocations du Matin</h3>
+        <div class="arabic">
+            أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ
+        </div>
+        <div class="phonetic">
+            "Asbahna wa asbahal-moulkou lillah, walhamdoulillah"
+        </div>
+        <div class="translation">
+            "Nous voilà au matin, et au matin toute la royauté appartient à Allah. Louange à Allah."
+        </div>
+        <div class="reference">
+            [Rapporté par Muslim]
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Invocations du Soir</h3>
+        <div class="arabic">
+            أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ
+        </div>
+        <div class="phonetic">
+            "A'oudhou bikalimatil-lahit-tammati min sharri ma khalaq"
+        </div>
+        <div class="translation">
+            "Je cherche protection auprès des paroles parfaites d'Allah contre le mal de ce qu'Il a créé."
+        </div>
+        <div class="reference">
+            [Rapporté par Muslim]
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Avant de Dormir</h3>
+        <div class="arabic">
+            بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا
+        </div>
+        <div class="phonetic">
+            "Bismika Allahoumma amoutou wa ahya"
+        </div>
+        <div class="translation">
+            "C'est en Ton nom, ô Allah, que je meurs et que je vis."
+        </div>
+        <div class="reference">
+            [Rapporté par Al-Bukhari]
+        </div>
+    </div>
+	<br/>	<br/>	<br/>	<br/>
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+	</div>
+</body>
+</html>

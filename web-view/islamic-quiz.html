@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Quiz sur l'Islam afin d'apprendre la religion musulmane et son histoire.</title>
+<meta name="description" content="Des quiz sur la religion musulmane, les prophètes et la sunna du prophète Muhamed ﷺ.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            margin-bottom: 70px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 16px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+		/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .category-card:nth-child(1) { background: linear-gradient(135deg, #FF416C, #FF4B2B); }
+        .category-card:nth-child(2) { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .category-card:nth-child(3) { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+        .category-card:nth-child(4) { background: linear-gradient(135deg, #F2994A, #F2C94C); }
+        .category-card:nth-child(5) { background: linear-gradient(135deg, #ee0979, #ff6a00); }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .category-card p {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            background: linear-gradient(to right, #00c6fb, #005bea);
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            text-align: right;
+            margin-bottom: 1rem;
+            color: #4facfe;
+        }
+
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .option:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .selected {
+            background: #4facfe;
+            color: white;
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+        }
+
+        .feedback.correct {
+            background: linear-gradient(135deg, #00f260, #0575e6);
+        }
+
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+
+        .explanation {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #00c6fb, #005bea);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-icon {
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.8rem; }
+            .category-card h3 { font-size: 1.3rem; }
+            .question { font-size: 1.2rem; }
+            .option { font-size: 1rem; }
+            .container { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Quiz Islamique</h1>
+            <p>Testez vos connaissances sur l'Islam</p>
+        </header>
+
+        <div class="categories">
+            <div class="category-card" data-category="prophetes">
+                <h3>Les Prophètes</h3>
+                <p>Histoire, miracles et caractéristiques</p>
+            </div>
+
+            <div class="category-card" data-category="fiqh">
+                <h3>Fiqh</h3>
+                <p>Règles et jurisprudence islamique</p>
+            </div>
+
+            <div class="category-card" data-category="sira">
+                <h3>Sira</h3>
+                <p>La vie du Prophète ﷺ</p>
+            </div>
+
+            <div class="category-card" data-category="sahabas">
+                <h3>Les Sahabas</h3>
+                <p>Les nobles compagnons</p>
+            </div>
+
+            <div class="category-card" data-category="signes">
+                <h3>Signes de l'Heure</h3>
+                <p>Prophéties et signes de la fin des temps</p>
+            </div>
+        </div>
+
+        <div class="quiz-container" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="question"></div>
+            <div class="options"></div>
+            <div class="feedback"></div>
+            <div class="explanation"></div>
+            <button class="next-btn">Question suivante</button>
+        </div>
+    </div>
+
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+
+    <script>
+    
+ 
+const questions = {
+    prophetes: [
+        // ADAM (AS) ET LES PREMIERS PROPHÈTES
+        {
+            question: "Qui est le premier prophète d'Allah ?",
+            options: ["Ibrahim (as)", "Nouh (as)", "Adam (as)", "Idris (as)"],
+            correct: 2,
+            explanation: "Adam (as) est le premier homme et le premier prophète d'Allah."
+        },
+        {
+            question: "Quelle était la taille d'Adam (as) selon les hadiths ?",
+            options: ["30 coudées", "60 coudées", "90 coudées", "100 coudées"],
+            correct: 1,
+            explanation: "Selon le hadith, Adam (as) mesurait 60 coudées de haut."
+        },
+        {
+            question: "Qui a enseigné les noms de toutes choses à Adam (as) ?",
+            options: ["Les anges", "Allah", "Jibril (as)", "Il les a appris seul"],
+            correct: 1,
+            explanation: "Allah a enseigné à Adam (as) les noms de toutes choses comme mentionné dans le Coran."
+        },
+        {
+            question: "Qu'est-il arrivé à Qabil après avoir tué Habil ?",
+            options: ["Il est mort immédiatement", "Il s'est repenti", "Il a erré sur terre", "Il est devenu roi"],
+            correct: 2,
+            explanation: "Qabil est devenu le premier errant sur terre après son crime."
+        },
+
+        // NUH (AS)
+        {
+            question: "Pendant combien d'années Nuh (as) a-t-il appelé son peuple ?",
+            options: ["100 ans", "500 ans", "950 ans", "1000 ans"],
+            correct: 2,
+            explanation: "Nuh (as) a prêché pendant 950 ans comme mentionné dans le Coran (29:14)."
+        },
+        {
+            question: "Combien de personnes ont cru en Nuh (as) selon la plupart des récits ?",
+            options: ["Moins de 10", "Entre 10 et 50", "Entre 50 et 100", "Plus de 100"],
+            correct: 1,
+            explanation: "Selon la plupart des récits, très peu de gens ont cru en lui, entre 10 et 50 personnes."
+        },
+        {
+            question: "Sur quelle montagne l'arche de Nuh (as) s'est-elle arrêtée ?",
+            options: ["Mont Judi", "Mont Sinaï", "Mont Arafat", "Mont Uhud"],
+            correct: 0,
+            explanation: "L'arche s'est arrêtée sur le mont Judi comme mentionné dans le Coran (11:44)."
+        },
+
+        // IBRAHIM (AS)
+        {
+            question: "Quel âge avait Ibrahim (as) quand il a détruit les idoles ?",
+            options: ["16 ans", "20 ans", "25 ans", "30 ans"],
+            correct: 0,
+            explanation: "Selon certains récits, Ibrahim (as) avait environ 16 ans quand il a détruit les idoles."
+        },
+        {
+            question: "Qui a construit la Ka'ba ?",
+            options: ["Ibrahim et Ismail", "Ibrahim seul", "Adam (as)", "Les anges"],
+            correct: 0,
+            explanation: "Ibrahim et son fils Ismail (as) ont construit la Ka'ba comme mentionné dans le Coran."
+        },
+        {
+            question: "Pourquoi Ibrahim (as) est-il appelé 'Khalilullah' ?",
+            options: ["Pour sa force", "Pour son amour d'Allah", "Pour ses miracles", "Pour sa sagesse"],
+            correct: 1,
+            explanation: "Il est appelé 'l'ami proche d'Allah' pour sa dévotion et sa proximité exceptionnelle avec Allah."
+        },
+
+        // MUSA (AS)
+        {
+            question: "Combien de signes majeurs Allah a-t-il donné à Musa (as) ?",
+            options: ["7", "8", "9", "10"],
+            correct: 2,
+            explanation: "Allah a donné 9 signes clairs à Musa (as) comme mentionné dans le Coran."
+        },
+        {
+            question: "Quel prophète a demandé à Musa (as) de l'accompagner ?",
+            options: ["Al-Khidr", "Harun", "Shu'ayb", "Yusha"],
+            correct: 0,
+            explanation: "Al-Khidr a accepté que Musa (as) l'accompagne sous certaines conditions."
+        },
+        {
+            question: "Combien de nuits Musa (as) est-il resté sur le Mont Tur ?",
+            options: ["30 nuits", "40 nuits", "50 nuits", "60 nuits"],
+            correct: 1,
+            explanation: "Il est resté 40 nuits : 30 initialement plus 10 supplémentaires."
+        },
+
+        // ISSA (AS)
+        {
+            question: "Quel était le premier miracle de Issa (as) ?",
+            options: ["Guérir un aveugle", "Parler dans le berceau", "Ressusciter un mort", "Créer un oiseau"],
+            correct: 1,
+            explanation: "Son premier miracle fut de parler dans le berceau pour défendre sa mère."
+        },
+        {
+            question: "Combien de disciples (hawariyoun) Issa (as) avait-il ?",
+            options: ["10", "11", "12", "13"],
+            correct: 2,
+            explanation: "Issa (as) avait 12 disciples principaux mentionnés dans le Coran."
+        },
+        {
+            question: "Quel miracle impliquant de la nourriture Issa (as) a-t-il accompli ?",
+            options: ["Multiplication des pains", "Table servie du ciel", "Création de fruits", "Transformation de l'eau"],
+            correct: 1,
+            explanation: "Une table servie (Al-Ma'ida) est descendue du ciel suite à sa demande."
+        },
+
+        // SULAYMAN (AS)
+        {
+            question: "Quel don spécial Allah a-t-Il accordé à Sulayman (as) ?",
+            options: ["Force physique", "Langage des animaux", "Invisibilité", "Vol"],
+            correct: 1,
+            explanation: "Il comprenait le langage de toutes les créatures, y compris les fourmis et les oiseaux."
+        },
+        {
+            question: "Quelle créature a informé Sulayman (as) du royaume de Saba ?",
+            options: ["Un aigle", "Une colombe", "La huppe", "Un corbeau"],
+            correct: 2,
+            explanation: "La huppe (Hud-hud) l'a informé de l'existence du royaume de Bilqis."
+        },
+        {
+            question: "Qu'est-ce qui a révélé la mort de Sulayman (as) ?",
+            options: ["Un ange", "Une termite", "Un oiseau", "Le vent"],
+            correct: 1,
+            explanation: "Une termite a rongé son bâton, causant sa chute et révélant son décès."
+        },
+
+        {
+            question: "Qui est le premier prophète d'Allah ?",
+            options: ["Ibrahim (as)", "Nouh (as)", "Adam (as)", "Idris (as)"],
+            correct: 2,
+            explanation: "Adam (as) est le premier homme et le premier prophète d'Allah."
+        },
+        {
+            question: "Quelle était la taille d'Adam (as) selon les hadiths ?",
+            options: ["30 coudées", "60 coudées", "90 coudées", "100 coudées"],
+            correct: 1,
+            explanation: "Selon le hadith, Adam (as) mesurait 60 coudées de haut."
+        },
+        {
+            question: "Qui a enseigné les noms de toutes choses à Adam (as) ?",
+            options: ["Les anges", "Allah", "Jibril (as)", "Il les a appris seul"],
+            correct: 1,
+            explanation: "Allah a enseigné à Adam (as) les noms de toutes choses comme mentionné dans le Coran."
+        },
+        {
+            question: "Qu'est-il arrivé à Qabil après avoir tué Habil ?",
+            options: ["Il est mort immédiatement", "Il s'est repenti", "Il a erré sur terre", "Il est devenu roi"],
+            correct: 2,
+            explanation: "Qabil est devenu le premier errant sur terre après son crime."
+        },
+
+        // NUH (AS)
+        {
+            question: "Pendant combien d'années Nuh (as) a-t-il appelé son peuple ?",
+            options: ["100 ans", "500 ans", "950 ans", "1000 ans"],
+            correct: 2,
+            explanation: "Nuh (as) a prêché pendant 950 ans comme mentionné dans le Coran (29:14)."
+        },
+        {
+            question: "Combien de personnes ont cru en Nuh (as) selon la plupart des récits ?",
+            options: ["Moins de 10", "Entre 10 et 50", "Entre 50 et 100", "Plus de 100"],
+            correct: 1,
+            explanation: "Selon la plupart des récits, très peu de gens ont cru en lui, entre 10 et 50 personnes."
+        },
+        {
+            question: "Sur quelle montagne l'arche de Nuh (as) s'est-elle arrêtée ?",
+            options: ["Mont Judi", "Mont Sinaï", "Mont Arafat", "Mont Uhud"],
+            correct: 0,
+            explanation: "L'arche s'est arrêtée sur le mont Judi comme mentionné dans le Coran (11:44)."
+        },
+
+        // IBRAHIM (AS)
+        {
+            question: "Quel âge avait Ibrahim (as) quand il a détruit les idoles ?",
+            options: ["16 ans", "20 ans", "25 ans", "30 ans"],
+            correct: 0,
+            explanation: "Selon certains récits, Ibrahim (as) avait environ 16 ans quand il a détruit les idoles."
+        },
+        {
+            question: "Qui a construit la Ka'ba ?",
+            options: ["Ibrahim et Ismail", "Ibrahim seul", "Adam (as)", "Les anges"],
+            correct: 0,
+            explanation: "Ibrahim et son fils Ismail (as) ont construit la Ka'ba comme mentionné dans le Coran."
+        },
+        {
+            question: "Pourquoi Ibrahim (as) est-il appelé 'Khalilullah' ?",
+            options: ["Pour sa force", "Pour son amour d'Allah", "Pour ses miracles", "Pour sa sagesse"],
+            correct: 1,
+            explanation: "Il est appelé 'l'ami proche d'Allah' pour sa dévotion et sa proximité exceptionnelle avec Allah."
+        },
+
+        // MUSA (AS)
+        {
+            question: "Combien de signes majeurs Allah a-t-il donné à Musa (as) ?",
+            options: ["7", "8", "9", "10"],
+            correct: 2,
+            explanation: "Allah a donné 9 signes clairs à Musa (as) comme mentionné dans le Coran."
+        },
+        {
+            question: "Quel prophète a demandé à Musa (as) de l'accompagner ?",
+            options: ["Al-Khidr", "Harun", "Shu'ayb", "Yusha"],
+            correct: 0,
+            explanation: "Al-Khidr a accepté que Musa (as) l'accompagne sous certaines conditions."
+        },
+        {
+            question: "Combien de nuits Musa (as) est-il resté sur le Mont Tur ?",
+            options: ["30 nuits", "40 nuits", "50 nuits", "60 nuits"],
+            correct: 1,
+            explanation: "Il est resté 40 nuits : 30 initialement plus 10 supplémentaires."
+        },
+
+        // ISSA (AS)
+        {
+            question: "Quel était le premier miracle de Issa (as) ?",
+            options: ["Guérir un aveugle", "Parler dans le berceau", "Ressusciter un mort", "Créer un oiseau"],
+            correct: 1,
+            explanation: "Son premier miracle fut de parler dans le berceau pour défendre sa mère."
+        },
+        {
+            question: "Combien de disciples (hawariyoun) Issa (as) avait-il ?",
+            options: ["10", "11", "12", "13"],
+            correct: 2,
+            explanation: "Issa (as) avait 12 disciples principaux mentionnés dans le Coran."
+        },
+        {
+            question: "Quel miracle impliquant de la nourriture Issa (as) a-t-il accompli ?",
+            options: ["Multiplication des pains", "Table servie du ciel", "Création de fruits", "Transformation de l'eau"],
+            correct: 1,
+            explanation: "Une table servie (Al-Ma'ida) est descendue du ciel suite à sa demande."
+        },
+
+        // SULAYMAN (AS)
+        {
+            question: "Quel don spécial Allah a-t-Il accordé à Sulayman (as) ?",
+            options: ["Force physique", "Langage des animaux", "Invisibilité", "Vol"],
+            correct: 1,
+            explanation: "Il comprenait le langage de toutes les créatures, y compris les fourmis et les oiseaux."
+        },
+        {
+            question: "Quelle créature a informé Sulayman (as) du royaume de Saba ?",
+            options: ["Un aigle", "Une colombe", "La huppe", "Un corbeau"],
+            correct: 2,
+            explanation: "La huppe (Hud-hud) l'a informé de l'existence du royaume de Bilqis."
+        },
+        {
+            question: "Qu'est-ce qui a révélé la mort de Sulayman (as) ?",
+            options: ["Un ange", "Une termite", "Un oiseau", "Le vent"],
+            correct: 1,
+            explanation: "Une termite a rongé son bâton, causant sa chute et révélant son décès."
+        }
+    ],
+fiqh: [
+    // PURIFICATION (TAHARA)
+    {
+        question: "Combien y a-t-il d'obligations dans les ablutions ?",
+        options: ["4", "6", "7", "8"],
+        correct: 1,
+        explanation: "Il y a 6 obligations : intention, visage, mains jusqu'aux coudes, tête, pieds, ordre."
+    },
+    {
+        question: "Quelle quantité d'eau est recommandée pour le ghusl ?",
+        options: ["1 sa'", "2 sa'", "3 sa'", "4 sa'"],
+        correct: 1,
+        explanation: "2 sa' (environ 2,5 litres) est la quantité recommandée pour le ghusl."
+    },
+    {
+        question: "Combien de fois faut-il laver un récipient léché par un chien ?",
+        options: ["3 fois", "5 fois", "7 fois", "9 fois"],
+        correct: 2,
+        explanation: "7 fois, dont une fois avec de la terre."
+    },
+    {
+        question: "Qu'est-ce qui invalide le tayammum ?",
+        options: ["La fin de la prière", "La disponibilité de l'eau", "Le lever du soleil", "Le temps d'une prière"],
+        correct: 1,
+        explanation: "Le tayammum devient invalide dès que l'eau devient disponible."
+    },
+
+    // PRIÈRE (SALAT)
+    {
+        question: "Combien y a-t-il de conditions pour la validité de la prière ?",
+        options: ["7", "8", "9", "10"],
+        correct: 2,
+        explanation: "9 conditions : Islam, raison, puberté, temps, orientation qibla, intention, pureté, couvrir la awra, éviter les annulatifs."
+    },
+    {
+        question: "Quelle est la distance minimale pour le raccourcissement des prières ?",
+        options: ["48 km", "80 km", "89 km", "96 km"],
+        correct: 1,
+        explanation: "Environ 80 km selon la majorité des savants."
+    },
+    {
+        question: "Combien y a-t-il de prosternations de Sahw possibles ?",
+        options: ["1", "2", "3", "4"],
+        correct: 1,
+        explanation: "2 prosternations de Sahw pour compenser les oublis dans la prière."
+    },
+    {
+        question: "Quel est le temps de la prière du Fajr ?",
+        options: ["De l'aube au lever", "Du lever au zénith", "De minuit à l'aube", "De l'aube à midi"],
+        correct: 0,
+        explanation: "De l'aube véritable jusqu'au lever du soleil."
+    },
+
+    // ZAKAT
+    {
+        question: "Quel est le nisab de l'argent ?",
+        options: ["595g", "612g", "642g", "672g"],
+        correct: 0,
+        explanation: "595 grammes d'argent est le nisab."
+    },
+    {
+        question: "Quel est le pourcentage de la Zakat sur le commerce ?",
+        options: ["2.5%", "5%", "7.5%", "10%"],
+        correct: 0,
+        explanation: "2.5% sur les biens commerciaux après une année lunaire."
+    },
+    {
+        question: "À partir de combien de chameaux la Zakat est-elle obligatoire ?",
+        options: ["3", "4", "5", "6"],
+        correct: 2,
+        explanation: "La Zakat devient obligatoire à partir de 5 chameaux."
+    },
+    {
+        question: "Quel est le nisab des récoltes irriguées naturellement ?",
+        options: ["5%", "7.5%", "10%", "20%"],
+        correct: 2,
+        explanation: "10% pour les cultures irriguées par la pluie."
+    },
+
+    // JEÛNE (SIYAM)
+    {
+        question: "Qu'est-ce qui ne rompt pas le jeûne ?",
+        options: ["Le vomissement involontaire", "La saignée", "L'injection", "Le parfum"],
+        correct: 0,
+        explanation: "Le vomissement involontaire ne rompt pas le jeûne."
+    },
+    {
+        question: "Quelle est l'expiation pour un rapport conjugal en journée de Ramadan ?",
+        options: ["1 jour", "30 jours", "60 jours", "90 jours"],
+        correct: 2,
+        explanation: "60 jours consécutifs de jeûne ou nourrir 60 pauvres si incapacité."
+    },
+    {
+        question: "Quel est le statut du jeûne de 'Arafah ?",
+        options: ["Fard", "Wajib", "Sunnah", "Nafil"],
+        correct: 2,
+        explanation: "C'est une sunnah très recommandée qui expie les péchés de deux années."
+    },
+
+    // HAJJ ET OMRA
+    {
+        question: "Combien y a-t-il de piliers du Hajj ?",
+        options: ["3", "4", "5", "6"],
+        correct: 1,
+        explanation: "4 piliers : Ihram, station à Arafat, Tawaf al-Ifadah, Sa'i."
+    },
+    {
+        question: "Quel est le minimum de temps à passer à Arafat ?",
+        options: ["Un moment", "Une heure", "De l'aube au coucher", "24 heures"],
+        correct: 0,
+        explanation: "Un moment entre le zawwal du 9 Dhul Hijjah et l'aube du 10."
+    },
+    {
+        question: "Combien de cailloux sont lancés au total pendant les jours du Tashrik ?",
+        options: ["21", "42", "49", "70"],
+        correct: 2,
+        explanation: "49 cailloux : 7 par jour sur chacune des 3 stèles pendant 3 jours."
+    },
+
+    // MARIAGE (NIKAH)
+    {
+        question: "Quelles sont les conditions de validité du mariage ?",
+        options: ["3", "4", "5", "6"],
+        correct: 2,
+        explanation: "5 conditions : consentement, tuteur, témoins, dot, absence d'empêchements."
+    },
+    {
+        question: "Quelle est la durée de l'idda pour une femme divorcée ?",
+        options: ["2 mois", "3 cycles", "4 mois et 10 jours", "1 an"],
+        correct: 1,
+        explanation: "3 cycles menstruels complets."
+    },
+    {
+        question: "Quel est le minimum requis pour la dot ?",
+        options: ["Pas de minimum", "1 dinar", "10 dirhams", "Ce qui est convenu"],
+        correct: 0,
+        explanation: "Il n'y a pas de minimum fixé pour la dot en Islam."
+    },
+
+    // TRANSACTIONS (MOU'AMALAT)
+    {
+        question: "Quelles sont les conditions du contrat de vente ?",
+        options: ["2", "3", "4", "5"],
+        correct: 2,
+        explanation: "4 conditions : consentement mutuel, capacité légale, objet licite et possession."
+    },
+    {
+        question: "Quel est le statut de l'intérêt (riba) ?",
+        options: ["Makrouh", "Haram", "Halal sous conditions", "Dépend du montant"],
+        correct: 1,
+        explanation: "Le riba est strictement interdit (haram) dans l'Islam."
+    },
+    {
+        question: "Quelle est la durée maximale du droit de retour (khiyar) ?",
+        options: ["1 jour", "3 jours", "7 jours", "Selon l'accord"],
+        correct: 3,
+        explanation: "La durée du khiyar dépend de l'accord entre les parties."
+    }
+],
+sira: [
+    // PÉRIODE MECQUOISE
+    {
+        question: "Quel âge avait le Prophète ﷺ lors de la première révélation ?",
+        options: ["35 ans", "38 ans", "40 ans", "43 ans"],
+        correct: 2,
+        explanation: "Le Prophète ﷺ avait 40 ans lors de la première révélation dans la grotte de Hira."
+    },
+    {
+        question: "Qui était la première personne à croire au message du Prophète ﷺ ?",
+        options: ["Abu Bakr (ra)", "Khadija (ra)", "Ali (ra)", "Zayd (ra)"],
+        correct: 1,
+        explanation: "Khadija (ra) fut la première à croire au message et à soutenir le Prophète ﷺ."
+    },
+    {
+        question: "Où les premiers musulmans se réunissaient-ils secrètement ?",
+        options: ["Dar Al-Arqam", "Ka'ba", "Maison d'Abu Bakr", "Mont Safa"],
+        correct: 0,
+        explanation: "Dar Al-Arqam était le lieu de réunion secret des premiers musulmans."
+    },
+    {
+        question: "Combien d'années a duré la période mecquoise de la da'wa ?",
+        options: ["10 ans", "13 ans", "15 ans", "17 ans"],
+        correct: 1,
+        explanation: "La période mecquoise a duré 13 ans avant l'Hégire."
+    },
+
+    // HIJRA
+    {
+        question: "Quel compagnon a accompagné le Prophète ﷺ dans la grotte de Thawr ?",
+        options: ["Omar (ra)", "Abu Bakr (ra)", "Ali (ra)", "Uthman (ra)"],
+        correct: 1,
+        explanation: "Abu Bakr (ra) accompagna le Prophète ﷺ dans la grotte pendant trois jours."
+    },
+    {
+        question: "Qui était le guide du Prophète ﷺ pendant l'Hégire ?",
+        options: ["Abdullah ibn Urayqit", "Abdullah ibn Mas'ud", "Bilal (ra)", "Ammar (ra)"],
+        correct: 0,
+        explanation: "Abdullah ibn Urayqit, bien que non-musulman, était un guide fiable."
+    },
+    {
+        question: "Quelle était la première action du Prophète ﷺ à Médine ?",
+        options: ["Construction de sa maison", "Construction de la mosquée", "Établir la fraternité", "Organiser l'armée"],
+        correct: 1,
+        explanation: "La construction de la mosquée fut sa première action majeure à Médine."
+    },
+
+    // BATAILLES
+    {
+        question: "Quelle fut la première grande bataille de l'Islam ?",
+        options: ["Uhud", "Badr", "Khandaq", "Khaybar"],
+        correct: 1,
+        explanation: "La bataille de Badr en l'an 2 de l'Hégire fut la première grande bataille."
+    },
+    {
+        question: "Combien de musulmans ont participé à la bataille de Badr ?",
+        options: ["313", "500", "700", "1000"],
+        correct: 0,
+        explanation: "313 compagnons ont participé à la bataille de Badr."
+    },
+    {
+        question: "Qui a suggéré la stratégie du fossé lors de la bataille des coalisés ?",
+        options: ["Abu Bakr (ra)", "Omar (ra)", "Salman Al-Farisi (ra)", "Ali (ra)"],
+        correct: 2,
+        explanation: "Salman Al-Farisi (ra) suggéra de creuser un fossé autour de Médine."
+    },
+
+    // CONQUÊTE DE LA MECQUE
+    {
+        question: "En quelle année de l'Hégire la Mecque a-t-elle été conquise ?",
+        options: ["6H", "7H", "8H", "9H"],
+        correct: 2,
+        explanation: "La Mecque fut conquise en l'an 8 de l'Hégire."
+    },
+    {
+        question: "Quelle était la taille de l'armée musulmane lors de la conquête de la Mecque ?",
+        options: ["5000", "10000", "15000", "20000"],
+        correct: 1,
+        explanation: "L'armée musulmane comptait 10000 combattants."
+    },
+    {
+        question: "Que dit le Prophète ﷺ aux Mecquois après la conquête ?",
+        options: ["Partez en exil", "Vous êtes libres", "Devenez musulmans", "Payez la jizya"],
+        correct: 1,
+        explanation: "Il leur dit 'Idhabou fa antum al-toulaqaa' (Partez, vous êtes libres)."
+    },
+
+    // VIE FAMILIALE
+    {
+        question: "À quel âge le Prophète ﷺ s'est-il marié avec Khadija (ra) ?",
+        options: ["20 ans", "25 ans", "30 ans", "35 ans"],
+        correct: 1,
+        explanation: "Il avait 25 ans lors de son mariage avec Khadija (ra)."
+    },
+    {
+        question: "Combien d'enfants le Prophète ﷺ a-t-il eu avec Khadija (ra) ?",
+        options: ["4", "5", "6", "7"],
+        correct: 2,
+        explanation: "6 enfants : Al-Qasim, Abdullah, Zaynab, Ruqayya, Umm Kulthum et Fatima."
+    },
+    {
+        question: "Quel était le surnom du Prophète ﷺ avant la prophétie ?",
+        options: ["Al-Amin", "Al-Sadiq", "Al-Mustafa", "Al-Habib"],
+        correct: 0,
+        explanation: "Il était connu comme Al-Amin (le digne de confiance)."
+    },
+
+    // DERNIÈRES ANNÉES
+    {
+        question: "En quelle année fut le Pèlerinage d'Adieu ?",
+        options: ["8H", "9H", "10H", "11H"],
+        correct: 2,
+        explanation: "Le Pèlerinage d'Adieu eut lieu en l'an 10 de l'Hégire."
+    },
+    {
+        question: "Où le Prophète ﷺ est-il décédé ?",
+        options: ["Dans sa maison", "Dans la mosquée", "Chez Aisha (ra)", "À la Mecque"],
+        correct: 2,
+        explanation: "Il est décédé dans la chambre de Aisha (ra)."
+    },
+    {
+        question: "Quel âge avait le Prophète ﷺ à son décès ?",
+        options: ["60 ans", "63 ans", "65 ans", "70 ans"],
+        correct: 1,
+        explanation: "Il avait 63 ans lors de son décès."
+    }
+],
+sahabas: [
+    // LES QUATRE CALIFES
+    {
+        question: "Combien de temps a duré le califat d'Abu Bakr (ra) ?",
+        options: ["1 an", "2 ans et 3 mois", "3 ans", "4 ans"],
+        correct: 1,
+        explanation: "Abu Bakr (ra) fut calife pendant 2 ans et 3 mois."
+    },
+    {
+        question: "Quel surnom fut donné à Omar (ra) ?",
+        options: ["As-Siddiq", "Al-Farooq", "Dhun-Nurayn", "Al-Murtada"],
+        correct: 1,
+        explanation: "Omar (ra) fut surnommé Al-Farooq (celui qui distingue le vrai du faux)."
+    },
+    {
+        question: "Pourquoi Uthman (ra) est-il appelé 'Dhun-Nurayn' ?",
+        options: ["Pour sa piété", "Pour sa générosité", "Pour avoir épousé deux filles du Prophète ﷺ", "Pour sa sagesse"],
+        correct: 2,
+        explanation: "Il épousa successivement Ruqayya puis Umm Kulthum, filles du Prophète ﷺ."
+    },
+    {
+        question: "Quel était le surnom de Ali (ra) ?",
+        options: ["Abu Turab", "Al-Mustafa", "Al-Sadiq", "Al-Amin"],
+        correct: 0,
+        explanation: "Le Prophète ﷺ lui donna le surnom d'Abu Turab (père de la poussière)."
+    },
+
+    // AUTRES SAHABAS ILLUSTRES
+    {
+        question: "Qui est connu comme 'l'épée d'Allah' ?",
+        options: ["Ali (ra)", "Khalid ibn Al-Walid", "Sa'd ibn Abi Waqqas", "Abu Ubaidah"],
+        correct: 1,
+        explanation: "Khalid ibn Al-Walid reçut ce titre pour ses victoires militaires."
+    },
+    {
+        question: "Qui était le plus jeune commandant d'armée nommé par le Prophète ﷺ ?",
+        options: ["Usama ibn Zayd", "Abdullah ibn Abbas", "Muadh ibn Jabal", "Zayd ibn Tharith"],
+        correct: 0,
+        explanation: "Usama ibn Zayd fut nommé commandant à l'âge de 18 ans."
+    },
+    {
+        question: "Qui fut le premier muezzin de l'Islam ?",
+        options: ["Bilal ibn Rabah", "Abdullah ibn Umm Maktum", "Abu Mahdhura", "Zayd ibn Thabit"],
+        correct: 0,
+        explanation: "Bilal (ra) fut choisi comme premier muezzin par le Prophète ﷺ."
+    }
+],
+
+signes: [
+    // SIGNES MINEURS
+    {
+        question: "Lequel de ces signes est déjà apparu ?",
+        options: ["La disparition du savoir", "L'augmentation de l'ignorance", "La multiplication des tremblements de terre", "Tous ces signes"],
+        correct: 3,
+        explanation: "Ces signes mineurs ont déjà commencé à apparaître comme prédit."
+    },
+    {
+        question: "Qu'est-ce qui sera considéré comme étrange à la fin des temps ?",
+        options: ["La richesse", "La technologie", "La pratique de la religion", "La pauvreté"],
+        correct: 2,
+        explanation: "Le musulman qui s'accroche à sa religion sera comme celui qui tient une braise."
+    },
+
+    // SIGNES MAJEURS
+    {
+        question: "Quel est le premier des grands signes de l'Heure ?",
+        options: ["Yajuj et Majuj", "Le Dajjal", "Le lever du soleil à l'ouest", "La fumée"],
+        correct: 1,
+        explanation: "L'apparition du Dajjal est le premier des grands signes de l'Heure."
+    },
+    {
+        question: "Quelle sera la durée du séjour du Dajjal sur terre ?",
+        options: ["40 jours", "40 semaines", "40 mois", "40 ans"],
+        correct: 0,
+        explanation: "40 jours : un jour comme un an, un jour comme un mois, un jour comme une semaine, et le reste comme des jours normaux."
+    },
+    {
+        question: "Que fera Issa (as) à son retour ?",
+        options: ["Construire des mosquées", "Tuer le Dajjal", "Établir un nouveau livre", "Prêcher une nouvelle religion"],
+        correct: 1,
+        explanation: "Il tuera le Dajjal et établira la justice sur terre."
+    }
+	] 
+
+ };
+
+  let currentCategory = '';
+        let currentQuestion = 0;
+        let score = 0;
+
+        const categoryCards = document.querySelectorAll('.category-card');
+        const quizContainer = document.querySelector('.quiz-container');
+        const questionElement = document.querySelector('.question');
+        const optionsElement = document.querySelector('.options');
+        const feedbackElement = document.querySelector('.feedback');
+        const explanationElement = document.querySelector('.explanation');
+        const nextButton = document.querySelector('.next-btn');
+        const scoreElement = document.querySelector('#score');
+        const progressBar = document.querySelector('.progress');
+
+    categoryCards.forEach(card => {
+    card.addEventListener('click', function() {
+        const category = this.dataset.category;
+        startQuiz(category);
+        
+        // Ajout du scroll automatique
+        quizContainer.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+
+        function startQuiz(category) {
+            currentCategory = category;
+            currentQuestion = 0;
+            score = 0;
+            scoreElement.textContent = score;
+            quizContainer.style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentCategory][currentQuestion];
+            questionElement.textContent = question.question;
+            optionsElement.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'option';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(index));
+                optionsElement.appendChild(button);
+            });
+
+            feedbackElement.style.display = 'none';
+            explanationElement.style.display = 'none';
+            nextButton.style.display = 'none';
+
+            const progress = ((currentQuestion + 1) / questions[currentCategory].length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = questions[currentCategory][currentQuestion];
+            const correct = selectedIndex === question.correct;
+
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (correct) {
+                score++;
+                scoreElement.textContent = score;
+                feedbackElement.className = 'feedback correct';
+                feedbackElement.textContent = 'Mashaallah ! Bonne réponse !';
+            } else {
+                feedbackElement.className = 'feedback incorrect';
+                feedbackElement.textContent = 'La bonne réponse était : ' + 
+                    question.options[question.correct];
+            }
+
+            feedbackElement.style.display = 'block';
+            explanationElement.style.display = 'block';
+            explanationElement.textContent = question.explanation;
+            nextButton.style.display = 'block';
+        }
+
+        nextButton.addEventListener('click', function() {
+            currentQuestion++;
+            if (currentQuestion < questions[currentCategory].length) {
+                loadQuestion();
+            } else {
+                quizContainer.innerHTML = `
+                    <h2>Quiz terminé !</h2>
+                    <p>Votre score final : ${score}/${questions[currentCategory].length}</p>
+                    <button onclick="location.reload()" class="next-btn" style="display:block">
+                        Recommencer le quiz
+                    </button>
+                `;
+            }
+        });
+    </script>
+ 
+</body>
+</html>

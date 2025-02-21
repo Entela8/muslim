@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Des douaas en arabe et en Français ainsi qu'en phonétique.</title>
+	   <meta name="description" content="Une liste de douaas en français et en arabe ainsi qu'en phonétique à récviter le matin et le soir et tout au long de la journée.">
+   
+		<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+   <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000428;
+            color: #fff;
+            min-height: 100vh;
+            padding: 10px;
+            padding-bottom: 90px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+        .page-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #FF4B2B, #FF416C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .category-title {
+            font-size: 20px;
+            color: #fff;
+            padding: 15px 10px;
+            margin: 20px 0 15px;
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 5px;
+        }
+
+        .dashboard-item {
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+        }
+
+        .dashboard-item:nth-child(4n+1) { background: linear-gradient(135deg, #FF416C, #FF4B2B); }
+        .dashboard-item:nth-child(4n+2) { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .dashboard-item:nth-child(4n+3) { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+        .dashboard-item:nth-child(4n+4) { background: linear-gradient(135deg, #ee0979, #ff6a00); }
+
+        .doua-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .arabic-text {
+            font-size: 24px;
+            text-align: right;
+            direction: rtl;
+            margin: 15px 0;
+            line-height: 1.8;
+            font-family: 'Traditional Arabic', Arial, sans-serif;
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .phonetic {
+            font-style: italic;
+            margin: 12px 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            line-height: 1.5;
+            background: rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .translation {
+            color: #fff;
+            margin: 12px 0;
+            font-size: 15px;
+            line-height: 1.6;
+            background: rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        
+
+        @media (max-width: 480px) {
+            body { padding: 8px; }
+            .page-title { font-size: 22px; }
+            .category-title { font-size: 18px; }
+            .doua-title { font-size: 17px; }
+            .arabic-text { font-size: 22px; }
+            .phonetic, .translation { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+ 
+        <div id="douas-page" class="page active">
+            <h1 class="page-title">Douaas</h1>
+
+            <h2 class="category-title">Douaas Fondamentales</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Sayyid al-Istighfar (La meilleure demande de pardon)</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ
+                    </div>
+                    <div class="phonetic">
+                        Allahumma anta Rabbi la ilaha illa ant, khalaqtani wa ana 'abduk, wa ana 'ala 'ahdika wa wa'dika mas-tata't, a'udhu bika min sharri ma sana't, abu'u laka bi ni'matika 'alayya, wa abu'u bi dhanbi faghfir li fa'innahu la yaghfiru dhunuba illa ant
+                    </div>
+                    <div class="translation">
+                        Ô Allah, Tu es mon Seigneur, il n'y a de divinité que Toi, Tu m'as créé et je suis Ton serviteur. Je me conforme autant que je peux à mon engagement et à ma promesse envers Toi. Je cherche refuge auprès de Toi contre le mal que j'ai commis. Je reconnais Ton bienfait à mon égard, et je reconnais mon péché. Pardonne-moi car nul ne pardonne les péchés excepté Toi.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Dua de protection (Les 3 Qul)</div>
+                    <div class="arabic-text">
+                        قُلْ هُوَ ٱللَّهُ أَحَدٌ، ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ
+                    </div>
+                    <div class="phonetic">
+                        Qul huwa Allahu ahad, Allahu as-samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad
+                    </div>
+                    <div class="translation">
+                        Dis : Il est Allah, Unique. Allah, Le Seul à être imploré pour ce que nous désirons. Il n'a jamais engendré, n'a pas été engendré non plus. Et nul n'est égal à Lui.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas Quotidiennes</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua en se réveillant</div>
+                    <div class="arabic-text">
+                        الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ
+                    </div>
+                    <div class="phonetic">
+                        Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur
+                    </div>
+                    <div class="translation">
+                        Louange à Allah qui nous a fait revivre après nous avoir fait mourir et c'est vers Lui que se fera la résurrection.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua avant de dormir</div>
+                    <div class="arabic-text">
+                        بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا
+                    </div>
+                    <div class="phonetic">
+                        Bismika Allahumma amutu wa ahya
+                    </div>
+                    <div class="translation">
+                        C'est par Ton nom, ô Allah, que je meurs et que je vis.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Protection</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Protection contre le mauvais œil</div>
+                    <div class="arabic-text">
+                        أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ
+                    </div>
+                    <div class="phonetic">
+                        A'udhu bi kalimatillahit-tammati min sharri ma khalaq
+                    </div>
+                    <div class="translation">
+                        Je cherche refuge auprès des paroles parfaites d'Allah contre le mal de ce qu'Il a créé.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Protection pour toute la journée</div>
+                    <div class="arabic-text">
+                        بِسْمِ اللهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ
+                    </div>
+                    <div class="phonetic">
+                        Bismillahil-ladhi la yadurru ma'as-mihi shay'un fil-ardi wa la fis-sama'i wa huwas-sami'ul-'alim
+                    </div>
+                    <div class="translation">
+                        Au nom d'Allah par la grâce duquel rien sur terre ni dans le ciel ne peut nuire, et Il est Celui qui entend et qui sait tout.
+                    </div>
+                </div>
+            </div>
+			
+			<h2 class="category-title">Douaas pour les Moments Difficiles</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua de l'angoisse et de la tristesse</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ
+                    </div>
+                    <div class="phonetic">
+                        Allahumma inni a'udhu bika minal-hammi wal-hazan, wal-'ajzi wal-kasal, wal-bukhli wal-jubn, wa dhala'id-dayni wa ghalabatir-rijal
+                    </div>
+                    <div class="translation">
+                        Ô Allah, je cherche refuge auprès de Toi contre le souci et la tristesse, l'incapacité et la paresse, l'avarice et la lâcheté, le poids des dettes et la domination des hommes.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour la facilité</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا
+                    </div>
+                    <div class="phonetic">
+                        Allahumma la sahla illa ma ja'altahu sahlan wa anta taj'alul hazna idha shi'ta sahlan
+                    </div>
+                    <div class="translation">
+                        Ô Allah, rien n'est facile si ce n'est ce que Tu rends facile, et Tu rends facile la difficulté si Tu le veux.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Voyage</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua au début du voyage</div>
+                    <div class="arabic-text">
+                        اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ
+                    </div>
+                    <div class="phonetic">
+                        Allahu Akbar, Allahu Akbar, Allahu Akbar, Subhana-lladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila Rabbina lamunqalibun
+                    </div>
+                    <div class="translation">
+                        Allah est le plus grand, Allah est le plus grand, Allah est le plus grand. Gloire à Celui qui nous a soumis ceci alors que nous n'étions pas capables de le dominer. Et c'est vers notre Seigneur que nous retournerons.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua au retour du voyage</div>
+                    <div class="arabic-text">
+                        آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنَا حَامِدُونَ
+                    </div>
+                    <div class="phonetic">
+                        Ayibuna, ta'ibuna, 'abiduna, li Rabbina hamidun
+                    </div>
+                    <div class="translation">
+                        Nous revenons, nous nous repentons, nous adorons et nous louons notre Seigneur.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Bénédiction</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour la subsistance</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا
+                    </div>
+                    <div class="phonetic">
+                        Allahumma inni as'aluka 'ilman nafi'an, wa rizqan tayyiban, wa 'amalan mutaqabbalan
+                    </div>
+                    <div class="translation">
+                        Ô Allah, je Te demande une science bénéfique, une subsistance licite et une œuvre acceptée.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua de protection familiale</div>
+                    <div class="arabic-text">
+                        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+                    </div>
+                    <div class="phonetic">
+                        Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yunin waj'alna lil-muttaqina imama
+                    </div>
+                    <div class="translation">
+                        Notre Seigneur, fais que nos épouses et nos descendants soient une source de joie pour nous, et fais de nous un guide pour les pieux.
+                    </div>
+                </div>
+            </div>
+			<h2 class="category-title">Douaas Avant les Actions Quotidiennes</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua avant de manger</div>
+                    <div class="arabic-text">
+                        بِسْمِ اللهِ وَعَلَى بَرَكَةِ الله
+                    </div>
+                    <div class="phonetic">
+                        Bismillahi wa 'ala barakatillah
+                    </div>
+                    <div class="translation">
+                        Au nom d'Allah et avec la bénédiction d'Allah.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua après avoir mangé</div>
+                    <div class="arabic-text">
+                        الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا، وَجَعَلَنَا مِنَ الْمُسْلِمِينَ
+                    </div>
+                    <div class="phonetic">
+                        Alhamdulillahil-ladhi at'amana wa saqana, wa ja'alana minal-muslimin
+                    </div>
+                    <div class="translation">
+                        Louange à Allah qui nous a donné à manger et à boire, et qui a fait de nous des musulmans.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas d'Entrée et de Sortie</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua en entrant à la maison</div>
+                    <div class="arabic-text">
+                        بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا
+                    </div>
+                    <div class="phonetic">
+                        Bismillahi walajna, wa bismillahi kharajna, wa 'ala Rabbina tawakkalna
+                    </div>
+                    <div class="translation">
+                        Au nom d'Allah nous entrons, au nom d'Allah nous sortons et en notre Seigneur nous plaçons notre confiance.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua en entrant à la mosquée</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ
+                    </div>
+                    <div class="phonetic">
+                        Allahumma-ftah li abwaba rahmatik
+                    </div>
+                    <div class="translation">
+                        Ô Allah, ouvre-moi les portes de Ta miséricorde.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Pardon et de Guidance</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour demander le pardon (Sayyid al-Istighfar)</div>
+                    <div class="arabic-text">
+                        رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ
+                    </div>
+                    <div class="phonetic">
+                        Rabbi-ghfir li wa tub 'alayya innaka anta-ttawwabu-rrahim
+                    </div>
+                    <div class="translation">
+                        Seigneur, pardonne-moi et accepte mon repentir, car Tu es Celui qui accepte le repentir et fait miséricorde.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua de guidance</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي
+                    </div>
+                    <div class="phonetic">
+                        Allahumma-hdini wa saddidni
+                    </div>
+                    <div class="translation">
+                        Ô Allah, guide-moi et dirige-moi vers la droiture.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Prospérité et de Protection</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour la réussite</div>
+                    <div class="arabic-text">
+                        رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي
+                    </div>
+                    <div class="phonetic">
+                        Rabbi-shrah li sadri wa yassir li amri
+                    </div>
+                    <div class="translation">
+                        Seigneur, ouvre ma poitrine et facilite ma tâche.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua du matin et du soir</div>
+                    <div class="arabic-text">
+                        أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                    </div>
+                    <div class="phonetic">
+                        Asbahna wa asbahal mulku lillah, walhamdu lillah, la ilaha illallahu wahdahu la sharika lah
+                    </div>
+                    <div class="translation">
+                        Nous voilà au matin et le royaume appartient à Allah. Louange à Allah, il n'y a de divinité qu'Allah, Unique et sans associé.
+                    </div>
+                </div>
+            </div>
+			<h2 class="category-title">Douaas pour les Études et le Savoir</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour augmenter la connaissance</div>
+                    <div class="arabic-text">
+                        رَبِّ زِدْنِي عِلْمًا
+                    </div>
+                    <div class="phonetic">
+                        Rabbi zidni 'ilma
+                    </div>
+                    <div class="translation">
+                        Seigneur, accrois ma science.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua avant d'étudier</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ انْفَعْنِي بِمَا عَلَّمْتَنِي وَعَلِّمْنِي مَا يَنْفَعُنِي وَزِدْنِي عِلْمًا
+                    </div>
+                    <div class="phonetic">
+                        Allahumma-nfa'ni bima 'allamtani wa 'allimni ma yanfa'uni wa zidni 'ilma
+                    </div>
+                    <div class="translation">
+                        Ô Allah, fais que me soit profitable ce que Tu m'as enseigné, enseigne-moi ce qui m'est profitable et augmente ma science.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas du Mariage et de la Famille</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour les nouveaux mariés</div>
+                    <div class="arabic-text">
+                        بَارَكَ اللهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+                    </div>
+                    <div class="phonetic">
+                        Barakallahu laka wa baraka 'alayka wa jama'a baynakuma fi khayr
+                    </div>
+                    <div class="translation">
+                        Qu'Allah te bénisse et qu'Il vous unisse dans le bien.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour les enfants</div>
+                    <div class="arabic-text">
+                        رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ
+                    </div>
+                    <div class="phonetic">
+                        Rabbi-j'alni muqimas-salati wa min dhurriyyati, Rabbana wa taqabbal du'a
+                    </div>
+                    <div class="translation">
+                        Seigneur! Fais que j'accomplisse assidûment la prière ainsi que ma descendance. Ô notre Seigneur, accepte ma prière.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Guérison</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour le malade</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ، اشْفِ أَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا
+                    </div>
+                    <div class="phonetic">
+                        Allahumma rabban-nas, adhhibil-ba's, ishfi antash-shafi, la shifa'a illa shifa'uk, shifa'an la yughadiru saqama
+                    </div>
+                    <div class="translation">
+                        Ô Allah, Seigneur des hommes, éloigne le mal et guéris. Tu es Celui qui guérit et il n'y a de guérison que la Tienne, une guérison qui ne laisse aucun mal.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua de protection contre les maladies</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبَرَصِ، وَالْجُنُونِ، وَالْجُذَامِ، وَمِنْ سَيِّئِ الْأَسْقَامِ
+                    </div>
+                    <div class="phonetic">
+                        Allahumma inni a'udhu bika minal-barasi, wal-jununi, wal-judhami, wa min sayyi'il-asqam
+                    </div>
+                    <div class="translation">
+                        Ô Allah, je cherche refuge auprès de Toi contre la lèpre, la folie, la léprose et contre toutes les mauvaises maladies.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas Pour les Moments d'Épreuve</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua dans l'adversité</div>
+                    <div class="arabic-text">
+                        حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ
+                    </div>
+                    <div class="phonetic">
+                        Hasbunallahu wa ni'mal wakil
+                    </div>
+                    <div class="translation">
+                        Allah nous suffit, Il est notre meilleur garant.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua de soulagement</div>
+                    <div class="arabic-text">
+                        لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ
+                    </div>
+                    <div class="phonetic">
+                        La ilaha illa anta subhanaka inni kuntu minaz-zalimin
+                    </div>
+                    <div class="translation">
+                        Il n'y a de divinité que Toi! Gloire à Toi! J'ai été vraiment du nombre des injustes.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">Douaas de Réussite</h2>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua avant une tâche importante</div>
+                    <div class="arabic-text">
+                        اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا وَأَنْتَ تَجْعَلُ الحَزْنَ إِذَا شِئْتَ سَهْلًا
+                    </div>
+                    <div class="phonetic">
+                        Allahumma la sahla illa ma ja'altahu sahla, wa anta taj'alul hazna idha shi'ta sahla
+                    </div>
+                    <div class="translation">
+                        Ô Allah, rien n'est facile que ce que Tu rends facile, et Tu peux rendre la difficulté facile si Tu le veux.
+                    </div>
+                </div>
+
+                <div class="dashboard-item">
+                    <div class="doua-title">Doua pour la constance</div>
+                    <div class="arabic-text">
+                        يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ
+                    </div>
+                    <div class="phonetic">
+                        Ya muqallibal-qulub, thabbit qalbi 'ala dinik
+                    </div>
+                    <div class="translation">
+                        Ô Toi qui retourne les cœurs, affermis mon cœur sur Ta religion.
+                    </div>
+                </div>
+            </div>
+			
+			
+			
+        </div>
+   
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+ </div>
+    <script>
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

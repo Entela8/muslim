@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Les 5 écoles juridiques en ISlam avec leur histoire et fondements.</title>
+	   <meta name="description" content="Découvrez les 4 écoles de jurisprudence de la religion musulmane avec leur histoire et leur fondement.">
+    <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding-bottom: 80px;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+		/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .schools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .schools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .school-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .school-card:nth-child(1) { background: linear-gradient(135deg, #FF416C, #FF4B2B); }
+        .school-card:nth-child(2) { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .school-card:nth-child(3) { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+        .school-card:nth-child(4) { background: linear-gradient(135deg, #F2994A, #F2C94C); }
+        
+        .school-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+        }
+        
+        .school-card h2 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .school-card p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .read-more:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+   
+        
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.6rem; }
+            .school-card h2 { font-size: 1.3rem; }
+            .school-card p { font-size: 1rem; }
+            .read-more { font-size: 1rem; }
+            .intro { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Les Écoles de Jurisprudence en Islam</h1>
+    </div>
+    
+    <div class="container">
+        <div class="intro">
+            <p>Découvrez les quatre principales écoles de jurisprudence (madhhab) en Islam sunnite, chacune offrant une interprétation unique de la loi islamique.</p>
+        </div>
+        
+        <div class="schools-grid">
+            <div class="school-card">
+                <h2>École Hanafite</h2>
+                <p>Fondée par l'Imam Abu Hanifa, cette école est la plus répandue dans le monde musulman. Elle est connue pour son approche rationnelle et sa flexibilité dans l'interprétation.</p>
+                <a href="/ecole-hanafite.html" class="read-more">En savoir plus</a>
+            </div>
+            
+            <div class="school-card">
+                <h2>École Malikite</h2>
+                <p>Établie par l'Imam Malik ibn Anas à Médine, cette école accorde une importance particulière aux pratiques des premiers musulmans de Médine.</p>
+                <a href="/ecole-malikite.html" class="read-more">En savoir plus</a>
+            </div>
+            
+            <div class="school-card">
+                <h2>École Shaféite</h2>
+                <p>Développée par l'Imam Al-Shafi'i, cette école trouve un équilibre entre les traditions prophétiques et le raisonnement analogique.</p>
+                <a href="/ecole-shafeite.html" class="read-more">En savoir plus</a>
+            </div>
+            
+            <div class="school-card">
+                <h2>École Hanbalite</h2>
+                <p>Fondée par l'Imam Ahmad ibn Hanbal, cette école est connue pour son approche littérale des textes religieux et sa rigueur méthodologique.</p>
+                <a href="/ecole-hanbalite.html" class="read-more">En savoir plus</a>
+            </div>
+        </div>
+        
+	<br/>	<br/>	 
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    </div>
+</body>
+</html>

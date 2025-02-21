@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les 40 Hadiths d'An-Nawawi</title>
+	<meta name="title" content="Les 40 Hadiths de l'Imam An-Nawawi : Guide Complet et Analyse Approfondie">
+    <meta name="description" content="Découvrez l'histoire fascinante des 40 Hadiths de l'Imam An-Nawawi, leur importance dans l'Islam, et leur pertinence contemporaine. Une analyse complète de ce patrimoine spirituel intemporel.">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1c20 0%, #0f1923 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header h2 {
+            font-size: 1.2rem;
+            color: #e0e7ff;
+            font-weight: 400;
+        }
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+   
+
+    
+
+        .hadith-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .hadith-card {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hadith-number {
+            font-size: 1.2rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .share-button {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .share-button:hover {
+            transform: scale(1.1);
+        }
+
+        .hadith-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: right;
+            margin-bottom: 1.5rem;
+            font-family: "Traditional Arabic", serif;
+            color: #e0e7ff;
+            padding: 1rem;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 10px;
+        }
+
+        .hadith-translation {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #cbd5e0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header h2 {
+                font-size: 1rem;
+            }
+
+            .hadith-card {
+                padding: 1rem;
+            }
+            
+            .hadith-text {
+                font-size: 1.1rem;
+            }
+            
+            .hadith-translation {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation des cartes */
+        .hadith-card {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>الأربعون النووية</h1>
+        <h2>Les 40 Hadiths de l'Imam An-Nawawi</h2>
+    </div>
+
+ 
+
+    <div class="hadith-container">
+      <!-- Hadith 1 -->
+        <div class="hadith-card">
+            <div class="hadith-number">
+                Hadith 1
+                <div class="share-buttons">
+                    <button class="share-button" onclick="share('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="share-button" onclick="share('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-button" onclick="share('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hadith-text">
+                عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: " إنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ فَهِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا، أَوْ امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إلَى مَا هَاجَرَ إلَيْهِ "
+            </div>
+            <div class="hadith-translation">
+                D'après Omar Ibn Al-Khattab (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Les actes ne valent que par leurs intentions. Chacun n'a pour lui que ce qu'il a eu comme intention. Celui qui a émigré vers Allah et Son messager, son émigration sera considérée comme accomplie vers Allah et Son messager. Et celui qui a émigré en vue d'obtenir un bien de ce monde ou d'épouser une femme, son émigration ne sera considérée que pour ce vers quoi il a émigré."
+            </div>
+        </div>
+
+        <!-- Hadith 2 -->
+        <div class="hadith-card">
+            <div class="hadith-number">
+                Hadith 2
+                <div class="share-buttons">
+                    <button class="share-button" onclick="share('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="share-button" onclick="share('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-button" onclick="share('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hadith-text">
+                عَنْ عُمَرَ رَضِيَ اللهُ عَنْهُ أَيْضًا قَالَ: بَيْنَمَا نَحْنُ جُلُوسٌ عِنْدَ رَسُولِ اللَّهِ صلى الله عليه وسلم ذَاتَ يَوْمٍ إذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ، شَدِيدُ سَوَادِ الشَّعَرِ، لَا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ، وَلَا يَعْرِفُهُ مِنَّا أَحَدٌ، حَتَّى جَلَسَ إلَى النَّبِيِّ صلى الله عليه وسلم، فَأَسْنَدَ رُكْبَتَيْهِ إلَى رُكْبَتَيْهِ، وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ، وَقَالَ: يَا مُحَمَّدُ أَخْبِرْنِي عَنْ الْإِسْلَامِ...
+            </div>
+            <div class="hadith-translation">
+                D'après Omar (qu'Allah l'agrée), il dit : "Un jour, alors que nous étions assis auprès du Messager d'Allah (ﷺ), voici qu'apparut à nous un homme aux habits d'une vive blancheur et aux cheveux très noirs. On ne pouvait voir sur lui aucune trace de voyage et personne d'entre nous ne le connaissait..."
+            </div>
+        </div>
+
+        <!-- Hadith 3 -->
+        <div class="hadith-card">
+            <div class="hadith-number">
+                Hadith 3
+                <div class="share-buttons">
+                    <button class="share-button" onclick="share('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="share-button" onclick="share('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-button" onclick="share('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hadith-text">
+                عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللهُ عَنْهُمَا قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ"
+            </div>
+            <div class="hadith-translation">
+                D'après Abdullah Ibn Omar (qu'Allah les agrée), j'ai entendu le Messager d'Allah (ﷺ) dire : "L'Islam est bâti sur cinq piliers : L'attestation qu'il n'y a pas de divinité digne d'être adorée excepté Allah et que Muhammad est le Messager d'Allah, l'accomplissement de la prière, l'acquittement de la zakat, le pèlerinage à la Maison Sacrée, et le jeûne du mois de Ramadan."
+            </div>
+        </div>
+		<!-- Hadith 4 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 4
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: حَدَّثَنَا رَسُولُ اللَّهِ صلى الله عليه وسلم -وَهُوَ الصَّادِقُ الْمَصْدُوقُ-: "إنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا نُطْفَةً، ثُمَّ يَكُونُ عَلَقَةً مِثْلَ ذَلِكَ، ثُمَّ يَكُونُ مُضْغَةً مِثْلَ ذَلِكَ، ثُمَّ يُرْسَلُ إلَيْهِ الْمَلَكُ، فَيَنْفُخُ فِيهِ الرُّوحَ، وَيُؤْمَرُ بِأَرْبَعِ كَلِمَاتٍ: بِكَتْبِ رِزْقِهِ، وَأَجَلِهِ، وَعَمَلِهِ، وَشَقِيٍّ أَمْ سَعِيدٍ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abdullah Ibn Mas'ud (qu'Allah l'agrée), le Messager d'Allah (ﷺ) - le véridique, celui dont la parole est véridique - nous a rapporté : "Certes la création de l'un d'entre vous est rassemblée dans le ventre de sa mère durant quarante jours sous forme de goutte de sperme, puis il devient un caillot de sang pendant une période similaire, puis un morceau de chair pendant une période similaire..."
+    </div>
+</div>
+
+<!-- Hadith 5 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 5
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أُمِّ الْمُؤْمِنِينَ أُمِّ عَبْدِ اللَّهِ عَائِشَةَ رَضِيَ اللهُ عَنْهَا قَالَتْ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ"
+    </div>
+    <div class="hadith-translation">
+        D'après Aïcha (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Quiconque introduit dans notre religion une innovation qui n'en fait pas partie, elle sera rejetée."
+    </div>
+</div>
+
+<!-- Hadith 6 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 6
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي عَبْدِ اللَّهِ النُّعْمَانِ بْنِ بَشِيرٍ رَضِيَ اللهُ عَنْهُمَا قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: "إنَّ الْحَلَالَ بَيِّنٌ، وَإِنَّ الْحَرَامَ بَيِّنٌ، وَبَيْنَهُمَا أُمُورٌ مُشْتَبِهَاتٌ..."
+    </div>
+    <div class="hadith-translation">
+        D'après An-Nu'man Ibn Bachir (qu'Allah les agrée), j'ai entendu le Messager d'Allah (ﷺ) dire : "Le licite est clair et l'illicite est clair ; et entre les deux il y a des choses ambiguës..."
+    </div>
+</div>
+<!-- Hadith 7 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 7
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي رُقَيَّةَ تَمِيمِ بْنِ أَوْسٍ الدَّارِيِّ رَضِيَ اللهُ عَنْهُ أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ: "الدِّينُ النَّصِيحَةُ". قُلْنَا: لِمَنْ؟ قَالَ: "لِلَّهِ، وَلِكِتَابِهِ، وَلِرَسُولِهِ، وَلِأَئِمَّةِ الْمُسْلِمِينَ، وَعَامَّتِهِمْ"
+    </div>
+    <div class="hadith-translation">
+        D'après Tamim Ad-Dari (qu'Allah l'agrée), le Prophète (ﷺ) a dit : "La religion est la sincérité." Nous dîmes : "Envers qui ?" Il dit : "Envers Allah, Son Livre, Son Messager, les dirigeants des musulmans et leur masse."
+    </div>
+</div>
+
+<!-- Hadith 8 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 8
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ ابْنِ عُمَرَ رَضِيَ اللهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: "أُمِرْت أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَيُقِيمُوا الصَّلَاةَ، وَيُؤْتُوا الزَّكَاةَ؛ فَإِذَا فَعَلُوا ذَلِكَ عَصَمُوا مِنِّي دِمَاءَهُمْ وَأَمْوَالَهُمْ إلَّا بِحَقِّ الْإِسْلَامِ، وَحِسَابُهُمْ عَلَى اللَّهِ تَعَالَى"
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Omar (qu'Allah les agrée), le Messager d'Allah (ﷺ) a dit : "J'ai reçu l'ordre de combattre les gens jusqu'à ce qu'ils attestent qu'il n'y a pas de divinité digne d'être adorée en dehors d'Allah et que Muhammad est le Messager d'Allah, qu'ils accomplissent la prière et s'acquittent de la zakat. S'ils font cela, leurs vies et leurs biens seront préservés de moi, sauf pour ce qui est du droit de l'Islam. Et leur compte final revient à Allah."
+    </div>
+</div>
+
+<!-- Hadith 9 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 9
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ عَبْدِ الرَّحْمَنِ بْنِ صَخْرٍ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: "مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَأْتُوا مِنْهُ مَا اسْتَطَعْتُمْ، فَإِنَّمَا أَهْلَكَ الَّذِينَ مِنْ قَبْلِكُمْ كَثْرَةُ مَسَائِلِهِمْ وَاخْتِلَافُهُمْ عَلَى أَنْبِيَائِهِمْ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), j'ai entendu le Messager d'Allah (ﷺ) dire : "Ce que je vous ai interdit, évitez-le. Et ce que je vous ai ordonné, accomplissez-en ce que vous pouvez. Car ceux qui vous ont précédés n'ont péri qu'à cause de leurs questions excessives et leurs divergences avec leurs prophètes."
+    </div>
+</div>
+
+<!-- Hadith 10 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 10
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "إنَّ اللَّهَ تَعَالَى طَيِّبٌ لَا يَقْبَلُ إلَّا طَيِّبًا، وَإِنَّ اللَّهَ أَمَرَ الْمُؤْمِنِينَ بِمَا أَمَرَ بِهِ الْمُرْسَلِينَ فَقَالَ تَعَالَى: ﴿يَا أَيُّهَا الرُّسُلُ كُلُوا مِنْ الطَّيِّبَاتِ وَاعْمَلُوا صَالِحًا﴾، وَقَالَ تَعَالَى: ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا كُلُوا مِنْ طَيِّبَاتِ مَا رَزَقْنَاكُمْ﴾"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Allah est Bon et n'accepte que ce qui est bon. Allah a ordonné aux croyants ce qu'Il a ordonné aux messagers. Il a dit : 'Ô Messagers ! Mangez de ce qui est licite et bon et faites de bonnes œuvres'. Et Il a dit : 'Ô vous qui croyez ! Mangez des bonnes choses que Nous vous avons attribuées'."
+    </div>
+</div>
+
+ <!-- Hadith 11 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 11
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي مُحَمَّدٍ الْحَسَنِ بْنِ عَلِيِّ بْنِ أَبِي طَالِبٍ سِبْطِ رَسُولِ اللَّهِ صلى الله عليه وسلم وَرَيْحَانَتِهِ رَضِيَ اللهُ عَنْهُمَا قَالَ: حَفِظْت مِنْ رَسُولِ اللَّهِ صلى الله عليه وسلم: "دَعْ مَا يُرِيبُك إلَى مَا لَا يُرِيبُك"
+    </div>
+    <div class="hadith-translation">
+        D'après Al-Hassan Ibn Ali (qu'Allah les agrée tous les deux), petit-fils du Messager d'Allah (ﷺ), j'ai retenu du Messager d'Allah (ﷺ) : "Délaisse ce qui te fait douter pour ce qui ne te fait pas douter."
+    </div>
+</div>
+
+<!-- Hadith 12 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 12
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "مِنْ حُسْنِ إسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Parmi les signes du bon islam d'une personne, il y a le fait qu'elle délaisse ce qui ne la concerne pas."
+    </div>
+</div>
+
+<!-- Hadith 13 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 13
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي حَمْزَةَ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللهُ عَنْهُ خَادِمِ رَسُولِ اللَّهِ صلى الله عليه وسلم عَنْ النَّبِيِّ صلى الله عليه وسلم قَالَ: "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ"
+    </div>
+    <div class="hadith-translation">
+        D'après Anas Ibn Malik (qu'Allah l'agrée), le serviteur du Messager d'Allah (ﷺ), le Prophète (ﷺ) a dit : "Nul d'entre vous ne sera vraiment croyant tant qu'il n'aimera pas pour son frère ce qu'il aime pour lui-même."
+    </div>
+</div>
+
+<!-- Hadith 14 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 14
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ ابْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "لَا يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ إلَّا بِإِحْدَى ثَلَاثٍ: الثَّيِّبُ الزَّانِي، وَالنَّفْسُ بِالنَّفْسِ، وَالتَّارِكُ لِدِينِهِ الْمُفَارِقُ لِلْجَمَاعَةِ"
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Mas'ud (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Le sang d'un musulman n'est licite que dans trois cas : l'homme marié qui commet l'adultère, une vie pour une vie, et celui qui abandonne sa religion en se séparant de la communauté."
+    </div>
+</div>
+
+<!-- Hadith 15 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 15
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: "مَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Que celui qui croit en Allah et au Jour Dernier dise du bien ou qu'il se taise. Que celui qui croit en Allah et au Jour Dernier honore son voisin. Que celui qui croit en Allah et au Jour Dernier honore son hôte."
+    </div>
+</div>
+<!-- Hadith 16 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 16
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَجُلًا قَالَ لِلنَّبِيِّ صلى الله عليه وسلم: "أَوْصِنِي" قَالَ: "لَا تَغْضَبْ" فَرَدَّدَ مِرَارًا، قَالَ: "لَا تَغْضَبْ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), un homme dit au Prophète (ﷺ) : "Fais-moi une recommandation." Il dit : "Ne te mets pas en colère." L'homme répéta sa demande plusieurs fois et il répondit à chaque fois : "Ne te mets pas en colère."
+    </div>
+</div>
+
+<!-- Hadith 17 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 17
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي يَعْلَى شَدَّادِ بْنِ أَوْسٍ رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم قَالَ: "إنَّ اللَّهَ كَتَبَ الْإِحْسَانَ عَلَى كُلِّ شَيْءٍ، فَإِذَا قَتَلْتُمْ فَأَحْسِنُوا الْقِتْلَةَ، وَإِذَا ذَبَحْتُمْ فَأَحْسِنُوا الذَّبْحَةَ، وَلْيُحِدَّ أَحَدُكُمْ شَفْرَتَهُ، وَلْيُرِحْ ذَبِيحَتَهُ"
+    </div>
+    <div class="hadith-translation">
+        D'après Chaddad Ibn Aws (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Allah a prescrit la bienfaisance en toute chose. Si vous tuez, faites-le de la meilleure manière, et si vous égorgez, faites-le de la meilleure manière. Que l'un de vous aiguise bien son couteau et qu'il soulage sa bête."
+    </div>
+</div>
+
+<!-- Hadith 18 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 18
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي ذَرٍّ جُنْدُبِ بْنِ جُنَادَةَ وَأَبِي عَبْدِ الرَّحْمَنِ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم قَالَ: "اتَّقِ اللَّهَ حَيْثُمَا كُنْت، وَأَتْبِعْ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقْ النَّاسَ بِخُلُقٍ حَسَنٍ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Dharr et Mu'adh Ibn Jabal (qu'Allah les agrée), le Messager d'Allah (ﷺ) a dit : "Crains Allah où que tu sois, fais suivre la mauvaise action par une bonne qui l'effacera, et comporte-toi avec les gens de la meilleure manière."
+    </div>
+</div>
+
+<!-- Hadith 19 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 19
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي الْعَبَّاسِ عَبْدِ اللَّهِ بْنِ عَبَّاسٍ رَضِيَ اللهُ عَنْهُمَا قَالَ: كُنْت خَلْفَ النَّبِيِّ صلى الله عليه وسلم يَوْمًا فَقَالَ: "يَا غُلَامُ! إنِّي أُعَلِّمُك كَلِمَاتٍ: احْفَظْ اللَّهَ يَحْفَظْك، احْفَظْ اللَّهَ تَجِدْهُ تُجَاهَك..."
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Abbas (qu'Allah les agrée), j'étais un jour derrière le Prophète (ﷺ) et il me dit : "Ô jeune homme ! Je vais t'enseigner quelques paroles : Préserve Allah, Il te préservera. Préserve Allah, tu Le trouveras devant toi..."
+    </div>
+</div>
+
+<!-- Hadith 20 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 20
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي مَسْعُودٍ عُقْبَةَ بْنِ عَمْرٍو الْأَنْصَارِيِّ الْبَدْرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "إنَّ مِمَّا أَدْرَكَ النَّاسُ مِنْ كَلَامِ النُّبُوَّةِ الْأُولَى: إذَا لَمْ تَسْتَحْيِ فَاصْنَعْ مَا شِئْت"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Mas'ud Al-Ansari (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Parmi les paroles que les gens ont retenues des premiers prophètes, il y a : Si tu n'as pas de pudeur, fais ce que tu veux."
+    </div>
+</div>
+<!-- Hadith 21 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 21
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي عَمْرٍو، وَقِيلَ: أَبِي عَمْرَةَ سُفْيَانَ بْنِ عَبْدِ اللَّهِ رَضِيَ اللهُ عَنْهُ قَالَ: قُلْت: يَا رَسُولَ اللَّهِ! قُلْ لِي فِي الْإِسْلَامِ قَوْلًا لَا أَسْأَلُ عَنْهُ أَحَدًا غَيْرَك. قَالَ: "قُلْ: آمَنْت بِاَللَّهِ، ثُمَّ اسْتَقِمْ"
+    </div>
+    <div class="hadith-translation">
+        D'après Sufyan Ibn Abdullah (qu'Allah l'agrée), j'ai dit : "Ô Messager d'Allah ! Dis-moi concernant l'Islam une parole pour laquelle je n'aurai pas besoin de demander à quelqu'un d'autre que toi." Il dit : "Dis : 'J'ai cru en Allah', puis sois droit."
+    </div>
+</div>
+
+<!-- Hadith 22 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 22
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي عَبْدِ اللَّهِ جَابِرِ بْنِ عَبْدِ اللَّهِ الْأَنْصَارِيِّ رَضِيَ اللهُ عَنْهُمَا: أَنَّ رَجُلًا سَأَلَ رَسُولَ اللَّهِ صلى الله عليه وسلم فَقَالَ: أَرَأَيْت إذَا صَلَّيْت الْمَكْتُوبَاتِ، وَصُمْت رَمَضَانَ، وَأَحْلَلْت الْحَلَالَ، وَحَرَّمْت الْحَرَامَ، وَلَمْ أَزِدْ عَلَى ذَلِكَ شَيْئًا؛ أَأَدْخُلُ الْجَنَّةَ؟ قَالَ: "نَعَمْ"
+    </div>
+    <div class="hadith-translation">
+        D'après Jabir Ibn Abdullah (qu'Allah les agrée), un homme demanda au Messager d'Allah (ﷺ) : "Si j'accomplis les prières obligatoires, que je jeûne le Ramadan, que je considère licite ce qui est licite et illicite ce qui est illicite, et que je n'y ajoute rien, entrerai-je au Paradis ?" Il répondit : "Oui."
+    </div>
+</div>
+
+<!-- Hadith 23 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 23
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي مَالِكٍ الْحَارِثِ بْنِ عَاصِمٍ الْأَشْعَرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "الطُّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ -أَوْ: تَمْلَأُ- مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Malik Al-Ash'ari (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "La purification est la moitié de la foi, 'Al-Hamdulillah' remplit la balance, 'Subhan Allah' et 'Al-Hamdulillah' remplissent (ou : remplit) ce qu'il y a entre le ciel et la terre..."
+    </div>
+</div>
+
+<!-- Hadith 24 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 24
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي ذَرٍّ الْغِفَارِيِّ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه وسلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ عَزَّ وَجَلَّ أَنَّهُ قَالَ: "يَا عِبَادِي! إنِّي حَرَّمْت الظُّلْمَ عَلَى نَفْسِي، وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّمًا؛ فَلَا تَظَالَمُوا..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Dharr (qu'Allah l'agrée), le Prophète (ﷺ) rapporte d'Allah, qu'Il a dit : "Ô Mes serviteurs ! Je Me suis interdit l'injustice à Moi-même et Je l'ai rendue interdite entre vous, alors ne soyez pas injustes les uns envers les autres..."
+    </div>
+</div>
+
+<!-- Hadith 25 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 25
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي ذَرٍّ رَضِيَ اللهُ عَنْهُ أَيْضًا: أَنَّ نَاسًا مِنْ أَصْحَابِ رَسُولِ اللَّهِ صلى الله عليه وسلم قَالُوا لِلنَّبِيِّ صلى الله عليه وسلم: يَا رَسُولَ اللَّهِ! ذَهَبَ أَهْلُ الدُّثُورِ بِالْأُجُورِ؛ يُصَلُّونَ كَمَا نُصَلِّي، وَيَصُومُونَ كَمَا نَصُومُ، وَيَتَصَدَّقُونَ بِفُضُولِ أَمْوَالِهِمْ..."
+    </div>
+    <div class="hadith-translation">
+        Également d'après Abu Dharr (qu'Allah l'agrée), des Compagnons dirent au Prophète (ﷺ) : "Ô Messager d'Allah ! Les riches ont accaparé les récompenses : ils prient comme nous prions, ils jeûnent comme nous jeûnons, et ils font l'aumône avec le surplus de leurs biens..."
+    </div>
+</div>
+
+<!-- Hadith 26 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 26
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "كُلُّ سُلَامَى مِنْ النَّاسِ عَلَيْهِ صَدَقَةٌ، كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ تَعْدِلُ بَيْنَ اثْنَيْنِ صَدَقَةٌ، وَتُعِينُ الرَّجُلَ فِي دَابَّتِهِ فَتَحْمِلُهُ عَلَيْهَا أَوْ تَرْفَعُ لَهُ عَلَيْهَا مَتَاعَهُ صَدَقَةٌ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Chaque articulation du corps humain doit faire l'aumône chaque jour où le soleil se lève. Réconcilier équitablement deux personnes est une aumône. Aider quelqu'un à monter sur sa monture ou l'aider à y hisser ses bagages est une aumône..."
+    </div>
+</div>
+
+<!-- Hadith 27 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 27
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ النَّوَّاسِ بْنِ سَمْعَانَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه وسلم قَالَ: "الْبِرُّ حُسْنُ الْخُلُقِ، وَالْإِثْمُ مَا حَاكَ فِي نَفْسِك وَكَرِهْت أَنْ يَطَّلِعَ عَلَيْهِ النَّاسُ"
+    </div>
+    <div class="hadith-translation">
+        D'après An-Nawwas Ibn Sam'an (qu'Allah l'agrée), le Prophète (ﷺ) a dit : "La vertu, c'est le bon comportement ; et le péché, c'est ce qui agite ton âme et ce que tu détestes que les gens découvrent."
+    </div>
+</div>
+
+<!-- Hadith 28 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 28
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي نَجِيحٍ الْعِرْبَاضِ بْنِ سَارِيَةَ رَضِيَ اللهُ عَنْهُ قَالَ: وَعَظَنَا رَسُولُ اللَّهِ صلى الله عليه وسلم مَوْعِظَةً وَجِلَتْ مِنْهَا الْقُلُوبُ، وَذَرَفَتْ مِنْهَا الْعُيُونُ، فَقُلْنَا: يَا رَسُولَ اللَّهِ! كَأَنَّهَا مَوْعِظَةُ مُوَدِّعٍ فَأَوْصِنَا..."
+    </div>
+    <div class="hadith-translation">
+        D'après Al-'Irbad Ibn Sariya (qu'Allah l'agrée), il dit : "Le Messager d'Allah (ﷺ) nous fit une exhortation qui remua les cœurs et fit couler les larmes. Nous dîmes alors : 'Ô Messager d'Allah ! On dirait que c'est une exhortation d'adieu, fais-nous donc des recommandations...'"
+    </div>
+</div>
+
+<!-- Hadith 29 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 29
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللهُ عَنْهُ قَالَ: قُلْت: يَا رَسُولَ اللَّهِ! أَخْبِرْنِي بِعَمَلٍ يُدْخِلُنِي الْجَنَّةَ وَيُبَاعِدْنِي مِنْ النَّارِ، قَالَ: "لَقَدْ سَأَلْت عَنْ عَظِيمٍ، وَإِنَّهُ لَيَسِيرٌ عَلَى مَنْ يَسَّرَهُ اللَّهُ عَلَيْهِ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Mu'adh Ibn Jabal (qu'Allah l'agrée), j'ai dit : "Ô Messager d'Allah ! Informe-moi d'une œuvre qui me fera entrer au Paradis et m'éloignera de l'Enfer." Il dit : "Tu as demandé quelque chose d'immense, et c'est certes facile pour celui à qui Allah l'a facilité..."
+    </div>
+</div>
+
+<!-- Hadith 30 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 30
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي ثَعْلَبَةَ الْخُشَنِيِّ جُرْثُومِ بْنِ نَاشِرٍ رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم قَالَ: "إنَّ اللَّهَ تَعَالَى فَرَضَ فَرَائِضَ فَلَا تُضَيِّعُوهَا، وَحَدَّ حُدُودًا فَلَا تَعْتَدُوهَا..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Tha'laba Al-Khushani (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Allah a prescrit des obligations, ne les négligez donc pas. Il a fixé des limites, ne les transgressez donc pas..."
+    </div>
+</div>
+<!-- Hadith 31 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 31
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي الْعَبَّاسِ سَهْلِ بْنِ سَعْدٍ السَّاعِدِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: جَاءَ رَجُلٌ إلَى النَّبِيِّ صلى الله عليه وسلم فَقَالَ: يَا رَسُولَ اللَّهِ! دُلَّنِي عَلَى عَمَلٍ إذَا عَمِلْتُهُ أَحَبَّنِي اللَّهُ وَأَحَبَّنِي النَّاسُ، فَقَالَ: "ازْهَدْ فِي الدُّنْيَا يُحِبَّك اللَّهُ، وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّك النَّاسُ"
+    </div>
+    <div class="hadith-translation">
+        D'après Sahl Ibn Sa'd As-Sa'idi (qu'Allah l'agrée), un homme vint au Prophète (ﷺ) et dit : "Ô Messager d'Allah ! Indique-moi une œuvre qui, si je l'accomplis, me fera aimer d'Allah et des gens." Il dit : "Renonce à ce bas monde, Allah t'aimera, et renonce à ce que possèdent les gens, ils t'aimeront."
+    </div>
+</div>
+
+<!-- Hadith 32 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 32
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي سَعِيدٍ سَعْدِ بْنِ مَالِكٍ بْنِ سِنَانٍ الْخُدْرِيِّ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: "لَا ضَرَرَ وَلَا ضِرَارَ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Sa'id Al-Khudri (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Pas de préjudice ni de représailles (en Islam)."
+    </div>
+</div>
+
+<!-- Hadith 33 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 33
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: "لَوْ يُعْطَى النَّاسُ بِدَعْوَاهُمْ لَادَّعَى رِجَالٌ أَمْوَالَ قَوْمٍ وَدِمَاءَهُمْ، لَكِنَّ الْبَيِّنَةَ عَلَى الْمُدَّعِي، وَالْيَمِينَ عَلَى مَنْ أَنْكَرَ"
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Abbas (qu'Allah les agrée), le Messager d'Allah (ﷺ) a dit : "Si l'on donnait aux gens selon leurs prétentions, certains réclameraient les biens et le sang d'autres personnes. Mais la preuve incombe au demandeur et le serment à celui qui nie."
+    </div>
+</div>
+
+<!-- Hadith 34 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 34
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: "مَنْ رَأَى مِنْكُمْ مُنْكَرًا فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِقَلْبِهِ، وَذَلِكَ أَضْعَفُ الْإِيمَانِ"
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Sa'id Al-Khudri (qu'Allah l'agrée), j'ai entendu le Messager d'Allah (ﷺ) dire : "Quiconque d'entre vous voit un mal, qu'il le change avec sa main ; s'il ne le peut pas, alors avec sa langue ; s'il ne le peut pas, alors avec son cœur, et c'est là le plus faible degré de la foi."
+    </div>
+</div>
+
+<!-- Hadith 35 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 35
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا، وَلَا يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ، وَكُونُوا عِبَادَ اللَّهِ إخْوَانًا..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Ne vous enviez pas les uns les autres, ne surenchérissez pas pour tromper l'acheteur, ne vous haïssez pas, ne vous tournez pas le dos les uns aux autres, et que l'un d'entre vous ne vende pas sur la vente de son frère. Soyez, ô serviteurs d'Allah, des frères..."
+    </div>
+</div>
+<!-- Hadith 36 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 36
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه وسلم قَالَ: "مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ، وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالْآخِرَةِ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Prophète (ﷺ) a dit : "Quiconque dissipe un souci parmi les soucis d'un croyant dans ce bas monde, Allah dissipera pour lui un souci parmi les soucis du Jour de la Résurrection. Quiconque facilite à celui qui est dans la difficulté, Allah lui facilitera dans ce bas monde et dans l'au-delà..."
+    </div>
+</div>
+
+<!-- Hadith 37 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 37
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى قَالَ: "إنَّ اللَّهَ كَتَبَ الْحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ: فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً..."
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Abbas (qu'Allah les agrée), le Messager d'Allah (ﷺ) rapporte de son Seigneur : "Allah a écrit les bonnes et les mauvaises actions, puis Il les a détaillées : celui qui a eu l'intention de faire une bonne action et ne l'a pas faite, Allah la lui inscrit comme une bonne action complète..."
+    </div>
+</div>
+
+<!-- Hadith 38 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 38
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: "إنَّ اللَّهَ تَعَالَى قَالَ: مَنْ عَادَى لِي وَلِيًّا فَقَدْ آذَنْتُهُ بِالْحَرْبِ، وَمَا تَقَرَّبَ إلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إلَيَّ مِمَّا افْتَرَضْتُهُ عَلَيْهِ..."
+    </div>
+    <div class="hadith-translation">
+        D'après Abu Hurayra (qu'Allah l'agrée), le Messager d'Allah (ﷺ) a dit : "Allah le Très-Haut a dit : 'Quiconque montre de l'hostilité à l'un de Mes alliés, Je lui déclare la guerre. Mon serviteur ne s'est pas rapproché de Moi par une chose plus aimée de Moi que ce que Je lui ai imposé...'"
+    </div>
+</div>
+
+<!-- Hadith 39 -->
+<div class="hadith-card">
+    <div class="hadith-number">
+        Hadith 39
+        <div class="share-buttons">
+            <button class="share-button" onclick="share('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-button" onclick="share('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-button" onclick="share('twitter')">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+    </div>
+    <div class="hadith-text">
+        عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: "إنَّ اللَّهَ تَجَاوَزَ لِي عَنْ أُمَّتِي الْخَطَأَ، وَالنِّسْيَانَ، وَمَا اسْتُكْرِهُوا عَلَيْهِ"
+    </div>
+    <div class="hadith-translation">
+        D'après Ibn Abbas (qu'Allah les agrée), le Messager d'Allah (ﷺ) a dit : "Allah a pardonné pour ma communauté l'erreur, l'oubli et ce qu'elle fait sous la contrainte."
+    </div>
+</div>
+ 
+ <!-- Hadith 40 -->
+        <div class="hadith-card">
+            <div class="hadith-number">
+                Hadith 40
+                <div class="share-buttons">
+                    <button class="share-button" onclick="share('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="share-button" onclick="share('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-button" onclick="share('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hadith-text">
+                عَنْ ابْنِ عُمَرَ رَضِيَ اللهُ عَنْهُمَا قَالَ: أَخَذَ رَسُولُ اللَّهِ صلى الله عليه وسلم بِمَنْكِبِي، فَقَالَ: "كُنْ فِي الدُّنْيَا كَأَنَّك غَرِيبٌ، أَوْ عَابِرُ سَبِيلٍ" وَكَانَ ابْنُ عُمَرَ رَضِيَ اللهُ عَنْهُمَا يَقُولُ: إذَا أَمْسَيْت فَلَا تَنْتَظِرْ الصَّبَاحَ، وَإِذَا أَصْبَحْت فَلَا تَنْتَظِرْ الْمَسَاءَ، وَخُذْ مِنْ صِحَّتِك لِمَرَضِك، وَمِنْ حَيَاتِك لِمَوْتِك
+            </div>
+            <div class="hadith-translation">
+                D'après Ibn Omar (qu'Allah les agrée), le Messager d'Allah (ﷺ) me prit par l'épaule et dit : "Sois dans ce bas monde comme un étranger ou un passager." Et Ibn Omar (qu'Allah les agrée) disait : "Quand tu es au soir, n'attends pas le matin, et quand tu es au matin, n'attends pas le soir. Prends de ta santé pour ta maladie et de ta vie pour ta mort."
+            </div>
+        </div>
+  
+        <!-- Ajoutez les 39 autres hadiths de la même manière -->
+    </div>
+	<br/><br/>	<br/><br/>
+ <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html" class="active">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    <script>
+        function share(platform) {
+            const text = "Les 40 Hadiths de l'Imam An-Nawawi";
+            const url = window.location.href;
+            
+            switch(platform) {
+                case 'whatsapp':
+                    window.open(`whatsapp://send?text=${text} ${url}`);
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+                    break;
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`);
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

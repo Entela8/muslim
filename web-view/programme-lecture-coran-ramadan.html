@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme de Lecture du Coran - Ramadan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #f5f5f5;
+            padding-bottom: 70px;
+        }
+
+        .ramadan-tracker {
+            padding: 10px;
+        }
+
+        .tracker-title {
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-top: 5px solid #2a5298;
+        }
+
+        .day-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e7ff;
+        }
+
+        .juz-title {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #1e3c72;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .surah-list {
+            list-style: none;
+        }
+
+        .surah-item {
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #2c3e50;
+            transition: background-color 0.2s;
+        }
+
+        .surah-item:active {
+            background: #e0e7ff;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ramadan-tracker">
+        <h1 class="tracker-title">Programme de Lecture du Coran - Ramadan</h1>
+        
+        <div class="days-grid">
+            <!-- Jour 1 -->
+            <div class="day-card">
+                <div class="day-header">Jour 1</div>
+                <div class="juz-title">Juz 1</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Fatiha (Sourate 1, versets 1-7)</li>
+                    <li class="surah-item">Al-Baqarah (Sourate 2, versets 1-141)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 2 -->
+            <div class="day-card">
+                <div class="day-header">Jour 2</div>
+                <div class="juz-title">Juz 2</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Baqarah (Sourate 2, versets 142-252)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 3 -->
+            <div class="day-card">
+                <div class="day-header">Jour 3</div>
+                <div class="juz-title">Juz 3</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Baqarah (Sourate 2, versets 253-286)</li>
+                    <li class="surah-item">Āl-'Imrān (Sourate 3, versets 1-92)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 4 -->
+            <div class="day-card">
+                <div class="day-header">Jour 4</div>
+                <div class="juz-title">Juz 4</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Āl-'Imrān (Sourate 3, versets 93-200)</li>
+                    <li class="surah-item">An-Nisā' (Sourate 4, versets 1-23)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 5 -->
+            <div class="day-card">
+                <div class="day-header">Jour 5</div>
+                <div class="juz-title">Juz 5</div>
+                <ul class="surah-list">
+                    <li class="surah-item">An-Nisā' (Sourate 4, versets 24-147)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 6 -->
+            <div class="day-card">
+                <div class="day-header">Jour 6</div>
+                <div class="juz-title">Juz 6</div>
+                <ul class="surah-list">
+                    <li class="surah-item">An-Nisā' (Sourate 4, versets 148-176)</li>
+                    <li class="surah-item">Al-Mā'idah (Sourate 5, versets 1-81)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 7 -->
+            <div class="day-card">
+                <div class="day-header">Jour 7</div>
+                <div class="juz-title">Juz 7</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Mā'idah (Sourate 5, versets 82-120)</li>
+                    <li class="surah-item">Al-An'ām (Sourate 6, versets 1-110)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 8 -->
+            <div class="day-card">
+                <div class="day-header">Jour 8</div>
+                <div class="juz-title">Juz 8</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-An'ām (Sourate 6, versets 111-165)</li>
+                    <li class="surah-item">Al-A'rāf (Sourate 7, versets 1-87)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 9 -->
+            <div class="day-card">
+                <div class="day-header">Jour 9</div>
+                <div class="juz-title">Juz 9</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-A'rāf (Sourate 7, versets 88-206)</li>
+                    <li class="surah-item">Al-Anfāl (Sourate 8, versets 1-40)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 10 -->
+            <div class="day-card">
+                <div class="day-header">Jour 10</div>
+                <div class="juz-title">Juz 10</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Anfāl (Sourate 8, versets 41-75)</li>
+                    <li class="surah-item">At-Tawbah (Sourate 9, versets 1-92)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 11 -->
+            <div class="day-card">
+                <div class="day-header">Jour 11</div>
+                <div class="juz-title">Juz 11</div>
+                <ul class="surah-list">
+                    <li class="surah-item">At-Tawbah (Sourate 9, versets 93-129)</li>
+                    <li class="surah-item">Yūnus (Sourate 10)</li>
+                    <li class="surah-item">Hūd (Sourate 11, versets 1-5)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 12 -->
+            <div class="day-card">
+                <div class="day-header">Jour 12</div>
+                <div class="juz-title">Juz 12</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Hūd (Sourate 11, versets 6-123)</li>
+                    <li class="surah-item">Yūsuf (Sourate 12, versets 1-52)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 13 -->
+            <div class="day-card">
+                <div class="day-header">Jour 13</div>
+                <div class="juz-title">Juz 13</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Yūsuf (Sourate 12, versets 53-111)</li>
+                    <li class="surah-item">Ar-Ra'd (Sourate 13)</li>
+                    <li class="surah-item">Ibrāhīm (Sourate 14)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 14 -->
+            <div class="day-card">
+                <div class="day-header">Jour 14</div>
+                <div class="juz-title">Juz 14</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Ḥijr (Sourate 15)</li>
+                    <li class="surah-item">An-Naḥl (Sourate 16)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 15 -->
+            <div class="day-card">
+                <div class="day-header">Jour 15</div>
+                <div class="juz-title">Juz 15</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Isrā' (Sourate 17)</li>
+                    <li class="surah-item">Al-Kahf (Sourate 18, versets 1-74)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 16 -->
+            <div class="day-card">
+                <div class="day-header">Jour 16</div>
+                <div class="juz-title">Juz 16</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Kahf (Sourate 18, versets 75-110)</li>
+                    <li class="surah-item">Maryam (Sourate 19)</li>
+                    <li class="surah-item">Ṭā-Hā (Sourate 20)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 17 -->
+            <div class="day-card">
+                <div class="day-header">Jour 17</div>
+                <div class="juz-title">Juz 17</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Anbiyā' (Sourate 21)</li>
+                    <li class="surah-item">Al-Ḥajj (Sourate 22)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 18 -->
+            <div class="day-card">
+                <div class="day-header">Jour 18</div>
+                <div class="juz-title">Juz 18</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Mu'minūn (Sourate 23)</li>
+                    <li class="surah-item">An-Nūr (Sourate 24)</li>
+                    <li class="surah-item">Al-Furqān (Sourate 25)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 19 -->
+            <div class="day-card">
+                <div class="day-header">Jour 19</div>
+                <div class="juz-title">Juz 19</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Ash-Shu'arā' (Sourate 26)</li>
+                    <li class="surah-item">An-Naml (Sourate 27)</li>
+                    <li class="surah-item">Al-Qaṣaṣ (Sourate 28)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 20 -->
+            <div class="day-card">
+                <div class="day-header">Jour 20</div>
+                <div class="juz-title">Juz 20</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-'Ankabūt (Sourate 29)</li>
+                    <li class="surah-item">Ar-Rūm (Sourate 30)</li>
+                    <li class="surah-item">Luqmān (Sourate 31)</li>
+                    <li class="surah-item">As-Sajdah (Sourate 32)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 21 -->
+            <div class="day-card">
+                <div class="day-header">Jour 21</div>
+                <div class="juz-title">Juz 21</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Aḥzāb (Sourate 33)</li>
+                    <li class="surah-item">Saba' (Sourate 34)</li>
+                    <li class="surah-item">Fāṭir (Sourate 35)</li>
+                    <li class="surah-item">Yā-Sīn (Sourate 36)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 22 -->
+            <div class="day-card">
+                <div class="day-header">Jour 22</div>
+                <div class="juz-title">Juz 22</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Aṣ-Ṣāffāt (Sourate 37)</li>
+                    <li class="surah-item">Ṣād (Sourate 38)</li>
+                    <li class="surah-item">Az-Zumar (Sourate 39)</li>
+                    <li class="surah-item">Ghāfir (Sourate 40)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 23 -->
+            <div class="day-card">
+                <div class="day-header">Jour 23</div>
+                <div class="juz-title">Juz 23</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Fuṣṣilat (Sourate 41)</li>
+                    <li class="surah-item">Ash-Shūrā (Sourate 42)</li>
+                    <li class="surah-item">Az-Zukhruf (Sourate 43)</li>
+                    <li class="surah-item">Ad-Dukhān (Sourate 44)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 24 -->
+            <div class="day-card">
+                <div class="day-header">Jour 24</div>
+                <div class="juz-title">Juz 24</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Jāthiyah (Sourate 45)</li>
+                    <li class="surah-item">Al-Aḥqāf (Sourate 46)</li>
+                    <li class="surah-item">Muḥammad (Sourate 47)</li>
+                    <li class="surah-item">Al-Fatḥ (Sourate 48)</li>
+                    <li class="surah-item">Al-Ḥujurāt (Sourate 49)</li>
+                    <li class="surah-item">Qāf (Sourate 50)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 25 -->
+            <div class="day-card">
+                <div class="day-header">Jour 25</div>
+                <div class="juz-title">Juz 25</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Adh-Dhāriyāt (Sourate 51)</li>
+                    <li class="surah-item">Aṭ-Ṭūr (Sourate 52)</li>
+                    <li class="surah-item">An-Najm (Sourate 53)</li>
+                    <li class="surah-item">Al-Qamar (Sourate 54)</li>
+                    <li class="surah-item">Ar-Raḥmān (Sourate 55)</li>
+                    <li class="surah-item">Al-Wāqi'ah (Sourate 56)</li>
+                    <li class="surah-item">Al-Ḥadīd (Sourate 57)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 26 -->
+            <div class="day-card">
+                <div class="day-header">Jour 26</div>
+                <div class="juz-title">Juz 26</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Mujādilah (Sourate 58)</li>
+                    <li class="surah-item">Al-Ḥashr (Sourate 59)</li>
+                    <li class="surah-item">Al-Mumtaḥanah (Sourate 60)</li>
+                    <li class="surah-item">Aṣ-Ṣaff (Sourate 61)</li>
+                    <li class="surah-item">Al-Jumu'ah (Sourate 62)</li>
+                    <li class="surah-item">Al-Munāfiqūn (Sourate 63)</li>
+                    <li class="surah-item">At-Taghābun (Sourate 64)</li>
+                    <li class="surah-item">Aṭ-Ṭalāq (Sourate 65)</li>
+                    <li class="surah-item">At-Taḥrīm (Sourate 66)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 27 -->
+            <div class="day-card">
+                <div class="day-header">Jour 27</div>
+                <div class="juz-title">Juz 27</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Mulk (Sourate 67)</li>
+                    <li class="surah-item">Al-Qalam (Sourate 68)</li>
+                    <li class="surah-item">Al-Ḥāqqah (Sourate 69)</li>
+                    <li class="surah-item">Al-Ma'ārij (Sourate 70)</li>
+                    <li class="surah-item">Nūḥ (Sourate 71)</li>
+                    <li class="surah-item">Al-Jinn (Sourate 72)</li>
+                    <li class="surah-item">Al-Muzzammil (Sourate 73)</li>
+                    <li class="surah-item">Al-Muddaththir (Sourate 74)</li>
+                    <li class="surah-item">Al-Qiyāmah (Sourate 75)</li>
+                    <li class="surah-item">Al-Insān (Sourate 76)</li>
+                    <li class="surah-item">Al-Mursalāt (Sourate 77)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 28 -->
+            <div class="day-card">
+                <div class="day-header">Jour 28</div>
+                <div class="juz-title">Juz 28</div>
+                <ul class="surah-list">
+                    <li class="surah-item">An-Naba' (Sourate 78)</li>
+                    <li class="surah-item">An-Nāzi'āt (Sourate 79)</li>
+                    <li class="surah-item">'Abasa (Sourate 80)</li>
+                    <li class="surah-item">At-Takwīr (Sourate 81)</li>
+                    <li class="surah-item">Al-Infiṭār (Sourate 82)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 29 -->
+            <div class="day-card">
+                <div class="day-header">Jour 29</div>
+                <div class="juz-title">Juz 29</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Muṭaffifīn (Sourate 83)</li>
+                    <li class="surah-item">Al-Inshiqāq (Sourate 84)</li>
+                    <li class="surah-item">Al-Burūj (Sourate 85)</li>
+                    <li class="surah-item">Aṭ-Ṭāriq (Sourate 86)</li>
+                    <li class="surah-item">Al-A'lā (Sourate 87)</li>
+                    <li class="surah-item">Al-Ghāshiyah (Sourate 88)</li>
+                    <li class="surah-item">Al-Fajr (Sourate 89)</li>
+                </ul>
+            </div>
+
+            <!-- Jour 30 -->
+            <div class="day-card">
+                <div class="day-header">Jour 30</div>
+                <div class="juz-title">Juz 30</div>
+                <ul class="surah-list">
+                    <li class="surah-item">Al-Balad (Sourate 90)</li>
+                    <li class="surah-item">Ash-Shams (Sourate 91)</li>
+                    <li class="surah-item">Al-Layl (Sourate 92)</li>
+                    <li class="surah-item">Aḍ-Ḍuḥā (Sourate 93)</li>
+                    <li class="surah-item">Ash-Sharḥ (Sourate 94)</li>
+                    <li class="surah-item">At-Tīn (Sourate 95)</li>
+                    <li class="surah-item">Al-'Alaq (Sourate 96)</li>
+                    <li class="surah-item">Al-Qadr (Sourate 97)</li>
+                    <li class="surah-item">Al-Bayyinah (Sourate 98)</li>
+                    <li class="surah-item">Az-Zalzalah (Sourate 99)</li>
+                    <li class="surah-item">Al-'Ādiyāt (Sourate 100)</li>
+                    <li class="surah-item">Al-Qāri'ah (Sourate 101)</li>
+                    <li class="surah-item">At-Takāthur (Sourate 102)</li>
+                    <li class="surah-item">Al-'Aṣr (Sourate 103)</li>
+                    <li class="surah-item">Al-Humazah (Sourate 104)</li>
+                    <li class="surah-item">Al-Fīl (Sourate 105)</li>
+                    <li class="surah-item">Quraysh (Sourate 106)</li>
+                    <li class="surah-item">Al-Mā'ūn (Sourate 107)</li>
+                    <li class="surah-item">Al-Kawthar (Sourate 108)</li>
+                    <li class="surah-item">Al-Kāfirūn (Sourate 109)</li>
+                    <li class="surah-item">An-Naṣr (Sourate 110)</li>
+                    <li class="surah-item">Al-Masad (Sourate 111)</li>
+                    <li class="surah-item">Al-Ikhlāṣ (Sourate 112)</li>
+                    <li class="surah-item">Al-Falaq (Sourate 113)</li>
+                    <li class="surah-item">An-Nās (Sourate 114)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html" class="active">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+</body>
+</html>

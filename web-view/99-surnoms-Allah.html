@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Les 99 noms d'Allah à apprendre et à mémoriser en ligne pour le musulman.</title>
+	    <title>Apprendre les 99 noms d'Allah et les mémoriser en ligne pour le musulkman sur Muslim Alim Pro.</title>
+			<link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #fff;
+            line-height: 1.6;
+            padding: 10px;
+        }
+      .page-title {
+            font-size: 28px;
+            padding: 20px 0;
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+      
+  
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+
+
+        .search-container {
+            margin: 1rem 0;
+            padding: 0 0.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .names-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .name-card {
+            border-radius: 15px;
+            padding: 1.8rem;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .name-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .gradient-1 { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .gradient-2 { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .gradient-3 { background: linear-gradient(135deg, #834d9b 0%, #d04ed6 100%); }
+        .gradient-4 { background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%); }
+        .gradient-5 { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .gradient-6 { background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%); }
+        .gradient-7 { background: linear-gradient(135deg, #141e30 0%, #243b55 100%); }
+        .gradient-8 { background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%); }
+        .gradient-9 { background: linear-gradient(135deg, #457fca 0%, #5691c8 100%); }
+        .gradient-10 { background: linear-gradient(135deg, #6a3093 0%, #a044ff 100%); }
+
+        .name-content {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .number {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .name-text {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .arabic {
+            font-size: 2.2rem;
+            font-family: "Traditional Arabic", serif;
+        }
+
+        .arabic-meaning {
+            font-size: 1.8rem;
+            font-family: "Traditional Arabic", serif;
+            opacity: 0.9;
+        }
+
+        .transliteration {
+            font-size: 1.3rem;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        .french {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .audio-controls {
+            margin-left: auto;
+        }
+
+        .audio-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .audio-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .audio-button i {
+            font-size: 1.2rem;
+        }
+
+        .audio-button.playing {
+            background: rgba(255,255,255,0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #721c24;
+            background: #f8d7da;
+            border-radius: 12px;
+            margin: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .name-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .number {
+                margin: 0 auto;
+            }
+
+            .audio-controls {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+        <h1 class="page-title">Les 99 Noms d'Allah</h1>
+        <p>الأسماء الحسنى</p>
+ 
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Rechercher un nom..." id="searchInput">
+    </div>
+
+    <div id="content">
+        <div class="loading">Chargement des noms d'Allah...</div>
+    </div>
+	<br/>	<br/>	<br/>	<br/>
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    <script>
+        let namesData = [];
+        const audioCache = new Map();
+
+        // Dictionnaire complet des 99 noms avec leurs traductions
+        const namesDict = [
+            {
+                number: 1,
+                arabic: "ٱلرَّحْمَٰن",
+                arabicMeaning: "الرحمن",
+                transliteration: "Ar-Rahman",
+                french: "Le Tout Miséricordieux"
+            },
+            {
+                number: 2,
+                arabic: "ٱلرَّحِيم",
+                arabicMeaning: "الرحيم",
+                transliteration: "Ar-Rahim",
+                french: "Le Très Miséricordieux"
+            },
+            {
+                number: 3,
+                arabic: "ٱلْمَلِك",
+                arabicMeaning: "الملك",
+                transliteration: "Al-Malik",
+                french: "Le Souverain"
+            },
+            {
+                number: 4,
+                arabic: "ٱلْقُدُّوس",
+                arabicMeaning: "القدوس",
+                transliteration: "Al-Quddus",
+                french: "Le Saint"
+            },
+            {
+                number: 5,
+                arabic: "ٱلسَّلَام",
+                arabicMeaning: "السلام",
+                transliteration: "As-Salam",
+                french: "La Paix"
+            },
+   {
+                number: 6,
+                arabic: "ٱلْمُؤْمِن",
+                arabicMeaning: "المؤمن",
+                transliteration: "Al-Mu'min",
+                french: "Le Fidèle"
+            },
+        {
+    number: 7,
+    arabic: "ٱلْمُهَيْمِن",
+    arabicMeaning: "المهيمن",
+    transliteration: "Al-Muhaymin",
+    french: "Le Protecteur"
+},
+{
+    number: 8,
+    arabic: "ٱلْعَزِيز",
+    arabicMeaning: "العزيز",
+    transliteration: "Al-Aziz",
+    french: "Le Tout Puissant"
+},
+{
+    number: 9,
+    arabic: "ٱلْجَبَّار",
+    arabicMeaning: "الجبار",
+    transliteration: "Al-Jabbar",
+    french: "Le Contraignant"
+},
+{
+    number: 10,
+    arabic: "ٱلْمُتَكَبِّر",
+    arabicMeaning: "المتكبر",
+    transliteration: "Al-Mutakabbir",
+    french: "Le Suprême"
+},
+{
+    number: 11,
+    arabic: "ٱلْخَالِق",
+    arabicMeaning: "الخالق",
+    transliteration: "Al-Khaliq",
+    french: "Le Créateur"
+},
+{
+    number: 12,
+    arabic: "ٱلْبَارِئ",
+    arabicMeaning: "البارئ",
+    transliteration: "Al-Bari'",
+    french: "Le Producteur"
+},
+{
+    number: 13,
+    arabic: "ٱلْمُصَوِّر",
+    arabicMeaning: "المصور",
+    transliteration: "Al-Musawwir",
+    french: "Le Formateur"
+},
+{
+    number: 14,
+    arabic: "ٱلْغَفَّار",
+    arabicMeaning: "الغفار",
+    transliteration: "Al-Ghaffar",
+    french: "Le Pardonneur"
+},
+{
+    number: 15,
+    arabic: "ٱلْقَهَّار",
+    arabicMeaning: "القهار",
+    transliteration: "Al-Qahhar",
+    french: "Le Dominateur"
+},
+{
+    number: 16,
+    arabic: "ٱلْوَهَّاب",
+    arabicMeaning: "الوهاب",
+    transliteration: "Al-Wahhab",
+    french: "Le Donateur"
+},
+{
+    number: 17,
+    arabic: "ٱلرَّزَّاق",
+    arabicMeaning: "الرزاق",
+    transliteration: "Ar-Razzaq",
+    french: "Le Pourvoyeur"
+},
+{
+    number: 18,
+    arabic: "ٱلْفَتَّاح",
+    arabicMeaning: "الفتاح",
+    transliteration: "Al-Fattah",
+    french: "Celui qui ouvre"
+},
+{
+    number: 19,
+    arabic: "ٱلْعَلِيم",
+    arabicMeaning: "العليم",
+    transliteration: "Al-Alim",
+    french: "L'Omniscient"
+},
+{
+    number: 20,
+    arabic: "ٱلْقَابِض",
+    arabicMeaning: "القابض",
+    transliteration: "Al-Qabid",
+    french: "Celui qui restreint"
+},
+{
+    number: 21,
+    arabic: "ٱلْبَاسِط",
+    arabicMeaning: "الباسط",
+    transliteration: "Al-Basit",
+    french: "Celui qui étend"
+},
+{
+    number: 22,
+    arabic: "ٱلْخَافِض",
+    arabicMeaning: "الخافض",
+    transliteration: "Al-Khafid",
+    french: "Celui qui abaisse"
+},
+{
+    number: 23,
+    arabic: "ٱلرَّافِع",
+    arabicMeaning: "الرافع",
+    transliteration: "Ar-Rafi",
+    french: "Celui qui élève"
+},
+{
+    number: 24,
+    arabic: "ٱلْمُعِز",
+    arabicMeaning: "المعز",
+    transliteration: "Al-Mu'izz",
+    french: "Celui qui honore"
+},
+{
+    number: 25,
+    arabic: "ٱلْمُذِل",
+    arabicMeaning: "المذل",
+    transliteration: "Al-Mudhill",
+    french: "Celui qui humilie"
+},
+{
+    number: 26,
+    arabic: "ٱلسَّمِيع",
+    arabicMeaning: "السميع",
+    transliteration: "As-Sami",
+    french: "Celui qui entend tout"
+},
+{
+    number: 27,
+    arabic: "ٱلْبَصِير",
+    arabicMeaning: "البصير",
+    transliteration: "Al-Basir",
+    french: "Celui qui voit tout"
+},
+{
+    number: 28,
+    arabic: "ٱلْحَكَم",
+    arabicMeaning: "الحكم",
+    transliteration: "Al-Hakam",
+    french: "Le Juge"
+},
+{
+    number: 29,
+    arabic: "ٱلْعَدْل",
+    arabicMeaning: "العدل",
+    transliteration: "Al-Adl",
+    french: "Le Juste"
+},
+{
+    number: 30,
+    arabic: "ٱلْلَّطِيف",
+    arabicMeaning: "اللطيف",
+    transliteration: "Al-Latif",
+    french: "Le Subtil"
+},
+{
+    number: 31,
+    arabic: "ٱلْخَبِير",
+    arabicMeaning: "الخبير",
+    transliteration: "Al-Khabir",
+    french: "Le Parfaitement Connaisseur"
+},
+{
+    number: 32,
+    arabic: "ٱلْحَلِيم",
+    arabicMeaning: "الحليم",
+    transliteration: "Al-Halim",
+    french: "Le Longanime"
+},
+{
+    number: 33,
+    arabic: "ٱلْعَظِيم",
+    arabicMeaning: "العظيم",
+    transliteration: "Al-Azim",
+    french: "L'Immense"
+},
+{
+    number: 34,
+    arabic: "ٱلْغَفُور",
+    arabicMeaning: "الغفور",
+    transliteration: "Al-Ghafur",
+    french: "Celui qui pardonne"
+},
+{
+    number: 35,
+    arabic: "ٱلشَّكُور",
+    arabicMeaning: "الشكور",
+    transliteration: "Ash-Shakur",
+    french: "Le Reconnaissant"
+},
+{
+    number: 36,
+    arabic: "ٱلْعَلِي",
+    arabicMeaning: "العلي",
+    transliteration: "Al-Ali",
+    french: "Le Très-Haut"
+},
+{
+    number: 37,
+    arabic: "ٱلْكَبِير",
+    arabicMeaning: "الكبير",
+    transliteration: "Al-Kabir",
+    french: "Le Grand"
+},
+{
+    number: 38,
+    arabic: "ٱلْحَفِيظ",
+    arabicMeaning: "الحفيظ",
+    transliteration: "Al-Hafiz",
+    french: "Le Gardien"
+},
+{
+    number: 39,
+    arabic: "ٱلْمُقِيت",
+    arabicMeaning: "المقيت",
+    transliteration: "Al-Muqit",
+    french: "Le Nourricier"
+},
+{
+    number: 40,
+    arabic: "ٱلْحَسِيب",
+    arabicMeaning: "الحسيب",
+    transliteration: "Al-Hasib",
+    french: "Celui qui tient compte"
+},
+{
+    number: 41,
+    arabic: "ٱلْجَلِيل",
+    arabicMeaning: "الجليل",
+    transliteration: "Al-Jalil",
+    french: "Le Majestueux"
+},
+{
+    number: 42,
+    arabic: "ٱلْكَرِيم",
+    arabicMeaning: "الكريم",
+    transliteration: "Al-Karim",
+    french: "Le Généreux"
+},
+{
+    number: 43,
+    arabic: "ٱلرَّقِيب",
+    arabicMeaning: "الرقيب",
+    transliteration: "Ar-Raqib",
+    french: "L'Observateur"
+},
+{
+    number: 44,
+    arabic: "ٱلْمُجِيب",
+    arabicMeaning: "المجيب",
+    transliteration: "Al-Mujib",
+    french: "Celui qui répond"
+},
+{
+    number: 45,
+    arabic: "ٱلْوَاسِع",
+    arabicMeaning: "الواسع",
+    transliteration: "Al-Wasi",
+    french: "L'Omnipotent"
+},
+{
+    number: 46,
+    arabic: "ٱلْحَكِيم",
+    arabicMeaning: "الحكيم",
+    transliteration: "Al-Hakim",
+    french: "Le Sage"
+},
+{
+    number: 47,
+    arabic: "ٱلْوَدُود",
+    arabicMeaning: "الودود",
+    transliteration: "Al-Wadud",
+    french: "L'Aimant"
+},
+{
+    number: 48,
+    arabic: "ٱلْمَجِيد",
+    arabicMeaning: "المجيد",
+    transliteration: "Al-Majid",
+    french: "Le Glorieux"
+},
+{
+    number: 49,
+    arabic: "ٱلْبَاعِث",
+    arabicMeaning: "الباعث",
+    transliteration: "Al-Ba'ith",
+    french: "Celui qui ressuscite"
+},
+{
+    number: 50,
+    arabic: "ٱلشَّهِيد",
+    arabicMeaning: "الشهيد",
+    transliteration: "Ash-Shahid",
+    french: "Le Témoin"
+},
+{
+    number: 51,
+    arabic: "ٱلْحَق",
+    arabicMeaning: "الحق",
+    transliteration: "Al-Haqq",
+    french: "La Vérité"
+},
+{
+    number: 52,
+    arabic: "ٱلْوَكِيل",
+    arabicMeaning: "الوكيل",
+    transliteration: "Al-Wakil",
+    french: "Le Gérant"
+},
+{
+    number: 53,
+    arabic: "ٱلْقَوِي",
+    arabicMeaning: "القوي",
+    transliteration: "Al-Qawi",
+    french: "Le Fort"
+},
+{
+    number: 54,
+    arabic: "ٱلْمَتِين",
+    arabicMeaning: "المتين",
+    transliteration: "Al-Matin",
+    french: "L'Inébranlable"
+},
+{
+    number: 55,
+    arabic: "ٱلْوَلِي",
+    arabicMeaning: "الولي",
+    transliteration: "Al-Wali",
+    french: "Le Protecteur"
+},
+{
+    number: 56,
+    arabic: "ٱلْحَمِيد",
+    arabicMeaning: "الحميد",
+    transliteration: "Al-Hamid",
+    french: "Le Digne de louange"
+},
+{
+    number: 57,
+    arabic: "ٱلْمُحْصِي",
+    arabicMeaning: "المحصي",
+    transliteration: "Al-Muhsi",
+    french: "Celui qui dénombre tout"
+},
+{
+    number: 58,
+    arabic: "ٱلْمُبْدِئ",
+    arabicMeaning: "المبدئ",
+    transliteration: "Al-Mubdi",
+    french: "Celui qui commence"
+},
+{
+    number: 59,
+    arabic: "ٱلْمُعِيد",
+    arabicMeaning: "المعيد",
+    transliteration: "Al-Mu'id",
+    french: "Celui qui recommence"
+},
+{
+    number: 60,
+    arabic: "ٱلْمُحْيِى",
+    arabicMeaning: "المحيى",
+    transliteration: "Al-Muhyi",
+    french: "Celui qui donne la vie"
+},
+{
+    number: 61,
+    arabic: "ٱلْمُمِيت",
+    arabicMeaning: "المميت",
+    transliteration: "Al-Mumit",
+    french: "Celui qui donne la mort"
+},
+{
+    number: 62,
+    arabic: "ٱلْحَى",
+    arabicMeaning: "الحي",
+    transliteration: "Al-Hayy",
+    french: "Le Vivant"
+},
+{
+    number: 63,
+    arabic: "ٱلْقَيُّوم",
+    arabicMeaning: "القيوم",
+    transliteration: "Al-Qayyum",
+    french: "Celui qui subsiste par Lui-même"
+},
+{
+    number: 64,
+    arabic: "ٱلْوَاجِد",
+    arabicMeaning: "الواجد",
+    transliteration: "Al-Wajid",
+    french: "L'Opulent"
+},
+{
+    number: 65,
+    arabic: "ٱلْمَاجِد",
+    arabicMeaning: "الماجد",
+    transliteration: "Al-Majid",
+    french: "Le Glorieux"
+},
+{
+    number: 66,
+    arabic: "ٱلْوَاحِد",
+    arabicMeaning: "الواحد",
+    transliteration: "Al-Wahid",
+    french: "L'Unique"
+},
+{
+    number: 67,
+    arabic: "ٱلْأَحَد",
+    arabicMeaning: "الأحد",
+    transliteration: "Al-Ahad",
+    french: "L'Un"
+},
+{
+    number: 68,
+    arabic: "ٱلصَّمَد",
+    arabicMeaning: "الصمد",
+    transliteration: "As-Samad",
+    french: "L'Absolu"
+},
+{
+    number: 69,
+    arabic: "ٱلْقَادِر",
+    arabicMeaning: "القادر",
+    transliteration: "Al-Qadir",
+    french: "Le Capable"
+},
+{
+    number: 70,
+    arabic: "ٱلْمُقْتَدِر",
+    arabicMeaning: "المقتدر",
+    transliteration: "Al-Muqtadir",
+    french: "Le Tout-Puissant"
+},
+{
+    number: 71,
+    arabic: "ٱلْمُقَدِّم",
+    arabicMeaning: "المقدم",
+    transliteration: "Al-Muqaddim",
+    french: "Celui qui fait avancer"
+},
+{
+    number: 72,
+    arabic: "ٱلْمُؤَخِّر",
+    arabicMeaning: "المؤخر",
+    transliteration: "Al-Mu'akhkhir",
+    french: "Celui qui fait reculer"
+},
+{
+    number: 73,
+    arabic: "ٱلْأَوَّل",
+    arabicMeaning: "الأول",
+    transliteration: "Al-Awwal",
+    french: "Le Premier"
+},
+{
+    number: 74,
+    arabic: "ٱلْآخِر",
+    arabicMeaning: "الآخر",
+    transliteration: "Al-Akhir",
+    french: "Le Dernier"
+},
+{
+    number: 75,
+    arabic: "ٱلظَّاهِر",
+    arabicMeaning: "الظاهر",
+    transliteration: "Az-Zahir",
+    french: "L'Apparent"
+},
+{
+    number: 76,
+    arabic: "ٱلْبَاطِن",
+    arabicMeaning: "الباطن",
+    transliteration: "Al-Batin",
+    french: "Le Caché"
+},
+{
+    number: 77,
+    arabic: "ٱلْوَالِي",
+    arabicMeaning: "الوالي",
+    transliteration: "Al-Wali",
+    french: "Le Gouverneur"
+},
+{
+    number: 78,
+    arabic: "ٱلْمُتَعَالِي",
+    arabicMeaning: "المتعالي",
+    transliteration: "Al-Muta'ali",
+    french: "Le Plus Élevé"
+},
+{
+    number: 79,
+    arabic: "ٱلْبَرّ",
+    arabicMeaning: "البر",
+    transliteration: "Al-Barr",
+    french: "Le Bienfaisant"
+},
+{
+    number: 80,
+    arabic: "ٱلتَّوَّاب",
+    arabicMeaning: "التواب",
+    transliteration: "At-Tawwab",
+    french: "Celui qui accepte le repentir"
+},
+{
+    number: 81,
+    arabic: "ٱلْمُنْتَقِم",
+    arabicMeaning: "المنتقم",
+    transliteration: "Al-Muntaqim",
+    french: "Le Vengeur"
+},
+{
+    number: 82,
+    arabic: "ٱلْعَفُو",
+    arabicMeaning: "العفو",
+    transliteration: "Al-Afuw",
+    french: "Celui qui efface les péchés"
+},
+{
+    number: 83,
+    arabic: "ٱلرَّؤُوف",
+    arabicMeaning: "الرؤوف",
+    transliteration: "Ar-Ra'uf",
+    french: "Le Compatissant"
+},
+{
+    number: 84,
+    arabic: "مَالِكُ ٱلْمُلْك",
+    arabicMeaning: "مالك الملك",
+    transliteration: "Malik-al-Mulk",
+    french: "Le Maître de la Royauté"
+},
+{
+    number: 85,
+    arabic: "ذُو ٱلْجَلَالِ وَٱلْإِكْرَام",
+    arabicMeaning: "ذو الجلال والإكرام",
+    transliteration: "Dhul-Jalali-wal-Ikram",
+    french: "Le Seigneur de Majesté et de Générosité"
+},
+{
+    number: 86,
+    arabic: "ٱلْمُقْسِط",
+    arabicMeaning: "المقسط",
+    transliteration: "Al-Muqsit",
+    french: "L'Équitable"
+},
+{
+    number: 87,
+    arabic: "ٱلْجَامِع",
+    arabicMeaning: "الجامع",
+    transliteration: "Al-Jami",
+    french: "Celui qui réunit"
+},
+{
+    number: 88,
+    arabic: "ٱلْغَنِيّ",
+    arabicMeaning: "الغني",
+    transliteration: "Al-Ghani",
+    french: "Le Riche"
+},
+{
+    number: 89,
+    arabic: "ٱلْمُغْنِي",
+    arabicMeaning: "المغني",
+    transliteration: "Al-Mughni",
+    french: "Celui qui enrichit"
+},
+{
+    number: 90,
+    arabic: "ٱلْمَانِع",
+    arabicMeaning: "المانع",
+    transliteration: "Al-Mani",
+    french: "Celui qui empêche"
+},
+{
+    number: 91,
+    arabic: "ٱلضَّارّ",
+    arabicMeaning: "الضار",
+    transliteration: "Ad-Darr",
+    french: "Celui qui afflige"
+},
+{
+    number: 92,
+    arabic: "ٱلنَّافِع",
+    arabicMeaning: "النافع",
+    transliteration: "An-Nafi",
+    french: "Celui qui est profitable"
+},
+{
+    number: 93,
+    arabic: "ٱلنُّور",
+    arabicMeaning: "النور",
+    transliteration: "An-Nur",
+    french: "La Lumière"
+},
+{
+    number: 94,
+    arabic: "ٱلْهَادِي",
+    arabicMeaning: "الهادي",
+    transliteration: "Al-Hadi",
+    french: "Le Guide"
+},
+{
+    number: 95,
+    arabic: "ٱلْبَدِيع",
+    arabicMeaning: "البديع",
+    transliteration: "Al-Badi",
+    french: "L'Inventeur"
+},
+{
+    number: 96,
+    arabic: "ٱلْبَاقِي",
+    arabicMeaning: "الباقي",
+    transliteration: "Al-Baqi",
+    french: "L'Éternel"
+},
+{
+    number: 97,
+    arabic: "ٱلْوَارِث",
+    arabicMeaning: "الوارث",
+    transliteration: "Al-Warith",
+    french: "L'Héritier"
+},
+{
+    number: 98,
+    arabic: "ٱلرَّشِيد",
+    arabicMeaning: "الرشيد",
+    transliteration: "Ar-Rashid",
+    french: "Le Guide par excellence"
+},
+{
+    number: 99,
+    arabic: "ٱلصَّبُور",
+    arabicMeaning: "الصبور",
+    transliteration: "As-Sabur",
+    french: "Le Patient"
+}
+        ];
+
+        function renderNames(names) {
+            const grid = document.createElement('div');
+            grid.className = 'names-grid';
+
+            names.forEach(name => {
+                const card = document.createElement('div');
+                card.className = `name-card ${getGradientClass(name.number)}`;
+                
+                card.innerHTML = `
+                    <div class="name-content">
+                        <span class="number">${name.number}</span>
+                        <div class="name-text">
+                            <div class="arabic">${name.arabic}</div>
+                       
+                            <div class="transliteration">${name.transliteration}</div>
+                            <div class="french">${name.french}</div>
+                        </div>
+                        <div class="audio-controls">
+                            <button class="audio-button" onclick="toggleAudio('${name.number}', '${name.transliteration}')">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('content').innerHTML = '';
+            document.getElementById('content').appendChild(grid);
+        }
+
+        function getGradientClass(number) {
+            return `gradient-${(number % 10) + 1}`;
+        }
+
+        function toggleAudio(number, name) {
+            const button = document.querySelector(`[onclick="toggleAudio('${number}', '${name}')"]`);
+            const icon = button.querySelector('i');
+            
+            if (button.classList.contains('playing')) {
+                if (audioCache.has(number)) {
+                    const sound = audioCache.get(number);
+                    sound.stop();
+                }
+                button.classList.remove('playing');
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            } else {
+                const audioUrl = `https://muslim-alim.com/audios-Surnoms/${number}.aac`;
+                
+                if (audioCache.has(number)) {
+                    const sound = audioCache.get(number);
+                    sound.play();
+                } else {
+                    const sound = new Howl({
+                        src: [audioUrl],
+                        html5: true,
+                        onplay: () => {
+                            button.classList.add('playing');
+                            icon.classList.remove('fa-play');
+                            icon.classList.add('fa-pause');
+                        },
+                        onend: () => {
+                            button.classList.remove('playing');
+                            icon.classList.remove('fa-pause');
+                            icon.classList.add('fa-play');
+                        },
+                        onload: () => {
+                            audioCache.set(number, sound);
+                        },
+                        onloaderror: (id, error) => {
+                            console.error(`Erreur de chargement audio pour ${name}:`, error);
+                            alert(`Impossible de charger l'audio pour ${name}`);
+                        }
+                    });
+                    sound.play();
+                }
+            }
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredNames = namesDict.filter(name => 
+                    name.transliteration.toLowerCase().includes(searchTerm) ||
+                    name.french.toLowerCase().includes(searchTerm)
+                );
+                renderNames(filteredNames);
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNames(namesDict);
+            setupSearch();
+        });
+    </script>
+ 
+</body>
+</html>

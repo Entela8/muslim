@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	 <title>Le coran complet avec lecture des 114 sourates du Saint Coran.</title>
+	   <meta name="description" content="Apprenez le coran avec une lecture des 114 sourates du livre saint des musulmans.">
+   <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: white;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            padding: 20px 0;
+            text-align: center;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.dashboard-item {
+    padding: 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: none;
+    border-radius: 8px;
+}
+
+.dashboard-item:nth-child(6n+1) {
+    background: linear-gradient(to right, #FF0099, #493240);
+}
+
+.dashboard-item:nth-child(6n+2) {
+    background: linear-gradient(to right, #00FF99, #324049);
+}
+
+.dashboard-item:nth-child(6n+3) {
+    background: linear-gradient(to right, #9900FF, #403249);
+}
+
+.dashboard-item:nth-child(6n+4) {
+    background: linear-gradient(to right, #FF9900, #494032);
+}
+
+.dashboard-item:nth-child(6n+5) {
+    background: linear-gradient(to right, #0099FF, #324049);
+}
+
+.dashboard-item:nth-child(6n+6) {
+    background: linear-gradient(to right, #FF0066, #493240);
+}
+
+.dashboard-item:active {
+    transform: translateX(5px);
+}
+
+        .dashboard-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            background: rgba(255,255,255,0.2);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .dashboard-text {
+            flex: 1;
+        }
+
+        .dashboard-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .dashboard-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        #surahContainer {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .surah-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .verse {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .verse-arabic {
+            font-size: 1.5rem;
+            text-align: right;
+            margin-bottom: 10px;
+            direction: rtl;
+            color: #333;
+            line-height: 2;
+        }
+
+        .verse-french {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .verse-number {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #closeButton {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        #loading {
+            text-align: center;
+            margin: 20px;
+            color: #333;
+            display: none;
+        }
+
+ 
+/*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+    </style>
+</head>
+<body>
+  
+	 
+    <div class="container">
+        <h1 class="page-title">Le Saint Coran</h1>
+        <button id="closeButton">Retour aux sourates</button>
+        <div class="dashboard" id="dashboard">
+            <!-- Les sourates seront générées ici -->
+        </div>
+
+        <div id="loading">
+            Chargement de la sourate...
+        </div>
+
+        <div id="surahContainer">
+            <div class="surah-header">
+                <h2 id="surahTitleAr"></h2>
+                <h3 id="surahTitleFr"></h3>
+            </div>
+            <div id="versesContainer"></div>
+        </div>
+
+        <br/><br/> 
+
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html" class="active">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+    </div>
+
+    <script>
+        // Liste complète des 114 sourates
+        const surahs = [
+            { number: 1, nameAr: "الفاتحة", name: "Al-Fatiha", nameFr: "L'Ouverture" },
+            { number: 2, nameAr: "البقرة", name: "Al-Baqarah", nameFr: "La Vache" },
+            { number: 3, nameAr: "آل عمران", name: "Al-Imran", nameFr: "La Famille d'Imran" },
+            { number: 4, nameAr: "النساء", name: "An-Nisa", nameFr: "Les Femmes" },
+            { number: 5, nameAr: "المائدة", name: "Al-Maidah", nameFr: "La Table Servie" },
+            { number: 6, nameAr: "الأنعام", name: "Al-Anam", nameFr: "Les Bestiaux" },
+            { number: 7, nameAr: "الأعراف", name: "Al-Araf", nameFr: "Les Murailles" },
+            { number: 8, nameAr: "الأنفال", name: "Al-Anfal", nameFr: "Le Butin" },
+            { number: 9, nameAr: "التوبة", name: "At-Tawbah", nameFr: "Le Repentir" },
+            { number: 10, nameAr: "يونس", name: "Yunus", nameFr: "Jonas" },
+            { number: 11, nameAr: "هود", name: "Hud", nameFr: "Hud" },
+            { number: 12, nameAr: "يوسف", name: "Yusuf", nameFr: "Joseph" },
+            { number: 13, nameAr: "الرعد", name: "Ar-Rad", nameFr: "Le Tonnerre" },
+            { number: 14, nameAr: "ابراهيم", name: "Ibrahim", nameFr: "Abraham" },
+            { number: 15, nameAr: "الحجر", name: "Al-Hijr", nameFr: "Al-Hijr" },
+            { number: 16, nameAr: "النحل", name: "An-Nahl", nameFr: "Les Abeilles" },
+            { number: 17, nameAr: "الإسراء", name: "Al-Isra", nameFr: "Le Voyage Nocturne" },
+            { number: 18, nameAr: "الكهف", name: "Al-Kahf", nameFr: "La Caverne" },
+            { number: 19, nameAr: "مريم", name: "Maryam", nameFr: "Marie" },
+            { number: 20, nameAr: "طه", name: "Ta-Ha", nameFr: "Ta-Ha" },
+            { number: 21, nameAr: "الأنبياء", name: "Al-Anbiya", nameFr: "Les Prophètes" },
+            { number: 22, nameAr: "الحج", name: "Al-Hajj", nameFr: "Le Pèlerinage" },
+            { number: 23, nameAr: "المؤمنون", name: "Al-Muminun", nameFr: "Les Croyants" },
+            { number: 24, nameAr: "النور", name: "An-Nur", nameFr: "La Lumière" },
+            { number: 25, nameAr: "الفرقان", name: "Al-Furqan", nameFr: "Le Discernement" },
+            { number: 26, nameAr: "الشعراء", name: "Ash-Shuara", nameFr: "Les Poètes" },
+            { number: 27, nameAr: "النمل", name: "An-Naml", nameFr: "Les Fourmis" },
+            { number: 28, nameAr: "القصص", name: "Al-Qasas", nameFr: "Le Récit" },
+            { number: 29, nameAr: "العنكبوت", name: "Al-Ankabut", nameFr: "L'Araignée" },
+            { number: 30, nameAr: "الروم", name: "Ar-Rum", nameFr: "Les Romains" },
+            { number: 31, nameAr: "لقمان", name: "Luqman", nameFr: "Luqman" },
+            { number: 32, nameAr: "السجدة", name: "As-Sajdah", nameFr: "La Prosternation" },
+            { number: 33, nameAr: "الأحزاب", name: "Al-Ahzab", nameFr: "Les Coalisés" },
+            { number: 34, nameAr: "سبإ", name: "Saba", nameFr: "Saba" },
+            { number: 35, nameAr: "فاطر", name: "Fatir", nameFr: "Le Créateur" },
+            { number: 36, nameAr: "يس", name: "Ya-Sin", nameFr: "Ya-Sin" },
+            { number: 37, nameAr: "الصافات", name: "As-Saffat", nameFr: "Les Rangés" },
+            { number: 38, nameAr: "ص", name: "Sad", nameFr: "Sad" },
+            { number: 39, nameAr: "الزمر", name: "Az-Zumar", nameFr: "Les Groupes" },
+            { number: 40, nameAr: "غافر", name: "Ghafir", nameFr: "Le Pardonneur" },
+            { number: 41, nameAr: "فصلت", name: "Fussilat", nameFr: "Les Versets Détaillés" },
+            { number: 42, nameAr: "الشورى", name: "Ash-Shura", nameFr: "La Consultation" },
+            { number: 43, nameAr: "الزخرف", name: "Az-Zukhruf", nameFr: "L'Ornement" },
+         { number: 44, nameAr: "الدخان", name: "Ad-Dukhan", nameFr: "La Fumée" },
+            { number: 45, nameAr: "الجاثية", name: "Al-Jathiyah", nameFr: "L'Agenouillée" },
+            { number: 46, nameAr: "الأحقاف", name: "Al-Ahqaf", nameFr: "Les Dunes" },
+            { number: 47, nameAr: "محمد", name: "Muhammad", nameFr: "Muhammad" },
+            { number: 48, nameAr: "الفتح", name: "Al-Fath", nameFr: "La Victoire" },
+            { number: 49, nameAr: "الحجرات", name: "Al-Hujurat", nameFr: "Les Appartements" },
+            { number: 50, nameAr: "ق", name: "Qaf", nameFr: "Qaf" },
+            { number: 51, nameAr: "الذاريات", name: "Adh-Dhariyat", nameFr: "Qui Éparpillent" },
+            { number: 52, nameAr: "الطور", name: "At-Tur", nameFr: "Le Mont" },
+            { number: 53, nameAr: "النجم", name: "An-Najm", nameFr: "L'Étoile" },
+            { number: 54, nameAr: "القمر", name: "Al-Qamar", nameFr: "La Lune" },
+            { number: 55, nameAr: "الرحمن", name: "Ar-Rahman", nameFr: "Le Tout Miséricordieux" },
+            { number: 56, nameAr: "الواقعة", name: "Al-Waqiah", nameFr: "L'Événement" },
+            { number: 57, nameAr: "الحديد", name: "Al-Hadid", nameFr: "Le Fer" },
+            { number: 58, nameAr: "المجادلة", name: "Al-Mujadilah", nameFr: "La Discussion" },
+            { number: 59, nameAr: "الحشر", name: "Al-Hashr", nameFr: "L'Exode" },
+            { number: 60, nameAr: "الممتحنة", name: "Al-Mumtahanah", nameFr: "L'Éprouvée" },
+            { number: 61, nameAr: "الصف", name: "As-Saff", nameFr: "Le Rang" },
+            { number: 62, nameAr: "الجمعة", name: "Al-Jumuah", nameFr: "Le Vendredi" },
+            { number: 63, nameAr: "المنافقون", name: "Al-Munafiqun", nameFr: "Les Hypocrites" },
+            { number: 64, nameAr: "التغابن", name: "At-Taghabun", nameFr: "La Grande Perte" },
+            { number: 65, nameAr: "الطلاق", name: "At-Talaq", nameFr: "Le Divorce" },
+            { number: 66, nameAr: "التحريم", name: "At-Tahrim", nameFr: "L'Interdiction" },
+            { number: 67, nameAr: "الملك", name: "Al-Mulk", nameFr: "La Royauté" },
+            { number: 68, nameAr: "القلم", name: "Al-Qalam", nameFr: "La Plume" },
+            { number: 69, nameAr: "الحاقة", name: "Al-Haqqah", nameFr: "Celle Qui Montre la Vérité" },
+            { number: 70, nameAr: "المعارج", name: "Al-Maarij", nameFr: "Les Voies d'Ascension" },
+            { number: 71, nameAr: "نوح", name: "Nuh", nameFr: "Noé" },
+            { number: 72, nameAr: "الجن", name: "Al-Jinn", nameFr: "Les Djinns" },
+            { number: 73, nameAr: "المزمل", name: "Al-Muzzammil", nameFr: "L'Enveloppé" },
+            { number: 74, nameAr: "المدثر", name: "Al-Muddaththir", nameFr: "Le Revêtu d'un Manteau" },
+            { number: 75, nameAr: "القيامة", name: "Al-Qiyamah", nameFr: "La Résurrection" },
+            { number: 76, nameAr: "الانسان", name: "Al-Insan", nameFr: "L'Homme" },
+            { number: 77, nameAr: "المرسلات", name: "Al-Mursalat", nameFr: "Les Envoyés" },
+            { number: 78, nameAr: "النبإ", name: "An-Naba", nameFr: "La Nouvelle" },
+            { number: 79, nameAr: "النازعات", name: "An-Naziat", nameFr: "Les Anges Qui Arrachent" },
+            { number: 80, nameAr: "عبس", name: "Abasa", nameFr: "Il s'est Renfrogné" },
+            { number: 81, nameAr: "التكوير", name: "At-Takwir", nameFr: "L'Obscurcissement" },
+            { number: 82, nameAr: "الإنفطار", name: "Al-Infitar", nameFr: "La Rupture" },
+            { number: 83, nameAr: "المطففين", name: "Al-Mutaffifin", nameFr: "Les Fraudeurs" },
+            { number: 84, nameAr: "الإنشقاق", name: "Al-Inshiqaq", nameFr: "La Déchirure" },
+            { number: 85, nameAr: "البروج", name: "Al-Buruj", nameFr: "Les Constellations" },
+            { number: 86, nameAr: "الطارق", name: "At-Tariq", nameFr: "L'Astre Nocturne" },
+            { number: 87, nameAr: "الأعلى", name: "Al-Ala", nameFr: "Le Très-Haut" },
+            { number: 88, nameAr: "الغاشية", name: "Al-Ghashiyah", nameFr: "L'Enveloppante" },
+            { number: 89, nameAr: "الفجر", name: "Al-Fajr", nameFr: "L'Aube" },
+            { number: 90, nameAr: "البلد", name: "Al-Balad", nameFr: "La Cité" },
+            { number: 91, nameAr: "الشمس", name: "Ash-Shams", nameFr: "Le Soleil" },
+            { number: 92, nameAr: "الليل", name: "Al-Layl", nameFr: "La Nuit" },
+            { number: 93, nameAr: "الضحى", name: "Ad-Duha", nameFr: "Le Jour Montant" },
+            { number: 94, nameAr: "الشرح", name: "Ash-Sharh", nameFr: "L'Ouverture" },
+            { number: 95, nameAr: "التين", name: "At-Tin", nameFr: "Le Figuier" },
+            { number: 96, nameAr: "العلق", name: "Al-Alaq", nameFr: "L'Adhérence" },
+            { number: 97, nameAr: "القدر", name: "Al-Qadr", nameFr: "La Destinée" },
+            { number: 98, nameAr: "البينة", name: "Al-Bayyinah", nameFr: "La Preuve" },
+            { number: 99, nameAr: "الزلزلة", name: "Az-Zalzalah", nameFr: "La Secousse" },
+            { number: 100, nameAr: "العاديات", name: "Al-Adiyat", nameFr: "Les Coursiers" },
+            { number: 101, nameAr: "القارعة", name: "Al-Qariah", nameFr: "Le Fracas" },
+            { number: 102, nameAr: "التكاثر", name: "At-Takathur", nameFr: "La Course aux Richesses" },
+            { number: 103, nameAr: "العصر", name: "Al-Asr", nameFr: "Le Temps" },
+            { number: 104, nameAr: "الهمزة", name: "Al-Humazah", nameFr: "Les Calomniateurs" },
+            { number: 105, nameAr: "الفيل", name: "Al-Fil", nameFr: "L'Éléphant" },
+            { number: 106, nameAr: "قريش", name: "Quraysh", nameFr: "Les Quraysh" },
+            { number: 107, nameAr: "الماعون", name: "Al-Maun", nameFr: "L'Ustensile" },
+            { number: 108, nameAr: "الكوثر", name: "Al-Kawthar", nameFr: "L'Abondance" },
+            { number: 109, nameAr: "الكافرون", name: "Al-Kafirun", nameFr: "Les Infidèles" },
+            { number: 110, nameAr: "النصر", name: "An-Nasr", nameFr: "Les Secours" },
+            { number: 111, nameAr: "المسد", name: "Al-Masad", nameFr: "Les Fibres" },
+            { number: 112, nameAr: "الإخلاص", name: "Al-Ikhlas", nameFr: "Le Monothéisme Pur" },
+            { number: 113, nameAr: "الفلق", name: "Al-Falaq", nameFr: "L'Aube Naissante" },
+            { number: 114, nameAr: "الناس", name: "An-Nas", nameFr: "Les Hommes" }
+        ];
+
+        // Générer les cartes des sourates
+        const dashboard = document.getElementById('dashboard');
+        surahs.forEach((surah, index) => {
+            const item = document.createElement('div');
+            item.className = 'dashboard-item';
+            item.innerHTML = `
+                <div class="dashboard-icon">📖</div>
+                <div class="dashboard-text">
+                    <div class="dashboard-title">${index + 1}- ${surah.name} (${surah.nameAr})</div>
+                    <div class="dashboard-subtitle">${surah.nameFr}</div>
+                </div>
+            `;
+            
+            item.addEventListener('click', () => loadSurah(index + 1));
+            dashboard.appendChild(item);
+        });
+
+        async function loadSurah(number) {
+            try {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('dashboard').style.display = 'none';
+                
+                const [arabicResponse, frenchResponse] = await Promise.all([
+                    fetch(`https://api.alquran.cloud/v1/surah/${number}`),
+                    fetch(`https://api.alquran.cloud/v1/surah/${number}/fr.hamidullah`)
+                ]);
+                
+                const arabicData = await arabicResponse.json();
+                const frenchData = await frenchResponse.json();
+                
+                const surahContainer = document.getElementById('surahContainer');
+                const versesContainer = document.getElementById('versesContainer');
+                
+                document.getElementById('surahTitleAr').textContent = surahs[number - 1].nameAr;
+                document.getElementById('surahTitleFr').textContent = `${surahs[number - 1].name} - ${surahs[number - 1].nameFr}`;
+                
+                versesContainer.innerHTML = arabicData.data.ayahs.map((ayah, index) => `
+                    <div class="verse">
+                        <div class="verse-arabic">${ayah.text}</div>
+                        <div class="verse-french">
+                            <span class="verse-number">${ayah.numberInSurah}</span>
+                            ${frenchData.data.ayahs[index].text}
+                        </div>
+                    </div>
+                `).join('');
+                
+                surahContainer.style.display = 'block';
+                document.getElementById('closeButton').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Erreur lors du chargement de la sourate:', error);
+                versesContainer.innerHTML = 'Erreur lors du chargement de la sourate. Veuillez réessayer.';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        document.getElementById('closeButton').addEventListener('click', () => {
+            document.getElementById('surahContainer').style.display = 'none';
+            document.getElementById('closeButton').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+        });
+    </script>
+ 
+</body>
+</html>

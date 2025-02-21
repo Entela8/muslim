@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Films sur l'islam : des vidéos à consulter en ligne afin d'apprendre la religion musulmane.</title>
+	   <meta name="description" content="De nombreux films sur l'islam et des vidéos à consulter en ligne afin d'apprendre l'histoire et la religion musulmane.">
+    <link rel="icon" type="image/png" sizes="16x16"  href="https://muslim-alim.com/favicon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #e50914;
+            --accent-color: #ffb43a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --hover-color: #3a3a3a;
+            --gradient: linear-gradient(135deg, #e50914, #ffb43a);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+    .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+ /*NAVIGATION BAS*/ 
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-nav a:nth-child(1) {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+
+        .bottom-nav a:nth-child(2) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .bottom-nav a:nth-child(3) {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .bottom-nav a:nth-child(4) {
+            background: linear-gradient(45deg, #30cfd0, #330867);
+        }
+
+        .bottom-nav a:nth-child(5) {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .bottom-nav a:nth-child(6) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .bottom-nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+       
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .bottom-nav a:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .bottom-nav a.active {
+            position: relative;
+        }
+
+        .bottom-nav a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 0 0 3px 3px;
+        }
+/*FIN NAVIGATION BAS*/ 
+        .header {
+            background: var(--gradient);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .video-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 3rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: none;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .movie-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movie-poster {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-poster::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
+
+        .movie-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .movie-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .movie-info {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .movie-description {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .play-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .now-playing {
+            border: 3px solid var(--secondary-color);
+        }
+
+        .now-playing::before {
+            content: 'En cours de lecture';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+
+        /* Badge pour la qualité */
+        .quality-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .movies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation de chargement */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Films sur l'islam</h1>
+    </div>
+
+    
+        <div class="video-container">
+            <video id="videoPlayer" class="video-player" controls>
+                <source src="" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+
+        <div class="movies-grid" id="moviesList"></div>
+  <br/><br/><br/><br/>
+  
+    <!-- Menu Navigation -->
+    <nav class="bottom-nav">
+        <a href="https://muslim-alim.com/accueil.html" class="active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span>Accueil</span>
+        </a>
+        <a href="https://muslim-alim.com/coran.html">
+            <span class="bottom-nav-icon">🔊</span>
+            <span>Audio</span>
+        </a>
+        <a href="https://muslim-alim.com/lecture-coran.html">
+            <span class="bottom-nav-icon">📖</span>
+            <span>Coran</span>
+        </a>
+        <a href="https://muslim-alim.com/dikr.html">
+            <span class="bottom-nav-icon">📿</span>
+            <span>Dikr</span>
+        </a>
+        <a href="https://muslim-alim.com/horaires-prieres.html">
+            <span class="bottom-nav-icon">🕌</span>
+            <span>Prières</span>
+        </a>
+        <a href="https://muslim-alim.com/qibla-compass.html">
+            <span class="bottom-nav-icon">🕋</span>
+            <span>Qibla</span>
+        </a>
+    </nav>
+	</div>
+    <script>
+        const moviesList = document.getElementById('moviesList');
+        const videoPlayer = document.getElementById('videoPlayer');
+        let currentMovie = null;
+
+        const movies = [
+            {
+                id: 1,
+                title: "Le messager (Al Rissala)",
+                duration: "2h 48min",
+                quality: "HD",
+                year: "2024",
+                description: "Film sur le prophète Muhamed ﷺ.",
+                posterBg: "linear-gradient(45deg, #FF5F6D, #FFC371)",
+                url: "https://muslim-alim.com/Films-Islam/Al-Rissala-Le-Messager.mp4"
+            },
+            {
+                id: 2,
+                title: "Prophète Ibrahim (as)",
+                duration: "1h 48min",
+                quality: "HD",
+                year: "2024",
+                description: "Film sur le prophète Ibrahim (as).",
+                posterBg: "linear-gradient(45deg, #2196F3, #45cafc)",
+                url: "https://muslim-alim.com/Films-Islam/Prophete-Ibrahim.mp4"
+            },
+            {
+                id: 3,
+                title: "Muhamed ﷺ : messager d'Allah",
+                duration: "2h 57min",
+                quality: "HD",
+                year: "2024",
+                description: "Film sur la sira du prophète Muhamed ﷺ.",
+                posterBg: "linear-gradient(45deg, #FF4B2B, #FF416C)",
+                url: "https://muslim-alim.com/Films-Islam/Mohamed-Messager-de-Dieu.mp4"
+            },
+            {
+                id: 4,
+                title: "Le prophète Moïse (Moussa AS)",
+                duration: "1h 28min",
+                quality: "HD",
+                year: "2024",
+                description: "Film sur le prophète Moussa (as).",
+                posterBg: "linear-gradient(45deg, #43cea2, #185a9d)",
+                url: "https://muslim-alim.com/Films-Islam/Le-Prophete-Moise.mp4"
+            },
+            {
+                id: 5,
+                title: "Le prophète Salomon (Suleymane AS)",
+                duration: "1h 49min",
+                quality: "HD",
+                year: "2024",
+                description: "Film sur le prophète Suleymane (as).",
+                posterBg: "linear-gradient(45deg, #834d9b, #d04ed6)",
+                url: "https://muslim-alim.com/Films-Islam/Le-Prophete-Salomon-Sulayman.mp4"
+            },
+            {
+                id: 6,
+                title: "La biographie (Sira) du prophète Muhamed ﷺ. ",
+                duration: "52 min",
+                quality: "HD",
+                year: "2024",
+                description: "Biographie du prophète Muhamed ﷺ.",
+                posterBg: "linear-gradient(45deg, #4b6cb7, #182848)",
+                url: "https://muslim-alim.com/Films-Islam/La-Biographie-Du-Prophete-Muhammed.mp4"
+            },
+            {
+                id: 7,
+                title: "Le jour ou le prophète Muhamed a dialogué avec le diable",
+                duration: "14 min",
+                quality: "4K",
+                year: "2024",
+                description: "Dialogue entre le prophète Muhamed ﷺ et le diable.",
+                posterBg: "linear-gradient(45deg, #ee0979, #ff6a00)",
+                url: "https://muslim-alim.com/Films-Islam/Le-jour-ou-prophete-muhamed-parle-diable.mp4"
+            },
+			{
+                id: 8,
+                title: "Le jour du jugement dernier.",
+                duration: "8 min",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo sur le jugement dernier.",
+                posterBg: "linear-gradient(45deg, #FF5F6D, #FFC371)",
+                url: "https://muslim-alim.com/Films-Islam/Le-Jour-Du-Jugement-Dernier.mp4"
+            },
+			
+            {
+                id: 9,
+                title: "Quand Ibrahim (as) voulait voir comment Allah peut ressusciter sa création.",
+                duration: "2 min 11 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                posterBg: "linear-gradient(45deg, #2196F3, #45cafc)",
+                url: "https://muslim-alim.com/Films-Islam/Ibrahim-voulait-voir-comment-Allah-ressuscite.mp4"
+            },
+			 {
+                id: 10,
+                title: "Les différents surnoms du prophète Muhamed ﷺ.",
+                duration: "1 min 20 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                posterBg: "linear-gradient(45deg, #FF4B2B, #FF416C)",
+                url: "https://muslim-alim.com/Films-Islam/nombre-fois-Muhamed-cite-coran.mp4"
+            },
+			{
+                id: 11,
+                title: "La nuit du destin.",
+                duration: "57 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                posterBg: "linear-gradient(45deg, #43cea2, #185a9d)",
+                url: "https://muslim-alim.com/Films-Islam/La-nuit-du-destin.mp4"
+            },
+			 {
+                id: 12,
+                title: "Jésus (Issa as) est-il mort ?",
+                duration: "51 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                posterBg: "linear-gradient(45deg, #43cea2, #185a9d)",
+                url: "https://muslim-alim.com/Films-Islam/Jesus-est-il-mort.mp4"
+            },
+			 {
+                id: 13,
+                title: "Les miracles du nom d'Allah.",
+                duration: "55 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                 posterBg: "linear-gradient(45deg, #FF4B2B, #FF416C)",
+                url: "https://muslim-alim.com/Films-Islam/Miracle-Nom-ALLAH.mp4"
+            },
+			 {
+                id: 14,
+                title: "La kaaba sera détruite.",
+                duration: "44 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                  posterBg: "linear-gradient(45deg, #834d9b, #d04ed6)",
+                url: "https://muslim-alim.com/Films-Islam/La-Kaaba-sera-detruite.mp4"
+            },
+			 {
+                id: 15,
+                title: "Histoire de la sourate Ad Duhaa (S.93).",
+                duration: "58 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+               posterBg: "linear-gradient(45deg, #43cea2, #185a9d)",
+                url: "https://muslim-alim.com/Films-Islam/histoire-sourate-Ad-Duha.mp4"
+            },
+		 {
+                id: 16,
+                title: "La Mecque d'avant (Bakkah).",
+                duration: "51 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                 posterBg: "linear-gradient(45deg, #2196F3, #45cafc)",
+                url: "https://muslim-alim.com/Films-Islam/La-Mecque-AVANT.mp4"
+            },
+			 {
+                id: 17,
+                title: "L'histoire de Issa (Jésus) as.",
+                duration: "51 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+                  posterBg: "linear-gradient(45deg, #ee0979, #ff6a00)",
+                url: "https://muslim-alim.com/Films-Islam/Histoire-Jesus.mp4"
+            },
+			 {
+                id: 18,
+                title: "La mort de Soulayman (Salomon) as.",
+                duration: "59 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+              posterBg: "linear-gradient(45deg, #43cea2, #185a9d)",
+                url: "https://muslim-alim.com/Films-Islam/La-mort-de-Soulayman.mp4"
+            },
+			 {
+                id: 19,
+                title: "L'histoire qui a fait pleurer le prophète Muhamed ﷺ. ",
+                duration: "1 min",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+              posterBg: "linear-gradient(45deg, #FF5F6D, #FFC371)",
+                url: "https://muslim-alim.com/Films-Islam/Histoire-pleurer-prophete-Mohamed.mp4"
+            },
+			{
+                id: 20,
+                title: "L'origine de la Sorcellerie. ",
+                duration: "47 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+              posterBg: "linear-gradient(45deg, #834d9b, #d04ed6)",
+                url: "https://muslim-alim.com/Films-Islam/Origine-sorcellerie.mp4"
+            },
+				{
+                id: 20,
+                title: "La chevalière noire - Khawlah bint Al-Azwar ⚔️",
+                duration: "52 s",
+                quality: "HD",
+                year: "2024",
+                description: "Vidéo courte.",
+              posterBg: "linear-gradient(45deg, #834d9b, #d04ed6)",
+                url: "https://muslim-alim.com/Films-Islam/La-chevaliere-noire-Khawlah-bint-Al-Azwar.mp4"
+            },
+        ];
+		
+		
+
+        function createMovieCard(movie) {
+            const card = document.createElement('div');
+            card.className = 'movie-card';
+            card.innerHTML = `
+                <div class="movie-poster" style="background: ${movie.posterBg}">
+                    <div class="quality-badge">${movie.quality}</div>
+                </div>
+                <div class="movie-content">
+                    <div>
+                        <h3 class="movie-title">${movie.title}</h3>
+                        <div class="movie-info">
+                            <span><i class="fas fa-clock"></i> ${movie.duration}</span> &bull;
+                            <span><i class="fas fa-calendar"></i> ${movie.year}</span>
+                        </div>
+                        <p class="movie-description">${movie.description}</p>
+                    </div>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i>
+                        Regarder maintenant
+                    </button>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                if (currentMovie) {
+                    currentMovie.classList.remove('now-playing');
+                }
+                card.classList.add('now-playing');
+                currentMovie = card;
+                
+                videoPlayer.src = movie.url;
+                videoPlayer.load();
+                videoPlayer.play().catch(error => {
+                    console.log("Erreur de lecture:", error);
+                });
+                
+                videoPlayer.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            return card;
+        }
+
+        movies.forEach(movie => {
+            moviesList.appendChild(createMovieCard(movie));
+        });
+
+        videoPlayer.addEventListener('error', function(e) {
+            console.log("Erreur de lecture vidéo:", videoPlayer.error);
+        });
+    </script>
+</body>
+</html>
